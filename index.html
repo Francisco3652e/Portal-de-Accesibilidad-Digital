@@ -32,7 +32,7 @@
 </div>
 <div class="flex items-center gap-space-xs shrink-0">
 <button aria-label="Cambiar a modo oscuro" aria-pressed="false" class="theme-toggle w-11 h-11 flex items-center justify-center rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" data-action="toggle-theme" type="button"><span aria-hidden="true" class="material-symbols-outlined theme-icon theme-icon-sun text-[22px]">light_mode</span><span aria-hidden="true" class="material-symbols-outlined theme-icon theme-icon-moon text-[22px]">dark_mode</span></button>
-<div aria-label="Perfil de usuario" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs shrink-0"><span aria-hidden="true" class="material-symbols-outlined text-on-primary text-[18px]">person</span></div>
+<a aria-label="Abrir Ajustes de accesibilidad" class="w-11 h-11 flex items-center justify-center rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors shrink-0" href="ajustes.html"><span aria-hidden="true" class="material-symbols-outlined text-[22px]">settings_accessibility</span></a>
 </div>
 </div>
 </header>
@@ -108,12 +108,12 @@
 <div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shrink-0">
 <span aria-hidden="true" class="material-symbols-outlined text-[28px]">sign_language</span>
 </div>
-<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container">LSE y LSM</span>
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container">LESSA</span>
 </div>
 <div class="flex flex-col gap-1">
-<h4 class="font-headline-sm text-headline-sm text-on-surface">Lengua de Señas</h4>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Lengua de Señas Salvadoreña</h4>
 <p class="font-body-md text-body-md text-on-surface-variant">
-              Videos interpretados en Lengua de Señas Española y Mexicana, acompañados de subtítulos descriptivos enriquecidos.
+              Videos interpretados en Lengua de Señas Salvadoreña (LESSA), acompañados de subtítulos descriptivos enriquecidos.
             </p>
 </div>
 <div class="pt-space-xs flex items-center justify-between">
@@ -192,7 +192,7 @@
 <div class="flex flex-col min-w-0">
 <span class="font-label-sm text-label-sm text-secondary uppercase">Videoteca • Actualizada</span>
 <h4 class="font-label-lg text-label-lg text-on-surface truncate">Directorio de videos en Lengua de Señas</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Trámites y servicios públicos en LSE/LSM.</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Trámites y servicios públicos en LESSA.</p>
 </div>
 </div>
 <span aria-hidden="true" class="material-symbols-outlined text-on-surface-variant shrink-0">chevron_right</span>
@@ -244,11 +244,13 @@
 </script>
 </main>
 <nav aria-label="Navegación principal" class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.06)]">
-<div class="grid grid-cols-4 items-center h-20 px-space-xs">
-<a aria-current="page" class="flex flex-col items-center justify-center h-full transition-colors gap-0.5 text-primary font-bold" href="index.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">home</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Inicio</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="lector.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">record_voice_over</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Lector</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="senas.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">sign_language</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Señas</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="ajustes.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">settings_accessibility</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Ajustes</span></a>
+<div class="flex items-stretch h-20 px-space-xs gap-1">
+<a aria-current="page" class="flex-1 min-w-0 flex flex-col items-center justify-center h-full gap-0.5 px-1 text-primary font-bold" href="index.html"><span aria-hidden="true" class="material-symbols-outlined text-[24px]">home</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Inicio</span></a>
+<a class="flex-1 min-w-0 flex flex-col items-center justify-center h-full gap-0.5 px-1 text-on-surface-variant hover:text-on-surface transition-colors" href="acerca.html"><span aria-hidden="true" class="material-symbols-outlined text-[24px]">info</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Acerca</span></a>
+<a class="flex-1 min-w-0 flex flex-col items-center justify-center h-full gap-0.5 px-1 text-on-surface-variant hover:text-on-surface transition-colors" href="servicios.html"><span aria-hidden="true" class="material-symbols-outlined text-[24px]">apps</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Servicios</span></a>
+<a class="flex-1 min-w-0 flex flex-col items-center justify-center h-full gap-0.5 px-1 text-on-surface-variant hover:text-on-surface transition-colors" href="lector.html"><span aria-hidden="true" class="material-symbols-outlined text-[24px]">record_voice_over</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Lector</span></a>
+<a class="flex-1 min-w-0 flex flex-col items-center justify-center h-full gap-0.5 px-1 text-on-surface-variant hover:text-on-surface transition-colors" href="senas.html"><span aria-hidden="true" class="material-symbols-outlined text-[24px]">sign_language</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Señas</span></a>
+<a class="flex-1 min-w-0 flex flex-col items-center justify-center h-full gap-0.5 px-1 text-on-surface-variant hover:text-on-surface transition-colors" href="contacto.html"><span aria-hidden="true" class="material-symbols-outlined text-[24px]">mail</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Contacto</span></a>
 </div>
 </nav>
 <script src="assets/site.js"></script>
