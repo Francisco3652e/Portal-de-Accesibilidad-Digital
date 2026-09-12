@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Portal Accesible — Ajustes</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="assets/site.css" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/tailwind-config.js"></script>
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
+<svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+<defs>
+<filter id="f-protanopia"><feColorMatrix type="matrix" values="0.567,0.433,0,0,0 0.558,0.442,0,0,0 0,0.242,0.758,0,0 0,0,0,1,0"/></filter>
+<filter id="f-deuteranopia"><feColorMatrix type="matrix" values="0.625,0.375,0,0,0 0.7,0.3,0,0,0 0,0.3,0.7,0,0 0,0,0,1,0"/></filter>
+<filter id="f-tritanopia"><feColorMatrix type="matrix" values="0.95,0.05,0,0,0 0,0.433,0.567,0,0 0,0.475,0.525,0,0 0,0,0,1,0"/></filter>
+</defs>
+</svg>
+<a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-space-md focus:py-space-sm focus:bg-inverse-surface focus:text-inverse-on-surface focus:rounded-lg focus:outline-none" href="#main-content">Saltar al contenido principal</a>
+<div aria-live="polite" class="sr-only" id="a11y-announcer" role="status"></div>
+<header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe">
+<div class="h-20 px-margin flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<img alt="Logo Accesibilidad Digital" class="h-8 w-auto object-contain shrink-0" src="assets/logo.png"/>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-primary tracking-wide uppercase">Portal Accesible</span>
+<h1 class="font-headline-sm text-headline-sm text-on-surface truncate leading-tight">Ayuda y Ajustes</h1>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<button aria-label="Cambiar a modo oscuro" aria-pressed="false" class="theme-toggle w-11 h-11 flex items-center justify-center rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" data-action="toggle-theme" type="button"><span aria-hidden="true" class="material-symbols-outlined theme-icon theme-icon-sun text-[22px]">light_mode</span><span aria-hidden="true" class="material-symbols-outlined theme-icon theme-icon-moon text-[22px]">dark_mode</span></button>
+<div aria-label="Perfil de usuario" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs shrink-0"><span aria-hidden="true" class="material-symbols-outlined text-on-primary text-[18px]">person</span></div>
+</div>
+</div>
+</header>
+<main class="flex flex-col relative w-full pt-20 pb-24 bg-surface min-h-screen" id="main-content">
+<div class="flex flex-col w-full px-margin pb-space-xl space-y-space-lg">
+<section aria-labelledby="section-intro-title" class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm space-y-space-xs mt-space-sm">
+<div class="flex items-center gap-space-xs text-primary">
+<span aria-hidden="true" class="material-symbols-outlined text-[28px]">tune</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary">Configuración Rápida</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface" id="section-intro-title">
+      Navegación Sencilla y Ajustes
+    </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+      Personaliza tu experiencia visual y de navegación según tus necesidades. Tus preferencias se guardan en este dispositivo y se aplican también en Inicio, Lector y Señas.
+    </p>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+        WCAG 2.2 AAA Activo
+      </span>
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+        Guardado local
+      </span>
+</div>
+</section>
+<section aria-labelledby="vision-settings-title" class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span aria-hidden="true" class="material-symbols-outlined text-[22px]">contrast</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface" id="vision-settings-title">Alto Contraste y Visión</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ajustes visuales y cromáticos inmediatos</p>
+</div>
+</div>
+</div>
+<fieldset class="space-y-space-xs">
+<legend class="font-label-md text-label-md text-on-surface mb-space-xs block">
+        Esquema de color de contraste:
+      </legend>
+<div class="grid grid-cols-2 gap-space-sm">
+<label class="relative flex flex-col p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<input checked="" class="sr-only peer" name="contrast-mode" type="radio" value="standard"/>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-on-surface">Predeterminado</span>
+<span class="w-5 h-5 rounded-full bg-surface-container-high peer-checked:bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Luz suave equilibrada</span>
+</label>
+<label class="relative flex flex-col p-space-sm rounded-lg bg-inverse-surface text-inverse-on-surface cursor-pointer shadow-sm hover:opacity-95 transition-opacity">
+<input class="sr-only peer" name="contrast-mode" type="radio" value="dark"/>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-inverse-on-surface">Blanco / Negro puro</span>
+<span class="w-5 h-5 rounded-full bg-surface-container-lowest text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]">contrast</span>
+</span>
+</div>
+<span class="font-body-sm text-body-sm text-inverse-on-surface/80">Máximo contraste oscuro</span>
+</label>
+<label class="relative flex flex-col p-space-sm rounded-lg bg-tertiary-fixed text-on-tertiary-fixed cursor-pointer shadow-sm col-span-2 hover:opacity-95 transition-opacity">
+<input class="sr-only peer" name="contrast-mode" type="radio" value="yellow"/>
+<div class="flex items-center justify-between mb-1">
+<div class="flex items-center gap-space-xs">
+<span class="w-3.5 h-3.5 rounded-full bg-on-tertiary-fixed inline-block"></span>
+<span class="font-label-md text-label-md text-on-tertiary-fixed font-bold">Negro sobre Amarillo Puro</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-on-tertiary-fixed text-tertiary-fixed font-label-sm text-label-sm">Baja Visión</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-tertiary-fixed/90">Recomendado para fotofobia y debilidad macular</span>
+</label>
+</div>
+</fieldset>
+<div class="space-y-space-xs pt-space-xs">
+<label class="font-label-md text-label-md text-on-surface block" for="color-filter-select">
+        Filtro adaptativo de daltonismo:
+      </label>
+<div class="relative">
+<select class="w-full h-12 pl-space-md pr-10 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md appearance-none focus:bg-surface-container-low focus:outline-none transition-colors" id="color-filter-select">
+<option value="none">Sin filtro (Visión estándar)</option>
+<option value="protanopia">Protanopia (Deficiencia rojo)</option>
+<option value="deuteranopia">Deuteranopia (Deficiencia verde)</option>
+<option value="tritanopia">Tritanopia (Deficiencia azul)</option>
+<option value="grayscale">Escala de Grises (Monocromático completo)</option>
+</select>
+<span aria-hidden="true" class="material-symbols-outlined pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[24px]">expand_more</span>
+</div>
+</div>
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface" id="font-size-label">
+          Tamaño de letra en pantalla:
+        </label>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-bold" id="font-indicator">Normal (100%)</span>
+</div>
+<div class="grid grid-cols-4 gap-space-xs pt-1">
+<button class="h-12 flex flex-col items-center justify-center rounded-lg bg-surface-container hover:bg-surface-container-high active:scale-95 text-on-surface transition-all" data-font-choice="sm" type="button">
+<span class="font-label-sm text-label-sm font-bold">A</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[11px]">Pequeña</span>
+</button>
+<button class="h-12 flex flex-col items-center justify-center rounded-lg bg-surface-container hover:bg-surface-container-high active:scale-95 text-on-surface transition-all" data-font-choice="md" type="button">
+<span class="font-label-md text-label-md">A</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[11px]">Normal</span>
+</button>
+<button class="h-12 flex flex-col items-center justify-center rounded-lg bg-surface-container hover:bg-surface-container-high active:scale-95 text-on-surface transition-all" data-font-choice="lg" type="button">
+<span class="font-headline-sm text-headline-sm leading-none">A</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[11px]">Grande</span>
+</button>
+<button class="h-12 flex flex-col items-center justify-center rounded-lg bg-surface-container hover:bg-surface-container-high active:scale-95 text-on-surface transition-all" data-font-choice="xxl" type="button">
+<span class="font-headline-md text-headline-md leading-none font-bold">A</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[11px]">Extra</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs p-space-sm rounded-lg bg-surface-container-low">
+<div class="flex flex-col pr-space-xs">
+<span class="font-label-md text-label-md text-on-surface">Espaciado e interlineado amplio</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Aumenta separación entre renglones y palabras</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input class="sr-only peer" id="toggle-spacing" type="checkbox"/>
+<div class="w-14 h-8 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-surface-container-lowest after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</section>
+<section aria-labelledby="nav-settings-title" class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center gap-space-xs pb-space-xs">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span aria-hidden="true" class="material-symbols-outlined text-[22px]">touch_app</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface" id="nav-settings-title">Navegación Simplificada</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Reduce complejidad cognitiva y motriz</p>
+</div>
+</div>
+<div class="flex items-start justify-between p-space-sm rounded-lg bg-surface-container-low gap-space-sm">
+<div class="flex gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">route</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Modo Guiado Paso a Paso</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+            Muestra una sola acción clave por pantalla, ocultando menús secundarios para evitar distracciones.
+          </span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0 mt-1">
+<input class="sr-only peer" id="toggle-guided-mode" type="checkbox"/>
+<div class="w-14 h-8 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-surface-container-lowest after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-start justify-between p-space-sm rounded-lg bg-surface-container-low gap-space-sm">
+<div class="flex gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed-dim flex items-center justify-center text-on-secondary-fixed shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">ads_click</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Destacar elementos clicables</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+            Aplica realce visual con contorno azul a botones, enlaces y campos de selección.
+          </span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0 mt-1">
+<input checked="" class="sr-only peer" id="toggle-highlight-clickable" type="checkbox"/>
+<div class="w-14 h-8 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-surface-container-lowest after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-start justify-between p-space-sm rounded-lg bg-surface-container-low gap-space-sm">
+<div class="flex gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed-dim flex items-center justify-center text-on-tertiary-fixed shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">motion_photos_off</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Desactivar animaciones</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+            Elimina transiciones dinámicas y movimiento continuo. Recomendado para sensibilidad vestibular o vértigo.
+          </span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0 mt-1">
+<input class="sr-only peer" id="toggle-reduce-motion" type="checkbox"/>
+<div class="w-14 h-8 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-surface-container-lowest after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</section>
+<section aria-labelledby="help-channels-title" class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span aria-hidden="true" class="material-symbols-outlined text-[22px]">support_agent</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface" id="help-channels-title">Canales de Ayuda Directa</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Asistencia humana accesible y en tiempo real</p>
+</div>
+</div>
+</div>
+<a aria-label="Iniciar videollamada con intérprete de señas, disponible 24/7" class="group flex items-center justify-between p-space-md rounded-xl bg-primary text-on-primary shadow-sm hover:bg-primary-container active:scale-[0.99] transition-all" href="senas.html" role="button">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-12 h-12 rounded-full bg-on-primary/15 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px] text-on-primary">sign_language</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg leading-tight truncate">Videollamada en Lengua de Señas</span>
+<span class="font-body-sm text-body-sm text-on-primary-container">Intérprete certificado en vivo y sin costo</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-on-primary/20 flex items-center justify-center shrink-0 ml-space-xs group-hover:translate-x-0.5 transition-transform">
+<span class="material-symbols-outlined text-[22px] text-on-primary">video_call</span>
+</div>
+</a>
+<a aria-label="Llamar a asistencia guiada por teléfono, gratuita" class="group flex items-center justify-between p-space-md rounded-xl bg-surface-container hover:bg-surface-container-high active:scale-[0.99] transition-all" href="tel:900000111" role="button">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shrink-0">
+<span class="material-symbols-outlined text-[26px]">headset_mic</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface leading-tight">Asistencia guiada por teléfono</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Llamada gratuita nacional: 900 000 111</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0 ml-space-xs">
+<span class="material-symbols-outlined text-[20px] text-on-surface">call</span>
+</div>
+</a>
+<button aria-haspopup="dialog" class="w-full flex items-center justify-between p-space-md rounded-xl bg-surface-container hover:bg-surface-container-high active:scale-[0.99] transition-all text-left" id="btn-open-faq" type="button">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed shrink-0">
+<span class="material-symbols-outlined text-[26px]">quiz</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface leading-tight">Preguntas frecuentes simplificadas</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Guías ilustradas paso a paso en lectura fácil</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0 ml-space-xs">
+<span class="material-symbols-outlined text-[20px] text-on-surface">arrow_forward</span>
+</div>
+</button>
+</section>
+<div aria-live="polite" class="sr-only" id="status-announcer" role="status">
+    Ajustes de accesibilidad listos para configurar.
+  </div>
+<div aria-labelledby="modal-title" aria-modal="true" class="hidden fixed inset-0 z-[80] bg-on-surface/40 backdrop-blur-sm p-margin flex items-end sm:items-center justify-center" id="faq-modal" role="dialog">
+<div class="w-full max-w-lg bg-surface-container-lowest rounded-xl p-space-md space-y-space-md shadow-xl max-h-[80vh] overflow-y-auto">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[26px]">auto_stories</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface" id="modal-title">Lectura Fácil &amp; FAQ</h4>
+</div>
+<button aria-label="Cerrar ventana de preguntas" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high active:scale-95" id="btn-close-faq" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="space-y-space-sm text-on-surface">
+<details class="group p-space-sm rounded-lg bg-surface-container-low cursor-pointer">
+<summary class="font-label-md text-label-md flex justify-between items-center list-none">
+<span>¿Cómo activo la voz que lee la pantalla?</span>
+<span class="material-symbols-outlined text-[20px] group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="font-body-md text-body-md text-on-surface-variant pt-space-xs">
+            Pulsa en la barra inferior en el botón con icono de altavoz llamado "Lector". Comenzará a leer en voz alta cada botón que toques.
+          </p>
+</details>
+<details class="group p-space-sm rounded-lg bg-surface-container-low cursor-pointer">
+<summary class="font-label-md text-label-md flex justify-between items-center list-none">
+<span>¿Se guardan mis preferencias si cierro la aplicación?</span>
+<span class="material-symbols-outlined text-[20px] group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="font-body-md text-body-md text-on-surface-variant pt-space-xs">
+            Sí. Todo cambio que hagas en esta pantalla se conserva en la memoria del teléfono automáticamente para tus próximas visitas.
+          </p>
+</details>
+<details class="group p-space-sm rounded-lg bg-surface-container-low cursor-pointer">
+<summary class="font-label-md text-label-md flex justify-between items-center list-none">
+<span>¿Cómo hablar con un intérprete de señas?</span>
+<span class="material-symbols-outlined text-[20px] group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="font-body-md text-body-md text-on-surface-variant pt-space-xs">
+            Solo debes pulsar el botón azul grande "Videollamada en Lengua de Señas". Te llevará a la sección de Señas para conectarte con un especialista en directo.
+          </p>
+</details>
+</div>
+<button class="w-full h-12 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center active:scale-95 transition-all" id="btn-faq-done" type="button">
+        Entendido y volver
+      </button>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    function announceChange(message) {
+      const announcer = document.getElementById('status-announcer');
+      if (announcer) { announcer.textContent = message; }
+    }
+
+    function toggleFaqModal() {
+      const modal = document.getElementById('faq-modal');
+      if (!modal) return;
+      modal.classList.toggle('hidden');
+      announceChange(modal.classList.contains('hidden') ? 'Ventana cerrada.' : 'Ventana de preguntas frecuentes abierta.');
+    }
+
+    const openBtn = document.getElementById('btn-open-faq');
+    const closeBtn = document.getElementById('btn-close-faq');
+    const doneBtn = document.getElementById('btn-faq-done');
+    if (openBtn) openBtn.addEventListener('click', toggleFaqModal);
+    if (closeBtn) closeBtn.addEventListener('click', toggleFaqModal);
+    if (doneBtn) doneBtn.addEventListener('click', toggleFaqModal);
+  })();
+</script>
+</main>
+<nav aria-label="Navegación principal" class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.06)]">
+<div class="grid grid-cols-4 items-center h-20 px-space-xs">
+<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="index.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">home</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Inicio</span></a>
+<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="lector.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">record_voice_over</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Lector</span></a>
+<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="senas.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">sign_language</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Señas</span></a>
+<a aria-current="page" class="flex flex-col items-center justify-center h-full transition-colors gap-0.5 text-primary font-bold" href="ajustes.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">settings_accessibility</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Ajustes</span></a>
+</div>
+</nav>
+<script src="assets/site.js"></script>
+</body>
+</html>
