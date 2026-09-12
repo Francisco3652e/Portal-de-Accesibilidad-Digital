@@ -32,7 +32,7 @@
 </div>
 <div class="flex items-center gap-space-xs shrink-0">
 <button aria-label="Cambiar a modo oscuro" aria-pressed="false" class="theme-toggle w-11 h-11 flex items-center justify-center rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" data-action="toggle-theme" type="button"><span aria-hidden="true" class="material-symbols-outlined theme-icon theme-icon-sun text-[22px]">light_mode</span><span aria-hidden="true" class="material-symbols-outlined theme-icon theme-icon-moon text-[22px]">dark_mode</span></button>
-<div aria-label="Perfil de usuario" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs shrink-0"><span aria-hidden="true" class="material-symbols-outlined text-on-primary text-[18px]">person</span></div>
+<a aria-current="page" aria-label="Ajustes de accesibilidad (página actual)" class="w-11 h-11 flex items-center justify-center rounded-lg bg-primary text-on-primary transition-colors shrink-0" href="ajustes.html"><span aria-hidden="true" class="material-symbols-outlined text-[22px]">settings_accessibility</span></a>
 </div>
 </div>
 </header>
@@ -114,7 +114,7 @@
         Filtro adaptativo de daltonismo:
       </label>
 <div class="relative">
-<select class="w-full h-12 pl-space-md pr-10 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md appearance-none focus:bg-surface-container-low focus:outline-none transition-colors" id="color-filter-select">
+<select class="w-full h-12 pl-space-md pr-10 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md appearance-none focus:bg-surface-container-low focus:outline-none focus:ring-2 focus:ring-primary transition-colors" id="color-filter-select">
 <option value="none">Sin filtro (Visión estándar)</option>
 <option value="protanopia">Protanopia (Deficiencia rojo)</option>
 <option value="deuteranopia">Deuteranopia (Deficiencia verde)</option>
@@ -235,13 +235,13 @@
 </div>
 </div>
 </div>
-<a aria-label="Iniciar videollamada con intérprete de señas, disponible 24/7" class="group flex items-center justify-between p-space-md rounded-xl bg-primary text-on-primary shadow-sm hover:bg-primary-container active:scale-[0.99] transition-all" href="senas.html" role="button">
+<a aria-label="Iniciar videollamada con intérprete de LESSA, disponible 24/7" class="group flex items-center justify-between p-space-md rounded-xl bg-primary text-on-primary shadow-sm hover:bg-primary-container active:scale-[0.99] transition-all" href="senas.html" role="button">
 <div class="flex items-center gap-space-sm min-w-0">
 <div class="w-12 h-12 rounded-full bg-on-primary/15 flex items-center justify-center shrink-0">
 <span class="material-symbols-outlined text-[28px] text-on-primary">sign_language</span>
 </div>
 <div class="flex flex-col min-w-0">
-<span class="font-label-lg text-label-lg leading-tight truncate">Videollamada en Lengua de Señas</span>
+<span class="font-label-lg text-label-lg leading-tight truncate">Videollamada en Lengua de Señas (LESSA)</span>
 <span class="font-body-sm text-body-sm text-on-primary-container">Intérprete certificado en vivo y sin costo</span>
 </div>
 </div>
@@ -351,11 +351,13 @@
 </script>
 </main>
 <nav aria-label="Navegación principal" class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.06)]">
-<div class="grid grid-cols-4 items-center h-20 px-space-xs">
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="index.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">home</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Inicio</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="lector.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">record_voice_over</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Lector</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="senas.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">sign_language</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Señas</span></a>
-<a aria-current="page" class="flex flex-col items-center justify-center h-full transition-colors gap-0.5 text-primary font-bold" href="ajustes.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">settings_accessibility</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Ajustes</span></a>
+<div class="flex items-stretch h-20 px-space-xs gap-1">
+<a class="flex-1 min-w-0 flex flex-col items-center justify-center h-full gap-0.5 px-1 text-on-surface-variant hover:text-on-surface transition-colors" href="index.html"><span aria-hidden="true" class="material-symbols-outlined text-[24px]">home</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Inicio</span></a>
+<a class="flex-1 min-w-0 flex flex-col items-center justify-center h-full gap-0.5 px-1 text-on-surface-variant hover:text-on-surface transition-colors" href="acerca.html"><span aria-hidden="true" class="material-symbols-outlined text-[24px]">info</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Acerca</span></a>
+<a class="flex-1 min-w-0 flex flex-col items-center justify-center h-full gap-0.5 px-1 text-on-surface-variant hover:text-on-surface transition-colors" href="servicios.html"><span aria-hidden="true" class="material-symbols-outlined text-[24px]">apps</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Servicios</span></a>
+<a class="flex-1 min-w-0 flex flex-col items-center justify-center h-full gap-0.5 px-1 text-on-surface-variant hover:text-on-surface transition-colors" href="lector.html"><span aria-hidden="true" class="material-symbols-outlined text-[24px]">record_voice_over</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Lector</span></a>
+<a class="flex-1 min-w-0 flex flex-col items-center justify-center h-full gap-0.5 px-1 text-on-surface-variant hover:text-on-surface transition-colors" href="senas.html"><span aria-hidden="true" class="material-symbols-outlined text-[24px]">sign_language</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Señas</span></a>
+<a class="flex-1 min-w-0 flex flex-col items-center justify-center h-full gap-0.5 px-1 text-on-surface-variant hover:text-on-surface transition-colors" href="contacto.html"><span aria-hidden="true" class="material-symbols-outlined text-[24px]">mail</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full">Contacto</span></a>
 </div>
 </nav>
 <script src="assets/site.js"></script>
