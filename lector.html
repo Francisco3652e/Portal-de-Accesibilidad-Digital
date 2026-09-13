@@ -105,8 +105,8 @@
 </div>
 </div>
 <section data-step aria-labelledby="reader-heading">
-<h1 id="reader-heading" style="font-size:clamp(2.25rem,5vw,3.75rem)">Lector de pantalla y asistente de voz</h1>
-<p class="lead measure" style="margin-top:.75rem">Convierte cualquier texto en audio nítido con navegación por comandos o toques grandes.</p>
+<h1 id="reader-heading" style="font-size:clamp(2.25rem,5vw,3.75rem)">Lector de voz</h1>
+<p class="lead measure" style="margin-top:.75rem">Convierte cualquier texto en audio, con controles grandes.</p>
 <div class="cluster" style="margin-top:1rem">
 <span class="tag tag--pink"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-wave"/></svg>Motor de síntesis activo</span>
 <span class="tag">Español neutro</span>
@@ -152,7 +152,7 @@
 <div aria-live="assertive" class="sr-only" id="status-announcer"></div>
 <div class="field" id="paste-section">
 <label for="custom-text-input">Leer tu propio contenido</label>
-<textarea class="input" id="custom-text-input" rows="3" placeholder="Escribe aquí o pega la URL de un artículo web…"></textarea>
+<textarea class="input" id="custom-text-input" rows="3" placeholder="Escribe o pega tu texto…"></textarea>
 <div class="cluster">
 <button class="btn btn--yellow" id="btn-load-text" type="button"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-volume"/></svg><span>Cargar y leer</span></button>
 <button class="btn btn--flat" id="btn-clear-text" type="button">Limpiar</button>
@@ -169,17 +169,17 @@
 <div class="grid grid--3">
 <button class="shortcut piece" id="btn-two-finger-pause" type="button">
 <span class="ibox ibox--pink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-gesture"/></svg></span>
-<span class="shortcut__body"><span class="shortcut__title">Pausar con dos toques</span><span class="shortcut__hint">Toca cualquier zona con dos dedos para detener o reanudar al instante.</span></span>
+<span class="shortcut__body"><span class="shortcut__title">Pausar con dos toques</span><span class="shortcut__hint">Dos dedos en la pantalla: pausa o reanuda.</span></span>
 <svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg>
 </button>
 <button class="shortcut piece" id="btn-repeat-paragraph" type="button">
 <span class="ibox ibox--yellow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg></span>
-<span class="shortcut__body"><span class="shortcut__title">Repetir último párrafo</span><span class="shortcut__hint">Vuelve al inicio de la idea actual sin perder el ritmo.</span></span>
+<span class="shortcut__body"><span class="shortcut__title">Repetir último párrafo</span><span class="shortcut__hint">Vuelve al inicio del párrafo.</span></span>
 <svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg>
 </button>
 <button class="shortcut piece" id="btn-download-audio" type="button">
 <span class="ibox ibox--sky" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg></span>
-<span class="shortcut__body"><span class="shortcut__title" id="download-label">Descargar audio MP3</span><span class="shortcut__hint">Escucha sin conexión en cualquier reproductor o dispositivo táctil.</span></span>
+<span class="shortcut__body"><span class="shortcut__title" id="download-label">Descargar audio MP3</span><span class="shortcut__hint">Escúchalo sin conexión.</span></span>
 <svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg>
 </button>
 </div>
@@ -193,20 +193,20 @@
 <div class="grid grid--2">
 <div class="piece piece--lg piece--mint" style="display:flex;flex-direction:column;gap:.9rem">
 <div class="row row--between"><div class="row" style="gap:.75rem"><span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-device"/></svg></span><h3>TalkBack (Android)</h3></div><span class="tag">Gestos clave</span></div>
-<p>Optimizado para lectura lineal y navegación por jerarquías con gestos simples:</p>
+<p>Gestos básicos:</p>
 <ul class="guide-list">
-<li><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg><span><strong>Deslizar a la derecha:</strong> pasa al siguiente botón o párrafo.</span></li>
-<li><svg class="ic" aria-hidden="true"><use href="#i-touch"/></svg><span><strong>Doble toque rápido:</strong> activa el control enfocado (como Reproducir).</span></li>
-<li><svg class="ic" aria-hidden="true"><use href="#i-arrow-up"/></svg><span><strong>Deslizar arriba y abajo:</strong> ajusta encabezados y velocidad de lectura.</span></li>
+<li><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg><span><strong>Deslizar a la derecha:</strong> siguiente elemento.</span></li>
+<li><svg class="ic" aria-hidden="true"><use href="#i-touch"/></svg><span><strong>Doble toque rápido:</strong> activa el control enfocado.</span></li>
+<li><svg class="ic" aria-hidden="true"><use href="#i-arrow-up"/></svg><span><strong>Deslizar arriba y abajo:</strong> cambia de encabezado o velocidad.</span></li>
 </ul>
 </div>
 <div class="piece piece--lg piece--sky" style="display:flex;flex-direction:column;gap:.9rem">
 <div class="row row--between"><div class="row" style="gap:.75rem"><span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-device"/></svg></span><h3>VoiceOver (iOS)</h3></div><span class="tag">Rotor interactivo</span></div>
-<p>Navega cómodamente usando el rotor táctil y gestos de doble pulsación:</p>
+<p>Gestos básicos:</p>
 <ul class="guide-list">
-<li><svg class="ic" aria-hidden="true"><use href="#i-pinch"/></svg><span><strong>Giro de dos dedos (Rotor):</strong> cambia entre navegar por títulos, enlaces o palabras.</span></li>
-<li><svg class="ic" aria-hidden="true"><use href="#i-gesture"/></svg><span><strong>Doble toque con dos dedos (Magic Tap):</strong> inicia o detiene la reproducción instantáneamente.</span></li>
-<li><svg class="ic" aria-hidden="true"><use href="#i-arrow-up"/></svg><span><strong>Deslizar dos dedos abajo:</strong> lee toda la pantalla desde el cursor actual.</span></li>
+<li><svg class="ic" aria-hidden="true"><use href="#i-pinch"/></svg><span><strong>Giro de dos dedos (Rotor):</strong> navega por títulos, enlaces o palabras.</span></li>
+<li><svg class="ic" aria-hidden="true"><use href="#i-gesture"/></svg><span><strong>Doble toque con dos dedos (Magic Tap):</strong> inicia o detiene la lectura.</span></li>
+<li><svg class="ic" aria-hidden="true"><use href="#i-arrow-up"/></svg><span><strong>Deslizar dos dedos abajo:</strong> lee todo desde el cursor.</span></li>
 </ul>
 </div>
 </div>
@@ -216,7 +216,7 @@
 <span class="ibox ibox--yellow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg></span>
 <div>
 <h2 id="voice-tip-heading" style="font-size:1.1rem">¿Tienes sugerencias de voz?</h2>
-<p class="muted">Puedes cambiar a voces de tono bajo o sintetizadores regionales desde <a href="ajustes.html">Ajustes</a>.</p>
+<p class="muted">Cambia la voz o el tono desde <a href="ajustes.html">Ajustes</a>.</p>
 </div>
 </section>
 </main>
