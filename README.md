@@ -41,6 +41,9 @@ Inspirado en *Speak Screen* / *Live Text* (Apple) y *Select to Speak* / *Bixby V
   Android → instalar Mosaic (`manifest.json` + `sw.js`, botón «Instalar Mosaic») y usar **Compartir → Mosaic**;
   iPhone → un atajo de la app Atajos en la hoja de compartir; computadora → el marcador «Leer en Mosaic»
   (bookmarklet). La sección «Enviar un enlace a Mosaic» del lector lo explica paso a paso.
+- **Orientación por voz** — al entrar, el lector de pantalla anuncia cómo escuchar el portal (una vez por sesión);
+  el segundo enlace de salto «Escuchar esta página en voz alta» es lo primero que se encuentra con Tab;
+  `Alt+Mayús+H` (o `?` en el lector) lee una ayuda con lo que hay y cómo usarlo.
 - **Control sin mirar** — `Espacio`, `←`/`→`, `Esc`, `+`/`-`; en celular un toque con dos dedos (pausa), deslizar a los lados y
   botones de audífonos (Media Session).
 

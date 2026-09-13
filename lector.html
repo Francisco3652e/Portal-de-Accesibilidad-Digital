@@ -81,6 +81,7 @@
 </defs>
 </svg>
 <a class="skip" href="#main-content">Saltar al contenido principal</a>
+<button class="skip skip--listen" type="button" data-action="read-screen">Escuchar esta página en voz alta</button>
 <div aria-live="polite" class="sr-only" id="a11y-announcer" role="status"></div>
 <header class="topbar">
 <div class="shell topbar__in">
@@ -263,6 +264,7 @@
 <li><span><kbd>Alt</kbd>+<kbd>Mayús</kbd>+<kbd>J</kbd> / <kbd>K</kbd></span><span>Retroceder / avanzar.</span></li>
 <li><span><kbd>Alt</kbd>+<kbd>Mayús</kbd>+<kbd>R</kbd></span><span>Repetir el párrafo.</span></li>
 <li><span><kbd>Alt</kbd>+<kbd>Mayús</kbd>+<kbd>P</kbd> / <kbd>D</kbd> / <kbd>C</kbd></span><span>Pegar, dictar o cámara.</span></li>
+<li><span><kbd>Alt</kbd>+<kbd>Mayús</kbd>+<kbd>H</kbd> o <kbd>?</kbd></span><span>Ayuda por voz: qué hay y cómo usarlo.</span></li>
 </ul>
 <p class="muted" data-easy="Funciona con tu lector de pantalla.">Las combinaciones con Alt+Mayús no chocan con NVDA, JAWS ni VoiceOver.</p>
 </div>
@@ -1242,7 +1244,8 @@
       paste: pasteAndRead,
       dictate: startDictation,
       camera: startCamera,
-      stop: function () { stopAll(); wordIndex = 0; updateHighlighting(); }
+      stop: function () { stopAll(); wordIndex = 0; updateHighlighting(); },
+      say: function (text, title) { loadText(text, { speak: true, message: (title || 'Texto') + '.' }); }
     };
 
     document.addEventListener('keydown', function (e) {
@@ -1257,6 +1260,7 @@
         case 'ArrowLeft': e.preventDefault(); rewind(); break;
         case 'ArrowRight': e.preventDefault(); forward(); break;
         case 'Escape': window.MosaicReader.stop(); announce('Lectura detenida.'); break;
+        case '?': if (window.PortalA11y && window.PortalA11y.speakHelp) { window.PortalA11y.speakHelp(); } break;
         case '+': case '=': stepSpeed(1); break;
         case '-': case '_': stepSpeed(-1); break;
         default: return;

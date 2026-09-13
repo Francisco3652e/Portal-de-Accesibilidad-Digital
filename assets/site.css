@@ -272,6 +272,8 @@ section > h2 + p, section > h2 + .muted { margin-top: 0.5rem; }
   font-weight: 800; box-shadow: var(--shadow); text-decoration: none;
 }
 .skip:focus { top: 1rem; }
+.skip--listen { cursor: pointer; font: inherit; font-weight: 800; background: var(--pink); }
+.skip--listen:focus { top: 4.75rem; }
 .topbar {
   position: sticky; top: 0; z-index: 100;
   background: var(--paper); border-bottom: var(--line) solid var(--ink);

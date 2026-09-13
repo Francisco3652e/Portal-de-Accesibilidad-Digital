@@ -76,6 +76,7 @@
 </defs>
 </svg>
 <a class="skip" href="#main-content">Saltar al contenido principal</a>
+<button class="skip skip--listen" type="button" data-action="read-screen">Escuchar esta página en voz alta</button>
 <div aria-live="polite" class="sr-only" id="a11y-announcer" role="status"></div>
 <header class="topbar">
 <div class="shell topbar__in">
@@ -137,9 +138,9 @@
 <button type="button" data-font-quick="lg" aria-label="Texto grande">A+</button>
 </div>
 </div>
-<button class="key" id="btn-voice-reader" type="button" aria-pressed="false">
+<button class="key" id="btn-voice-reader" type="button">
 <span class="key__lead"><span class="ibox ibox--pink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-volume"/></svg></span><span>Leer esta página en voz alta</span></span>
-<span class="key__state" id="voice-status">Off</span>
+<span class="key__state" id="voice-status" aria-hidden="true">Ir</span>
 </button>
 <button class="key" id="btn-guided-quick" type="button" aria-pressed="false">
 <span class="key__lead"><span class="ibox ibox--mint" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg></span><span>Modo guiado paso a paso</span></span>
@@ -233,46 +234,11 @@
   // Tecla "Leer esta página en voz alta": lee los títulos y párrafos de la página con la voz del sistema.
   (function () {
     var btn = document.getElementById('btn-voice-reader');
-    var status = document.getElementById('voice-status');
-    var announcer = document.getElementById('a11y-announcer');
     var guidedBtn = document.getElementById('btn-guided-quick');
     var guidedStatus = document.getElementById('guided-status');
-    if (!btn) return;
-    var supports = 'speechSynthesis' in window;
-    var speaking = false;
-
-    function setUI(on) {
-      speaking = on;
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      status.textContent = on ? 'On' : 'Off';
-    }
-    function pageText() {
-      var nodes = document.querySelectorAll('main h1, main h2, main h3, main p.lead, main .svc p, main .help-band p');
-      return Array.prototype.map.call(nodes, function (n) { return n.textContent.trim(); }).filter(Boolean).join('. ');
-    }
-    btn.addEventListener('click', function () {
-      if (!supports) {
-        if (announcer) announcer.textContent = 'Tu navegador no soporta síntesis de voz. Abre la sección Lector para más opciones.';
-        return;
-      }
-      if (speaking) {
-        window.speechSynthesis.cancel();
-        setUI(false);
-        if (announcer) announcer.textContent = 'Lectura detenida.';
-        return;
-      }
-      var u = new SpeechSynthesisUtterance(pageText());
-      u.lang = 'es-ES';
-      var voices = window.speechSynthesis.getVoices();
-      var v = voices.find(function (x) { return /es/i.test(x.lang); });
-      if (v) u.voice = v;
-      u.onend = function () { setUI(false); };
-      u.onerror = function () { setUI(false); };
-      window.speechSynthesis.cancel();
-      window.speechSynthesis.speak(u);
-      setUI(true);
-    });
-    window.addEventListener('beforeunload', function () { if (supports) window.speechSynthesis.cancel(); });
+    // "Leer esta página en voz alta": mismo camino que el botón de la cabecera
+    // (abre el lector con el contenido; funciona aunque el navegador no tenga voces).
+    if (btn) { btn.addEventListener('click', function () { window.PortalA11y.readScreen(); }); }
 
     // Tecla rápida de modo guiado: refleja y cambia el mismo ajuste que Ajustes.
     function syncGuided() {

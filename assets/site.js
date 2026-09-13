@@ -248,6 +248,34 @@
     return parts.join("\n\n");
   }
 
+  // Orientación por voz: qué hay en el portal y cómo escucharlo. Se lee con
+  // el propio lector (Alt+Mayús+H o "?"), así funciona aunque no haya voces.
+  var HELP_TEXT = [
+    "Bienvenido a Mosaic, el Portal de Accesibilidad Digital.",
+    "Para escuchar cualquier página: pulsa el botón Leer pantalla de la cabecera, la combinación Alt, Mayúscula y L, o toca dos veces con dos dedos.",
+    "En el lector puedes pausar con la barra espaciadora o con un toque de dos dedos, y retroceder o avanzar con las flechas o deslizando un dedo.",
+    "El lector también lee enlaces que te compartan, lo que copies, lo que dictes, y el texto que vea la cámara: una receta, un recibo o una carta.",
+    "Las secciones del portal son: Inicio, Lector de voz, Videos en Lengua de Señas, Ajustes, Acerca del proyecto y Contacto.",
+    "Para repetir esta ayuda, pulsa Alt, Mayúscula y H."
+  ].join(" ");
+
+  function speakHelp() {
+    if (window.MosaicReader && window.MosaicReader.say) { window.MosaicReader.say(HELP_TEXT, "Ayuda de Mosaic"); return; }
+    try { sessionStorage.setItem("mosaic.readScreen", JSON.stringify({ title: "Ayuda de Mosaic", text: HELP_TEXT })); } catch (e) {}
+    window.location.href = "lector.html?leer=pantalla";
+  }
+
+  // Una vez por sesión, el lector de pantalla anuncia cómo escuchar el portal.
+  function welcomeHint() {
+    try {
+      if (sessionStorage.getItem("mosaic.welcomed")) { return; }
+      sessionStorage.setItem("mosaic.welcomed", "1");
+    } catch (e) { return; }
+    setTimeout(function () {
+      announce("Mosaic. Para escuchar esta página pulsa el botón Leer pantalla, Alt Mayúscula L, o toca dos veces con dos dedos. Para ayuda por voz, Alt Mayúscula H.");
+    }, 1200);
+  }
+
   function readScreen() {
     if (window.MosaicReader) { window.MosaicReader.toggle(); return; }
     var text = collectScreenText();
@@ -262,7 +290,7 @@
   // Atajos de teclado (Alt+Mayús+tecla, para no chocar con NVDA/JAWS/VoiceOver)
   // y gestos táctiles válidos en todo el sitio. En el lector, además, hay
   // teclas de reproductor (Espacio, flechas) definidas en lector.html.
-  var COMBOS = { l: "toggle", j: "rewind", k: "forward", r: "repeat", p: "paste", d: "dictate", c: "camera" };
+  var COMBOS = { l: "toggle", j: "rewind", k: "forward", r: "repeat", p: "paste", d: "dictate", c: "camera", h: "help" };
   function initShortcuts() {
     document.addEventListener("keydown", function (e) {
       if (!e.altKey || !e.shiftKey || e.ctrlKey || e.metaKey) { return; }
@@ -273,6 +301,7 @@
       if (!action) { return; }
       e.preventDefault();
       if (action === "toggle") { readScreen(); return; }
+      if (action === "help") { speakHelp(); return; }
       if (window.MosaicReader && window.MosaicReader[action]) { window.MosaicReader[action](); }
       else if (action === "paste" || action === "dictate" || action === "camera") { window.location.href = "lector.html#entradas"; }
     });
@@ -360,6 +389,7 @@
     initReveal();
     initShortcuts();
     initApp();
+    welcomeHint();
     document.querySelectorAll('[data-action="read-screen"]').forEach(function (btn) {
       btn.addEventListener("click", readScreen);
     });
@@ -404,5 +434,5 @@
     init();
   }
 
-  window.PortalA11y = { setContrast: setContrast, setFontScale: setFontScale, stepFontScale: stepFontScale, setColorFilter: setColorFilter, setBool: setBool, readScreen: readScreen, collectScreenText: collectScreenText };
+  window.PortalA11y = { setContrast: setContrast, setFontScale: setFontScale, stepFontScale: stepFontScale, setColorFilter: setColorFilter, setBool: setBool, readScreen: readScreen, speakHelp: speakHelp, collectScreenText: collectScreenText };
 })();
