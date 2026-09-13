@@ -29,7 +29,7 @@ Personas con discapacidad **visual**, **auditiva**, **cognitiva** y **motriz**, 
 
 Inspirado en *Speak Screen* / *Live Text* (Apple) y *Select to Speak* / *Bixby Vision* (Samsung):
 
-- **Leer esta pantalla** — botón de la cabecera, `Alt+Mayús+L` o cuatro dedos hacia abajo en cualquier página:
+- **Leer esta pantalla** — botón de la cabecera, `Alt+Mayús+L` o dos toques con dos dedos en cualquier página:
   reúne el contenido de la página y lo lee en el lector.
 - **Pegar y leer** — lee lo último copiado (`navigator.clipboard`). `Alt+Mayús+P`.
 - **Dictar por voz** — reconocimiento de voz del navegador (Chrome, Edge, Safari). `Alt+Mayús+D`.
@@ -38,7 +38,7 @@ Inspirado en *Speak Screen* / *Live Text* (Apple) y *Select to Speak* / *Bixby V
   la cámara puede leer sola cada pocos segundos. `Alt+Mayús+C`.
 - **Compartir con Mosaic** — `manifest.json` (+ `sw.js`) permite instalar el sitio; en Android aparece en el
   menú Compartir y lo compartido se abre en el lector (`lector.html?text=…&url=…`).
-- **Control sin mirar** — `Espacio`, `←`/`→`, `Esc`, `+`/`-`; en celular toque con dos dedos, deslizar a los lados y
+- **Control sin mirar** — `Espacio`, `←`/`→`, `Esc`, `+`/`-`; en celular un toque con dos dedos (pausa), deslizar a los lados y
   botones de audífonos (Media Session).
 
 ## Diseño
