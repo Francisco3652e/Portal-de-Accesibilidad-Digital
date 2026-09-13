@@ -729,9 +729,12 @@
         // puede hablar; usamos el respaldo por audio.
         switchToAudio(index);
       };
-      window.speechSynthesis.speak(utterance);
+      // Estado y aviso ANTES de speak(): en algunos navegadores el evento
+      // 'error' (p. ej. not-allowed) se dispara de forma síncrona dentro de
+      // speak() y no debe quedar pisado por lo que venga después.
       setPlayingUI(true);
       if (!chained) { announce('Lectura iniciada.'); }
+      window.speechSynthesis.speak(utterance);
     }
 
     function togglePlayback() {
