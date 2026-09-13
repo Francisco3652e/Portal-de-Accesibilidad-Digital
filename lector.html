@@ -163,10 +163,6 @@
 </div>
 <div class="transcript" id="synchronized-transcript" aria-live="polite"><span class="word-node">La</span> <span class="word-node">accesibilidad</span> <span class="word-node">digital</span> <span class="word-node">es</span> <span class="word-node">un</span> <span class="word-node">derecho</span> <span class="word-node">fundamental</span> <span class="word-node">que</span> <span class="word-node">garantiza</span> <span class="word-node">la</span> <span class="word-node">participación</span> <span class="word-node">plena</span> <span class="word-node">de</span> <span class="word-node">todas</span> <span class="word-node">las</span> <span class="word-node">personas</span> <span class="word-node">en</span> <span class="word-node">la</span> <span class="word-node">sociedad</span> <span class="word-node">de</span> <span class="word-node">la</span> <span class="word-node">información.</span></div>
 <div aria-live="assertive" class="sr-only" id="status-announcer"></div>
-<div class="field">
-<span style="font-weight:800" id="sample-audio-label">Audio de muestra</span>
-<audio class="audio" controls preload="metadata" src="assets/media/demo-lectura.mp3" aria-labelledby="sample-audio-label"></audio>
-</div>
 <div class="field" id="paste-section">
 <label for="custom-text-input">Leer tu propio contenido</label>
 <textarea class="input" id="custom-text-input" rows="3" placeholder="Escribe o pega tu texto…"></textarea>
@@ -1265,6 +1261,38 @@
         loadText((title ? title + '\n\n' : '') + text, { speak: true, message: 'Texto compartido cargado.' });
       }
     })();
+
+    // Descargar audio MP3 del texto cargado (mismo audio que el respaldo).
+    const downloadBtn = document.getElementById('btn-download-audio');
+    const downloadLabel = document.getElementById('download-label');
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', function () {
+        if (!words.length) { announce('No hay texto cargado para descargar.'); return; }
+        const text = words.join(' ');
+        const save = function (url) {
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'mosaic-lectura.mp3';
+          document.body.appendChild(a); a.click(); a.remove();
+          announce('Descarga del MP3 iniciada.');
+        };
+        if (audioUrl && audioText === text) { save(audioUrl); return; }
+        downloadBtn.disabled = true;
+        if (downloadLabel) { downloadLabel.textContent = 'Generando MP3…'; }
+        announce('Generando el archivo MP3…');
+        const built = audioChunks();
+        fetchTtsChunks(built, 4).then(function (parts) {
+          const url = URL.createObjectURL(new Blob(parts, { type: 'audio/mpeg' }));
+          save(url);
+          setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+        }).catch(function () {
+          announce('No se pudo generar el MP3. Revisa tu conexión.');
+        }).finally(function () {
+          downloadBtn.disabled = false;
+          if (downloadLabel) { downloadLabel.textContent = 'Descargar audio MP3'; }
+        });
+      });
+    }
 
     window.addEventListener('beforeunload', function () {
       if (supportsTTS) { window.speechSynthesis.cancel(); }

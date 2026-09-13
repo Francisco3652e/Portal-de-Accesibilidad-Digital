@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """Genera los medios demostrativos de Mosaic:
    - assets/media/demo-lessa.mp4 + demo-lessa.vtt (video animado con narración y subtítulos descriptivos)
-   - assets/media/demo-lectura.mp3 (audio de muestra del lector)
    - assets/media/transcripcion-guia-tramites.txt
 """
 import os, subprocess, json, math, pathlib
@@ -144,11 +143,6 @@ run(['ffmpeg', '-y', '-framerate', str(FPS), '-i', str(FR / 'f%05d.png'), '-i', 
      '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-profile:v', 'main', '-crf', '24', '-preset', 'slow', '-movflags', '+faststart',
      '-c:a', 'aac', '-b:a', '80k', '-shortest', str(OUT / 'demo-lessa.mp4')])
 
-# ---------------------------------------------------------------- audio del lector
-LECTURA = ('Ejemplo de lectura en voz alta. La accesibilidad digital es un derecho fundamental que garantiza la '
-           'participación plena de todas las personas en la sociedad de la información.')
-gTTS(LECTURA, lang='es', tld='com.mx').save(str(TMP / 'lectura.mp3'))
-run(['ffmpeg', '-y', '-i', str(TMP / 'lectura.mp3'), '-c:a', 'libmp3lame', '-b:a', '64k', '-ar', '44100', '-ac', '1', str(OUT / 'demo-lectura.mp3')])
 
 print('TOTAL', round(TOTAL, 1), 's; frames', n)
 for a, b, cap, s in parts: print(f'{a:5.1f}-{b:5.1f} paso {s}: {cap}')

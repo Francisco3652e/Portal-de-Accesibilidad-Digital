@@ -63,6 +63,6 @@ esa parte sí necesita internet y no funciona al abrir el archivo localmente.
 - `api/leer.py` — función serverless que extrae el texto legible de una URL (modo lector).
 - `manifest.json`, `sw.js`, `assets/icons/` — instalación como app y destino de "Compartir".
 - `assets/media/` — medios demostrativos generados con `tools/make_media.py` (Pillow + ffmpeg + gTTS):
-  `demo-lessa.mp4` y `demo-lessa.vtt` (video animado con narración y subtítulos descriptivos),
-  `demo-lectura.mp3` (audio de muestra del lector) y la transcripción en TXT. No son grabaciones reales
+  `demo-lessa.mp4` y `demo-lessa.vtt` (video animado con narración y subtítulos descriptivos)
+  y la transcripción en TXT. No son grabaciones reales
   de interpretación en LESSA; el sitio los marca como demostración.
