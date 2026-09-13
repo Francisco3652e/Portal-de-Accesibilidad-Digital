@@ -3,3 +3,4 @@
 .impeccable/mocks/
 tools/.tmp/
 __pycache__/
+*.docx
