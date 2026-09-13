@@ -151,6 +151,10 @@
 </div>
 <div class="transcript" id="synchronized-transcript" aria-live="polite"><span class="word-node">La</span> <span class="word-node">accesibilidad</span> <span class="word-node">digital</span> <span class="word-node">es</span> <span class="word-node">un</span> <span class="word-node">derecho</span> <span class="word-node">fundamental</span> <span class="word-node">que</span> <span class="word-node">garantiza</span> <span class="word-node">la</span> <span class="word-node">participación</span> <span class="word-node">plena</span> <span class="word-node">de</span> <span class="word-node">todas</span> <span class="word-node">las</span> <span class="word-node">personas</span> <span class="word-node">en</span> <span class="word-node">la</span> <span class="word-node">sociedad</span> <span class="word-node">de</span> <span class="word-node">la</span> <span class="word-node">información.</span></div>
 <div aria-live="assertive" class="sr-only" id="status-announcer"></div>
+<div class="field">
+<span style="font-weight:800" id="sample-audio-label">Audio de muestra</span>
+<audio class="audio" controls preload="metadata" src="assets/media/demo-lectura.mp3" aria-labelledby="sample-audio-label"></audio>
+</div>
 <div class="field" id="paste-section">
 <label for="custom-text-input">Leer tu propio contenido</label>
 <textarea class="input" id="custom-text-input" rows="3" placeholder="Escribe o pega tu texto…"></textarea>
@@ -244,7 +248,6 @@
     const clearTextBtn = document.getElementById('btn-clear-text');
     const textInput = document.getElementById('custom-text-input');
     const repeatBtn = document.getElementById('btn-repeat-paragraph');
-    const downloadBtn = document.getElementById('btn-download-audio');
     const pasteBtn = document.getElementById('btn-paste-modal');
 
     let words = Array.prototype.map.call(transcriptContainer.querySelectorAll('.word-node'), function (w) {
@@ -503,19 +506,6 @@
     const twoFingerBtn = document.getElementById('btn-two-finger-pause');
     if (twoFingerBtn) {
       twoFingerBtn.addEventListener('click', function () { togglePlayback(); });
-    }
-
-    if (downloadBtn) {
-      downloadBtn.addEventListener('click', function () {
-        announce('Generando archivo de audio MP3 accesible para descarga...');
-        const label = document.getElementById('download-label');
-        const originalText = label.textContent;
-        label.textContent = 'Descargando audio…';
-        setTimeout(function () {
-          label.textContent = originalText;
-          announce('Descarga de MP3 finalizada con éxito.');
-        }, 1500);
-      });
     }
 
     window.addEventListener('beforeunload', function () {

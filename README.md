@@ -38,3 +38,7 @@ Abrir `index.html` en el navegador. **No requiere internet**: la fuente (`assets
 - `assets/site.css` — hoja de estilos única (tokens, componentes, alto contraste, filtros de daltonismo).
 - `assets/site.js` — preferencias de accesibilidad persistentes (`localStorage`) y modo guiado paso a paso.
 - `assets/fonts/Lexend-latin.woff2` — fuente autohospedada (licencia OFL).
+- `assets/media/` — medios demostrativos generados con `tools/make_media.py` (Pillow + ffmpeg + gTTS):
+  `demo-lessa.mp4` y `demo-lessa.vtt` (video animado con narración y subtítulos descriptivos),
+  `demo-lectura.mp3` (audio de muestra del lector) y la transcripción en TXT. No son grabaciones reales
+  de interpretación en LESSA; el sitio los marca como demostración.

@@ -111,38 +111,39 @@
 <div class="cluster" style="margin-top:1rem">
 <span class="tag tag--mint"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-sign"/></svg>LESSA certificada</span>
 <span class="tag">WCAG 2.2 AAA</span>
-<span class="tag tag--demo">Demostración simulada</span>
+<span class="tag tag--demo">Video de demostración</span>
 </div>
 </section>
 
 <section class="featured" data-step aria-labelledby="featured-heading">
 <h2 id="featured-heading" class="sr-only">Reproductor de video destacado</h2>
-<div class="video">
-<svg class="video__scene" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="var(--sky)" class="art-fill"/><rect x="46" y="46" width="120" height="120" rx="16" fill="var(--ink)" class="art-ink"/><rect x="40" y="40" width="120" height="120" rx="16" fill="var(--yellow)" class="art-fill" stroke="var(--ink)" stroke-width="4"/><use href="#i-shield" x="68" y="68" width="64" height="64" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="art-stroke"/><rect x="186" y="46" width="120" height="120" rx="16" fill="var(--ink)" class="art-ink"/><rect x="180" y="40" width="120" height="120" rx="16" fill="var(--card)" class="art-fill" stroke="var(--ink)" stroke-width="4"/><use href="#i-subtitles" x="208" y="68" width="64" height="64" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="art-stroke"/><rect x="326" y="46" width="120" height="120" rx="16" fill="var(--ink)" class="art-ink"/><rect x="320" y="40" width="120" height="120" rx="16" fill="var(--pink)" class="art-fill" stroke="var(--ink)" stroke-width="4"/><use href="#i-sign" x="348" y="68" width="64" height="64" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="art-stroke"/><rect x="46" y="186" width="120" height="120" rx="16" fill="var(--ink)" class="art-ink"/><rect x="40" y="180" width="120" height="120" rx="16" fill="var(--mint)" class="art-fill" stroke="var(--ink)" stroke-width="4"/><use href="#i-cc" x="68" y="208" width="64" height="64" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="art-stroke"/><rect x="186" y="186" width="120" height="120" rx="16" fill="var(--ink)" class="art-ink"/><rect x="180" y="180" width="120" height="120" rx="16" fill="var(--yellow)" class="art-fill" stroke="var(--ink)" stroke-width="4"/><use href="#i-check" x="208" y="208" width="64" height="64" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="art-stroke"/><rect x="326" y="186" width="120" height="120" rx="16" fill="var(--ink)" class="art-ink"/><rect x="320" y="180" width="120" height="120" rx="16" fill="var(--card)" class="art-fill" stroke="var(--ink)" stroke-width="4"/><use href="#i-ear" x="348" y="208" width="64" height="64" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="art-stroke"/></svg>
+<div class="video" id="video-frame">
+<video class="video__scene" id="demo-video" preload="metadata" playsinline aria-label="Video demostrativo: guía de trámites digitales accesibles, con narración y subtítulos descriptivos">
+<source src="assets/media/demo-lessa.mp4" type="video/mp4"/>
+<track kind="captions" srclang="es" label="Subtítulos descriptivos" src="assets/media/demo-lessa.vtt" default/>
+Tu navegador no puede reproducir este video.
+</video>
 <div class="video__pip" aria-label="Recuadro de intérprete de lengua de señas en vivo" role="img">
 <svg viewBox="0 0 120 160" aria-hidden="true" focusable="false"><rect width="120" height="160" fill="var(--mint)" class="art-fill"/><use href="#i-sign" x="18" y="28" width="84" height="84" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="art-stroke"/></svg>
 <span class="video__pip-tag">Intérprete LESSA</span>
 </div>
-<div class="video__cc" id="cc-box">
-<small>[Sonido: campana de notificación suave]</small>
-"Para autenticar tu firma digital, selecciona la opción con verificación biométrica asistida…"
-</div>
+<div class="video__cc" id="cc-box" aria-live="off"><small>Subtítulos descriptivos</small><span id="cc-text-live">Pulsa Reproducir para ver el video demostrativo.</span></div>
 </div>
 <div class="featured__side">
 <h3>Guía de derechos y trámites digitales accesibles</h3>
 <p class="cluster"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-shield"/></svg><span><strong>Intérprete:</strong> Lic. Carmen Morales, certificada en LESSA</span></p>
 <div class="piece" style="display:flex;flex-direction:column;gap:1rem">
 <div class="timeline" role="region" aria-label="Progreso del video">
-<span>04:12</span>
-<div class="timeline__track" role="slider" tabindex="0" aria-label="Línea de tiempo de reproducción" aria-valuemin="0" aria-valuemax="100" aria-valuenow="38" aria-valuetext="4 minutos 12 segundos de 11 minutos 5 segundos"><div class="timeline__fill" style="width:38%"></div></div>
-<span>11:05</span>
+<span id="t-cur">00:00</span>
+<div class="timeline__track" role="slider" tabindex="0" aria-label="Línea de tiempo de reproducción" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0 segundos"><div class="timeline__fill" style="width:0%"></div></div>
+<span id="t-dur">00:32</span>
 </div>
 <div class="controls">
-<button class="btn btn--yellow" id="btn-play-pause" type="button" aria-label="Pausar video"><svg class="ic" aria-hidden="true"><use id="play-icon" href="#i-pause"/></svg><span id="play-text">Pausar</span></button>
-<button class="btn btn--sq" type="button" aria-label="Retroceder 10 segundos"><svg class="ic" aria-hidden="true"><use href="#i-rewind"/></svg></button>
+<button class="btn btn--yellow" id="btn-play-pause" type="button" aria-label="Reproducir video"><svg class="ic" aria-hidden="true"><use id="play-icon" href="#i-play"/></svg><span id="play-text">Reproducir</span></button>
+<button class="btn btn--sq" id="btn-rewind" type="button" aria-label="Retroceder 10 segundos"><svg class="ic" aria-hidden="true"><use href="#i-rewind"/></svg></button>
 <button class="btn" id="btn-toggle-cc" type="button" aria-pressed="true" aria-label="Subtítulos descriptivos activados"><svg class="ic" aria-hidden="true"><use id="cc-icon" href="#i-cc"/></svg><span id="cc-text">CC On</span></button>
 <button class="btn" id="btn-speed" type="button" aria-label="Velocidad de reproducción actual 1.0x"><svg class="ic" aria-hidden="true"><use href="#i-speed"/></svg><span id="speed-indicator">1.0x</span></button>
-<button class="btn btn--sq" type="button" aria-label="Modo pantalla completa"><svg class="ic" aria-hidden="true"><use href="#i-fullscreen"/></svg></button>
+<button class="btn btn--sq" id="btn-fullscreen" type="button" aria-label="Modo pantalla completa"><svg class="ic" aria-hidden="true"><use href="#i-fullscreen"/></svg></button>
 </div>
 </div>
 </div>
@@ -171,8 +172,8 @@
 <div class="toggle-row__lead"><span class="ibox ibox--yellow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg></span>
 <div class="toggle-row__text"><span class="toggle-row__title">Transcripción completa</span><span class="toggle-row__hint">Texto plano para lectores de pantalla.</span></div></div>
 <div class="cluster">
-<button class="btn" type="button" aria-label="Descargar transcripción completa en formato accesible"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-download"/></svg><span>Descargar TXT</span></button>
-<button class="btn btn--flat" type="button" aria-label="Abrir panel de lectura de transcripción"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-volume"/></svg><span>Leer en vivo</span></button>
+<a class="btn" href="assets/media/transcripcion-guia-tramites.txt" download="transcripcion-guia-tramites.txt"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-download"/></svg><span>Descargar TXT</span></a>
+<button class="btn btn--flat" id="btn-read-transcript" type="button" aria-pressed="false"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-volume"/></svg><span>Leer en vivo</span></button>
 </div>
 </div>
 </div>
@@ -263,90 +264,134 @@
 </main>
 <script>
 (function() {
+  const video = document.getElementById('demo-video');
+  const frame = document.getElementById('video-frame');
   const playBtn = document.getElementById('btn-play-pause');
   const playIcon = document.getElementById('play-icon');
   const playText = document.getElementById('play-text');
-  let isPlaying = true;
-
-  if (playBtn) {
-    playBtn.addEventListener('click', () => {
-      isPlaying = !isPlaying;
-      playIcon.setAttribute('href', isPlaying ? '#i-pause' : '#i-play');
-      playText.textContent = isPlaying ? 'Pausar' : 'Reanudar';
-      playBtn.setAttribute('aria-label', isPlaying ? 'Pausar video' : 'Reanudar reproducción de video');
-    });
-  }
-
-  document.querySelectorAll('.video-play-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (!isPlaying && playBtn) { playBtn.click(); }
-    });
-  });
-
+  const rewindBtn = document.getElementById('btn-rewind');
+  const fsBtn = document.getElementById('btn-fullscreen');
+  const slider = document.querySelector('.timeline__track');
+  const fill = document.querySelector('.timeline__fill');
+  const tCur = document.getElementById('t-cur');
+  const tDur = document.getElementById('t-dur');
   const ccBtn = document.getElementById('btn-toggle-cc');
   const ccIcon = document.getElementById('cc-icon');
   const ccText = document.getElementById('cc-text');
   const ccBox = document.getElementById('cc-box');
+  const ccLive = document.getElementById('cc-text-live');
   const subtitlesSwitch = document.getElementById('switch-subtitles');
-  let ccActive = true;
+  const speedBtn = document.getElementById('btn-speed');
+  const speedIndicator = document.getElementById('speed-indicator');
+  const announcer = document.getElementById('a11y-announcer');
+  if (!video) return;
+
+  function fmt(s) { s = Math.max(0, Math.floor(s || 0)); return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); }
+  function announce(m) { if (announcer) announcer.textContent = m; }
+
+  // Reproducir / pausar
+  function syncPlay() {
+    const on = !video.paused && !video.ended;
+    playIcon.setAttribute('href', on ? '#i-pause' : '#i-play');
+    playText.textContent = on ? 'Pausar' : (video.ended ? 'Ver de nuevo' : 'Reproducir');
+    playBtn.setAttribute('aria-label', on ? 'Pausar video' : 'Reproducir video');
+  }
+  playBtn.addEventListener('click', () => { if (video.paused || video.ended) { video.play(); } else { video.pause(); } });
+  video.addEventListener('play', syncPlay); video.addEventListener('pause', syncPlay); video.addEventListener('ended', syncPlay);
+  video.addEventListener('click', () => playBtn.click());
+  document.querySelectorAll('.video-play-btn').forEach((btn) => {
+    btn.addEventListener('click', () => { frame.scrollIntoView({ block: 'center', behavior: 'smooth' }); video.currentTime = 0; video.play(); });
+  });
+  if (rewindBtn) rewindBtn.addEventListener('click', () => { video.currentTime = Math.max(0, video.currentTime - 10); announce('Retrocedido 10 segundos'); });
+  if (fsBtn) fsBtn.addEventListener('click', () => {
+    const el = frame;
+    if (document.fullscreenElement) { document.exitFullscreen(); }
+    else if (el.requestFullscreen) { el.requestFullscreen(); }
+    else if (video.webkitEnterFullscreen) { video.webkitEnterFullscreen(); }
+  });
+
+  // Línea de tiempo
+  function setPos(pct, seek) {
+    pct = Math.max(0, Math.min(100, pct));
+    fill.style.width = pct + '%';
+    slider.setAttribute('aria-valuenow', String(Math.round(pct)));
+    const d = video.duration || 0, t = d * pct / 100;
+    slider.setAttribute('aria-valuetext', fmt(t) + ' de ' + fmt(d));
+    tCur.textContent = fmt(t);
+    if (seek && d) { video.currentTime = t; }
+  }
+  video.addEventListener('loadedmetadata', () => { tDur.textContent = fmt(video.duration); });
+  video.addEventListener('timeupdate', () => { if (video.duration) setPos(video.currentTime / video.duration * 100, false); });
+  slider.addEventListener('click', (e) => { const r = slider.getBoundingClientRect(); setPos((e.clientX - r.left) / r.width * 100, true); });
+  slider.addEventListener('keydown', (e) => {
+    const v = Number(slider.getAttribute('aria-valuenow'));
+    const step = 100 / Math.max(1, video.duration || 30) * 5; // 5 segundos
+    if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { setPos(v + step, true); e.preventDefault(); }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { setPos(v - step, true); e.preventDefault(); }
+    if (e.key === 'Home') { setPos(0, true); e.preventDefault(); }
+    if (e.key === 'End') { setPos(100, true); e.preventDefault(); }
+    if (e.key === ' ' || e.key === 'Enter') { playBtn.click(); e.preventDefault(); }
+  });
+
+  // Subtítulos descriptivos: mismas pistas que demo-lessa.vtt, incrustadas para que
+  // funcionen también al abrir el archivo directamente (file://), donde el navegador
+  // bloquea las pistas <track>. Se muestran en la caja propia del portal.
+  const CUES = [[0.0, 2.32, "[Sonido: campana de notificación suave]"], [2.32, 7.0, "Bienvenido al trámite digital accesible del Estado."], [7.0, 11.42, "Paso 1: identifícate con tu DUI."], [11.42, 15.95, "Paso 2: elige el trámite que necesitas."], [15.95, 24.59, "Paso 3: para autenticar tu firma digital, selecciona la verificación biométrica asistida."], [24.59, 31.79, "[Sonido: confirmación] Listo. Tu solicitud fue enviada."]];
+  const track = video.textTracks && video.textTracks[0];
+  if (track) { track.mode = 'hidden'; }
+  let ccActive = true, lastCue = -1;
+  video.addEventListener('timeupdate', () => {
+    const t = video.currentTime;
+    let idx = -1;
+    for (let i = 0; i < CUES.length; i++) { if (t >= CUES[i][0] && t < CUES[i][1]) { idx = i; break; } }
+    if (idx !== lastCue) { lastCue = idx; if (idx >= 0) ccLive.textContent = CUES[idx][2]; }
+  });
   function setCC(on) {
     ccActive = on;
     ccBtn.setAttribute('aria-pressed', String(on));
     ccBtn.setAttribute('aria-label', on ? 'Subtítulos descriptivos activados' : 'Subtítulos descriptivos desactivados');
     ccIcon.setAttribute('href', on ? '#i-cc' : '#i-cc-off');
     ccText.textContent = on ? 'CC On' : 'CC Off';
-    if (ccBox) { ccBox.hidden = !on; }
-    if (subtitlesSwitch) { subtitlesSwitch.checked = on; }
+    ccBox.hidden = !on;
+    if (subtitlesSwitch) subtitlesSwitch.checked = on;
   }
-  if (ccBtn) { ccBtn.addEventListener('click', () => setCC(!ccActive)); }
-  if (subtitlesSwitch) { subtitlesSwitch.addEventListener('change', (e) => setCC(e.target.checked)); }
+  ccBtn.addEventListener('click', () => setCC(!ccActive));
+  if (subtitlesSwitch) subtitlesSwitch.addEventListener('change', (e) => setCC(e.target.checked));
 
-  const speeds = ['1.0x', '1.25x', '1.5x', '0.75x'];
-  let currentSpeedIdx = 0;
-  const speedBtn = document.getElementById('btn-speed');
-  const speedIndicator = document.getElementById('speed-indicator');
-  if (speedBtn && speedIndicator) {
-    speedBtn.addEventListener('click', () => {
-      currentSpeedIdx = (currentSpeedIdx + 1) % speeds.length;
-      speedIndicator.textContent = speeds[currentSpeedIdx];
-      speedBtn.setAttribute('aria-label', `Velocidad de reproducción cambiada a ${speeds[currentSpeedIdx]}`);
-    });
-  }
+  // Velocidad real de reproducción
+  const speeds = [1, 1.25, 1.5, 0.75];
+  let speedIdx = 0;
+  speedBtn.addEventListener('click', () => {
+    speedIdx = (speedIdx + 1) % speeds.length;
+    video.playbackRate = speeds[speedIdx];
+    speedIndicator.textContent = speeds[speedIdx].toFixed(speeds[speedIdx] % 1 ? 2 : 1).replace(/0$/, '') + 'x';
+    speedBtn.setAttribute('aria-label', 'Velocidad de reproducción cambiada a ' + speedIndicator.textContent);
+  });
 
+  // Velocidad del intérprete (indicador)
   const signerLabel = document.getElementById('label-signer-speed');
   document.querySelectorAll('[data-signer-speed]').forEach((btn) => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('[data-signer-speed]').forEach((b) => b.setAttribute('aria-current', 'false'));
       btn.setAttribute('aria-current', 'true');
-      if (signerLabel) { signerLabel.textContent = btn.getAttribute('data-signer-speed'); }
+      if (signerLabel) signerLabel.textContent = btn.getAttribute('data-signer-speed');
     });
   });
 
-  // Línea de tiempo operable con teclado (flechas) y clic.
-  const slider = document.querySelector('.timeline__track');
-  const fill = document.querySelector('.timeline__fill');
-  if (slider && fill) {
-    function setPos(v) {
-      v = Math.max(0, Math.min(100, Math.round(v)));
-      slider.setAttribute('aria-valuenow', String(v));
-      fill.style.width = v + '%';
-      const total = 665, s = Math.round(total * v / 100);
-      const mm = String(Math.floor(s / 60)).padStart(2, '0'), ss = String(s % 60).padStart(2, '0');
-      slider.setAttribute('aria-valuetext', `${mm}:${ss} de 11:05`);
-      slider.parentElement.querySelector('span').textContent = `${mm}:${ss}`;
-    }
-    slider.addEventListener('keydown', (e) => {
-      const v = Number(slider.getAttribute('aria-valuenow'));
-      if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { setPos(v + 5); e.preventDefault(); }
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { setPos(v - 5); e.preventDefault(); }
-      if (e.key === 'Home') { setPos(0); e.preventDefault(); }
-      if (e.key === 'End') { setPos(100); e.preventDefault(); }
+  // Leer en vivo: lee la transcripción (las pistas del video) con la voz del sistema.
+  const readBtn = document.getElementById('btn-read-transcript');
+  if (readBtn && 'speechSynthesis' in window) {
+    readBtn.addEventListener('click', () => {
+      if (readBtn.getAttribute('aria-pressed') === 'true') { window.speechSynthesis.cancel(); readBtn.setAttribute('aria-pressed', 'false'); return; }
+      const cues = CUES.map((c) => c[2].replace(/\[[^\]]*\]\s*/g, ''));
+      const text = cues.join(' ') || 'La transcripción aún no está disponible.';
+      const u = new SpeechSynthesisUtterance(text); u.lang = 'es-ES';
+      u.onend = () => readBtn.setAttribute('aria-pressed', 'false');
+      window.speechSynthesis.cancel(); window.speechSynthesis.speak(u);
+      readBtn.setAttribute('aria-pressed', 'true');
+      announce('Leyendo la transcripción en voz alta.');
     });
-    slider.addEventListener('click', (e) => {
-      const r = slider.getBoundingClientRect();
-      setPos((e.clientX - r.left) / r.width * 100);
-    });
+    window.addEventListener('beforeunload', () => window.speechSynthesis.cancel());
   }
 })();
 </script>
