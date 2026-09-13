@@ -223,9 +223,101 @@
     sections.forEach(function (s) { io.observe(s); });
   }
 
+  // ------------------------------------------------------------------
+  // "Leer esta pantalla": como Speak Screen (iOS) o Select to Speak
+  // (Android). Reúne el contenido visible de <main> y lo manda al lector,
+  // que lo lee en voz alta. Si ya estamos en el lector, alterna la lectura.
+  // Se activa con el botón de la cabecera, Alt+Mayús+L o deslizando dos
+  // dedos hacia abajo. El lector se registra en window.MosaicReader.
+  // ------------------------------------------------------------------
+  function collectScreenText() {
+    var main = document.querySelector("main");
+    if (!main) { return ""; }
+    var seen = {};
+    var parts = [];
+    var nodes = main.querySelectorAll("h1, h2, h3, h4, p, li, dt, dd, blockquote, figcaption, summary, th, td, label, legend");
+    Array.prototype.forEach.call(nodes, function (el) {
+      if (el.closest("#guide-bar, [hidden], .sr-only, [aria-hidden='true'], script, style")) { return; }
+      if (el.querySelector("p, li")) { return; } // se leerán sus hijos
+      if (!el.offsetParent && el.tagName !== "SUMMARY") { return; } // no visible
+      var t = (el.innerText || el.textContent || "").replace(/\s+/g, " ").trim();
+      if (t.length < 2 || seen[t]) { return; }
+      seen[t] = true;
+      parts.push(t);
+    });
+    return parts.join("\n\n");
+  }
+
+  function readScreen() {
+    if (window.MosaicReader) { window.MosaicReader.toggle(); return; }
+    var text = collectScreenText();
+    if (!text) { announce("No hay texto para leer en esta pantalla."); return; }
+    try {
+      sessionStorage.setItem("mosaic.readScreen", JSON.stringify({ title: document.title, text: text }));
+    } catch (e) { /* sin almacenamiento: el lector pedirá el texto */ }
+    announce("Abriendo el lector para leer esta pantalla.");
+    window.location.href = "lector.html?leer=pantalla";
+  }
+
+  // Atajos de teclado (Alt+Mayús+tecla, para no chocar con NVDA/JAWS/VoiceOver)
+  // y gestos táctiles válidos en todo el sitio. En el lector, además, hay
+  // teclas de reproductor (Espacio, flechas) definidas en lector.html.
+  var COMBOS = { l: "toggle", j: "rewind", k: "forward", r: "repeat", p: "paste", d: "dictate", c: "camera" };
+  function initShortcuts() {
+    document.addEventListener("keydown", function (e) {
+      if (!e.altKey || !e.shiftKey || e.ctrlKey || e.metaKey) { return; }
+      var key = (e.key || "").toLowerCase();
+      // Con Alt+Mayús algunos teclados entregan el código en vez de la letra.
+      if (!COMBOS[key] && /^Key[A-Z]$/.test(e.code || "")) { key = e.code.slice(3).toLowerCase(); }
+      var action = COMBOS[key];
+      if (!action) { return; }
+      e.preventDefault();
+      if (action === "toggle") { readScreen(); return; }
+      if (window.MosaicReader && window.MosaicReader[action]) { window.MosaicReader[action](); }
+      else if (action === "paste" || action === "dictate" || action === "camera") { window.location.href = "lector.html#entradas"; }
+    });
+
+    // Gestos: dos dedos hacia abajo = leer pantalla; dos dedos (toque) =
+    // pausa/reanudar; un dedo a la izquierda/derecha = retroceder/avanzar.
+    var start = null;
+    document.addEventListener("touchstart", function (e) {
+      var t = e.touches[0];
+      start = { x: t.clientX, y: t.clientY, n: e.touches.length, at: Date.now(), target: e.target };
+    }, { passive: true });
+    document.addEventListener("touchmove", function (e) {
+      if (start && e.touches.length > start.n) { start.n = e.touches.length; }
+    }, { passive: true });
+    document.addEventListener("touchend", function (e) {
+      if (!start || e.touches.length) { return; }
+      var s = start; start = null;
+      if (s.target && s.target.closest && s.target.closest("input, textarea, select, video, audio, .cam")) { return; }
+      var t = e.changedTouches[0];
+      var dx = t.clientX - s.x, dy = t.clientY - s.y, dt = Date.now() - s.at;
+      var moved = Math.abs(dx) > 20 || Math.abs(dy) > 20;
+      if (s.n >= 2 && !moved && dt < 350) { e.preventDefault(); toggleReader(); return; }
+      if (s.n >= 2 && dy > 80 && Math.abs(dx) < 70) { readScreen(); return; }
+      if (s.n === 1 && dt < 700 && Math.abs(dx) > 90 && Math.abs(dy) < 50 && window.MosaicReader) {
+        if (dx < 0) { window.MosaicReader.rewind(); } else { window.MosaicReader.forward(); }
+      }
+    });
+  }
+  function toggleReader() {
+    if (window.MosaicReader) { window.MosaicReader.toggle(); } else { readScreen(); }
+  }
+
+  function initApp() {
+    if (!("serviceWorker" in navigator) || !/^https?:$/.test(location.protocol)) { return; }
+    navigator.serviceWorker.register("sw.js").catch(function () { /* opcional */ });
+  }
+
   function init() {
     applyEasyText();
     initReveal();
+    initShortcuts();
+    initApp();
+    document.querySelectorAll('[data-action="read-screen"]').forEach(function (btn) {
+      btn.addEventListener("click", readScreen);
+    });
     document.querySelectorAll('[data-action="toggle-contrast"]').forEach(function (btn) {
       btn.addEventListener("click", toggleContrast);
     });
@@ -267,5 +359,5 @@
     init();
   }
 
-  window.PortalA11y = { setContrast: setContrast, setFontScale: setFontScale, stepFontScale: stepFontScale, setColorFilter: setColorFilter, setBool: setBool };
+  window.PortalA11y = { setContrast: setContrast, setFontScale: setFontScale, stepFontScale: stepFontScale, setColorFilter: setColorFilter, setBool: setBool, readScreen: readScreen, collectScreenText: collectScreenText };
 })();

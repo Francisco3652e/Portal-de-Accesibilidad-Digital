@@ -6,6 +6,8 @@
 <title>Mosaic — Lector de pantalla</title>
 <meta name="description" content="Mosaic, Portal de Accesibilidad Digital de El Salvador: lector de voz, videos en LESSA, alto contraste y navegación sencilla."/>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg"/>
+<link rel="manifest" href="manifest.json"/>
+<meta name="theme-color" content="#ffd23f"/>
 <link rel="stylesheet" href="assets/site.css"/>
 <script src="assets/site.js"></script>
 </head>
@@ -40,6 +42,11 @@
 <symbol id="i-forward" viewBox="0 0 24 24"><path d="M13 18a6 6 0 110-12h5"/><path d="M15.5 3.5L18 6l-2.5 2.5"/></symbol>
 <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></symbol>
 <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0114-5.3L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 01-14 5.3L4 16"/><path d="M4 20v-4h4"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0"/><path d="M12 18v3"/><path d="M8 21h8"/></symbol>
+<symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5-8 8"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></symbol>
+<symbol id="i-keyboard" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h.01"/><path d="M11 10h.01"/><path d="M15 10h.01"/><path d="M8 14h8"/></symbol>
 <symbol id="i-paste" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 11h6"/><path d="M9 15h4"/></symbol>
 <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h5v17H6a2 2 0 00-2 2z"/><path d="M20 5a2 2 0 00-2-2h-5v17h5a2 2 0 012 2z"/></symbol>
 <symbol id="i-pinch" viewBox="0 0 24 24"><path d="M4 4l6 6"/><path d="M4 10V4h6"/><path d="M20 20l-6-6"/><path d="M20 14v6h-6"/></symbol>
@@ -89,9 +96,14 @@
 <a href="acerca.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-info"/></svg><span>Acerca</span></a>
 <a href="contacto.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-mail"/></svg><span>Contacto</span></a>
 </nav>
+<div class="topbar__actions">
+<button class="contrast-switch read-screen" type="button" data-action="read-screen" aria-label="Leer esta pantalla en voz alta" title="Leer esta pantalla (Alt+Mayús+L, o dos dedos hacia abajo)">
+<svg class="ic" aria-hidden="true"><use href="#i-volume"/></svg><span class="contrast-switch__label">Leer pantalla</span>
+</button>
 <button class="contrast-switch" type="button" data-action="toggle-contrast" aria-pressed="false" aria-label="Alto contraste">
 <svg class="ic" aria-hidden="true"><use href="#i-contrast"/></svg><span class="contrast-switch__label">Alto contraste</span><span class="tag contrast-switch__state" aria-hidden="true">No</span>
 </button>
+</div>
 </div>
 </header>
 <main class="shell stack" id="main-content">
@@ -147,7 +159,7 @@
 <div class="piece piece--lg" style="display:flex;flex-direction:column;gap:1rem">
 <div class="row row--between">
 <h3>Lectura en curso</h3>
-<button class="btn btn--flat" id="btn-paste-modal" type="button" aria-controls="paste-section"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-paste"/></svg><span>Pegar texto o link</span></button>
+<button class="btn btn--flat" id="btn-paste-modal" type="button" aria-controls="paste-section"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-keyboard"/></svg><span>Escribir texto</span></button>
 </div>
 <div class="transcript" id="synchronized-transcript" aria-live="polite"><span class="word-node">La</span> <span class="word-node">accesibilidad</span> <span class="word-node">digital</span> <span class="word-node">es</span> <span class="word-node">un</span> <span class="word-node">derecho</span> <span class="word-node">fundamental</span> <span class="word-node">que</span> <span class="word-node">garantiza</span> <span class="word-node">la</span> <span class="word-node">participación</span> <span class="word-node">plena</span> <span class="word-node">de</span> <span class="word-node">todas</span> <span class="word-node">las</span> <span class="word-node">personas</span> <span class="word-node">en</span> <span class="word-node">la</span> <span class="word-node">sociedad</span> <span class="word-node">de</span> <span class="word-node">la</span> <span class="word-node">información.</span></div>
 <div aria-live="assertive" class="sr-only" id="status-announcer"></div>
@@ -163,6 +175,62 @@
 <button class="btn btn--flat" id="btn-clear-text" type="button">Limpiar</button>
 </div>
 </div>
+<div class="field">
+<label for="link-input">O pega un enlace</label>
+<div class="cluster">
+<input class="input" type="url" id="link-input" inputmode="url" autocomplete="off" placeholder="https://…" style="flex:1 1 12rem;min-width:0"/>
+<button class="btn btn--sky" id="btn-read-link" type="button"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-link"/></svg><span>Leer el enlace</span></button>
+</div>
+<p class="muted" data-easy="Leemos la página por ti.">Descargamos la página y leemos solo su texto, como el modo lector.</p>
+</div>
+</div>
+</section>
+
+<section id="entradas" data-step aria-labelledby="inputs-heading">
+<div class="section-head">
+<h2 id="inputs-heading">Traer texto sin escribir</h2>
+<p data-easy="El texto llega a ti.">Como en iPhone o Samsung: el texto llega al lector, no al revés.</p>
+</div>
+<div class="grid grid--2">
+<button class="shortcut piece" id="btn-paste-clip" type="button">
+<span class="ibox ibox--mint" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-paste"/></svg></span>
+<span class="shortcut__body"><span class="shortcut__title">Pegar y leer</span><span class="shortcut__hint" data-easy="Lee lo que copiaste.">Lee lo último que copiaste, sin buscar el cuadro. Atajo: Alt+Mayús+P.</span></span>
+<svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+</button>
+<button class="shortcut piece" id="btn-dictate" type="button" aria-pressed="false">
+<span class="ibox ibox--yellow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-mic"/></svg></span>
+<span class="shortcut__body"><span class="shortcut__title" id="dictate-title">Dictar por voz</span><span class="shortcut__hint" data-easy="Habla y te lo leemos.">Habla y el lector escribe y repite. Atajo: Alt+Mayús+D.</span></span>
+<svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+</button>
+<button class="shortcut piece" id="btn-camera" type="button" aria-controls="camera-panel" aria-expanded="false">
+<span class="ibox ibox--pink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-camera"/></svg></span>
+<span class="shortcut__body"><span class="shortcut__title">Cámara en vivo</span><span class="shortcut__hint" data-easy="Apunta y escucha.">Enciende la cámara y lee cartas, recibos o pantallas. Atajo: Alt+Mayús+C.</span></span>
+<svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+</button>
+<label class="shortcut piece" for="ocr-file" tabindex="0" role="button" id="btn-ocr-file">
+<span class="ibox ibox--sky" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-image"/></svg></span>
+<span class="shortcut__body"><span class="shortcut__title">Foto o imagen</span><span class="shortcut__hint" data-easy="Sube una foto.">Toma una foto o elige una imagen con texto.</span></span>
+<svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+<input class="sr-only" type="file" id="ocr-file" accept="image/*" capture="environment"/>
+</label>
+</div>
+<p class="ocr-status muted" id="input-status" aria-live="polite" style="margin-top:.9rem"></p>
+<div class="piece piece--lg cam-panel" id="camera-panel" hidden>
+<div class="row row--between">
+<h3>Cámara</h3>
+<span class="tag tag--pink" id="camera-state">Apagada</span>
+</div>
+<div class="cam" id="camera-box">
+<video id="camera-video" autoplay playsinline muted aria-label="Vista de la cámara"></video>
+<div class="cam__frame" aria-hidden="true"></div>
+<p class="cam__hint" id="camera-hint" data-easy="Apunta al texto.">Apunta al texto y mantén el teléfono quieto.</p>
+</div>
+<div class="cluster">
+<button class="btn btn--yellow btn--lg" id="btn-camera-read" type="button"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-volume"/></svg><span>Leer lo que ve la cámara</span></button>
+<button class="btn" id="btn-camera-auto" type="button" aria-pressed="true"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-repeat"/></svg><span>Lectura continua</span></button>
+<button class="btn btn--flat" id="btn-camera-off" type="button"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-close"/></svg><span>Apagar cámara</span></button>
+</div>
+<p class="muted" data-easy="Lee sola cada pocos segundos.">Con lectura continua, la cámara busca texto nuevo cada pocos segundos y lo lee sola.</p>
 </div>
 </section>
 
@@ -187,6 +255,32 @@
 <span class="shortcut__body"><span class="shortcut__title" id="download-label">Descargar audio MP3</span><span class="shortcut__hint" data-easy="Guarda el audio.">Escúchalo sin conexión.</span></span>
 <svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg>
 </button>
+</div>
+<div class="grid grid--2" style="margin-top:1.25rem">
+<div class="piece piece--lg piece--yellow" style="display:flex;flex-direction:column;gap:.9rem">
+<div class="row" style="gap:.75rem"><span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-keyboard"/></svg></span><h3>En computadora</h3></div>
+<ul class="keys">
+<li><span><kbd>Espacio</kbd></span><span>Reproducir o pausar.</span></li>
+<li><span><kbd>←</kbd> <kbd>→</kbd></span><span>Retroceder o avanzar.</span></li>
+<li><span><kbd>Esc</kbd></span><span>Detener y volver al inicio.</span></li>
+<li><span><kbd>Alt</kbd>+<kbd>Mayús</kbd>+<kbd>L</kbd></span><span>Leer esta pantalla (en cualquier página).</span></li>
+<li><span><kbd>Alt</kbd>+<kbd>Mayús</kbd>+<kbd>J</kbd> / <kbd>K</kbd></span><span>Retroceder / avanzar.</span></li>
+<li><span><kbd>Alt</kbd>+<kbd>Mayús</kbd>+<kbd>R</kbd></span><span>Repetir el párrafo.</span></li>
+<li><span><kbd>Alt</kbd>+<kbd>Mayús</kbd>+<kbd>P</kbd> / <kbd>D</kbd> / <kbd>C</kbd></span><span>Pegar, dictar o cámara.</span></li>
+</ul>
+<p class="muted" data-easy="Funciona con tu lector de pantalla.">Las combinaciones con Alt+Mayús no chocan con NVDA, JAWS ni VoiceOver.</p>
+</div>
+<div class="piece piece--lg piece--sky" style="display:flex;flex-direction:column;gap:.9rem">
+<div class="row" style="gap:.75rem"><span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-touch"/></svg></span><h3>En celular</h3></div>
+<ul class="keys">
+<li><span><kbd>Dos dedos: toque</kbd></span><span>Reproducir o pausar.</span></li>
+<li><span><kbd>Dos dedos: hacia abajo</kbd></span><span>Leer esta pantalla (en cualquier página).</span></li>
+<li><span><kbd>Deslizar ←</kbd> <kbd>→</kbd></span><span>Retroceder o avanzar.</span></li>
+<li><span><kbd>Audífonos</kbd></span><span>El botón de pausa y los de saltar también controlan la lectura.</span></li>
+<li><span><kbd>Compartir</kbd></span><span>Instala Mosaic y aparece en el menú Compartir de tu celular.</span></li>
+</ul>
+<p class="muted" data-easy="Con TalkBack usa sus gestos.">Si TalkBack o VoiceOver están activos, usa sus propios gestos sobre los botones.</p>
+</div>
 </div>
 </section>
 
@@ -350,6 +444,8 @@
       playBtn.setAttribute('aria-label', playing ? 'Pausar lectura' : 'Reproducir lectura en voz alta');
       playIcon.setAttribute('href', playing ? '#i-pause' : '#i-play');
       if (playing) { startWave(); } else { stopWave(); }
+      const readBtn = document.querySelector('[data-action="read-screen"]');
+      if (readBtn) { readBtn.classList.toggle('is-speaking', playing); }
     }
 
     // Fragmento máximo por utterance. Chrome/Android tienen un bug conocido:
@@ -367,6 +463,15 @@
     let audioRaf = null;
     let audioSeekTo = -1;
     let audioUrl = null;
+
+    // El navegador bloquea el audio hasta que la persona toque algo
+    // (p. ej. al llegar desde "Compartir" o desde "Leer esta pantalla").
+    function playBlocked() {
+      setPlayingUI(false);
+      isPaused = false;
+      announce('Texto listo. Pulsa Reproducir, la barra espaciadora o toca con dos dedos para escucharlo.');
+      if (playBtn) { playBtn.focus({ preventScroll: true }); }
+    }
 
     function ttsUrl(text) {
       return 'api/tts?q=' + encodeURIComponent(text);
@@ -413,7 +518,7 @@
           el.currentTime = wordTime(audioSeekTo);
           audioSeekTo = -1;
           el.playbackRate = rate;
-          if (!isPaused) { el.play().catch(function () {}); }
+          if (!isPaused) { el.play().catch(playBlocked); }
         }
       });
       el.addEventListener('play', function () {
@@ -443,15 +548,53 @@
       // Descargamos el MP3 completo y lo servimos desde un blob: así el audio
       // es siempre "seekable" (retroceder/avanzar) aunque el servidor no
       // responda a peticiones por rangos.
-      fetch(ttsUrl(text)).then(function (res) {
-        if (!res.ok) { throw new Error('HTTP ' + res.status); }
-        return res.blob();
-      }).then(function (blob) {
+      // Textos largos: se piden por párrafos, varios a la vez, y se unen los
+      // MP3 (gTTS entrega tramas MPEG sin cabecera, así que se concatenan
+      // sin problema). Así la voz llega en segundos en vez de esperar todo.
+      fetchTtsChunks(audioChunks(), 4).then(function (parts) {
         if (el !== audioEl) return;
         if (audioUrl) { URL.revokeObjectURL(audioUrl); }
-        audioUrl = URL.createObjectURL(blob);
+        audioUrl = URL.createObjectURL(new Blob(parts, { type: 'audio/mpeg' }));
         el.src = audioUrl;
       }).catch(audioFailed);
+    }
+
+    // Agrupa los párrafos (segments) en trozos de ~400 caracteres.
+    function audioChunks() {
+      const MAX = 400;
+      const chunks = [];
+      let cur = [];
+      let len = 0;
+      segments.forEach(function (seg) {
+        const t = words.slice(seg.start, seg.end + 1).join(' ');
+        if (len && len + t.length > MAX) { chunks.push(cur.join(' ')); cur = []; len = 0; }
+        cur.push(t); len += t.length + 1;
+        while (len > MAX * 3) { // párrafo enorme: se parte por longitud
+          const joined = cur.join(' ');
+          let cut = joined.lastIndexOf(' ', MAX * 2);
+          if (cut < MAX) { cut = MAX * 2; }
+          chunks.push(joined.slice(0, cut));
+          cur = [joined.slice(cut + 1)]; len = cur[0].length;
+        }
+      });
+      if (cur.length) { chunks.push(cur.join(' ')); }
+      return chunks.filter(Boolean);
+    }
+
+    function fetchTtsChunks(chunks, concurrency) {
+      const parts = new Array(chunks.length);
+      let next = 0;
+      function worker() {
+        if (next >= chunks.length) { return Promise.resolve(); }
+        const i = next++;
+        return fetch(ttsUrl(chunks[i])).then(function (res) {
+          if (!res.ok) { throw new Error('HTTP ' + res.status); }
+          return res.blob();
+        }).then(function (b) { parts[i] = b; return worker(); });
+      }
+      const runners = [];
+      for (let k = 0; k < Math.min(concurrency, chunks.length); k++) { runners.push(worker()); }
+      return Promise.all(runners).then(function () { return parts; });
     }
 
     function audioSpeakFrom(index, chained) {
@@ -461,7 +604,7 @@
       audioEl.playbackRate = rate;
       if (isFinite(audioEl.duration) && audioEl.duration > 0) {
         audioEl.currentTime = wordTime(index);
-        audioEl.play().catch(function () {});
+        audioEl.play().catch(playBlocked);
       } else {
         audioSeekTo = index;
         setPlayingUI(true);
@@ -540,8 +683,16 @@
       utterance.onerror = function (event) {
         if (myGen !== speechGen) return;
         if (event && (event.error === 'interrupted' || event.error === 'canceled')) return;
-        // 'not-allowed', 'synthesis-failed', 'synthesis-unavailable', etc.:
-        // el navegador no puede hablar; usamos el respaldo por audio.
+        if (startWatchdog) { clearTimeout(startWatchdog); startWatchdog = null; }
+        // 'not-allowed' antes de cualquier toque es el bloqueo de autoplay,
+        // no una falta de voces: pedimos que pulse Reproducir.
+        if (event && event.error === 'not-allowed' && navigator.userActivation && !navigator.userActivation.hasBeenActive) {
+          speechGen += 1;
+          playBlocked();
+          return;
+        }
+        // 'synthesis-failed', 'synthesis-unavailable', etc.: el navegador no
+        // puede hablar; usamos el respaldo por audio.
         switchToAudio(index);
       };
       window.speechSynthesis.speak(utterance);
@@ -558,7 +709,7 @@
           announce('Lectura en pausa.');
         } else if (isPaused && audioEl) {
           isPaused = false;
-          audioEl.play().catch(function () {});
+          audioEl.play().catch(playBlocked);
           announce('Lectura reanudada.');
         } else {
           isPaused = false;
@@ -594,7 +745,7 @@
         wordIndex = Math.max(0, wordIndex - 6);
         updateHighlighting();
         announce('Retrocedido 15 segundos');
-        if (isPlaying || isPaused) { isPaused = false; speakFrom(wordIndex); }
+        if (isPlaying || isPaused) { isPaused = false; speakFrom(wordIndex, true); }
       });
     }
     if (forwardBtn) {
@@ -602,7 +753,7 @@
         wordIndex = Math.min(Math.max(words.length - 1, 0), wordIndex + 6);
         updateHighlighting();
         announce('Avanzado 15 segundos');
-        if (isPlaying || isPaused) { isPaused = false; speakFrom(wordIndex); }
+        if (isPlaying || isPaused) { isPaused = false; speakFrom(wordIndex, true); }
       });
     }
 
@@ -626,6 +777,41 @@
       });
     }
 
+    function stopAll() {
+      speechGen += 1;
+      if (startWatchdog) { clearTimeout(startWatchdog); startWatchdog = null; }
+      if (supportsTTS) { window.speechSynthesis.cancel(); }
+      if (audioEl) { audioEl.pause(); }
+      isPaused = false;
+      setPlayingUI(false);
+    }
+
+    // Carga un texto nuevo en el lector (desde el cuadro, portapapeles,
+    // dictado, enlace, cámara o "Leer esta pantalla") y, si se pide, lo lee.
+    function loadText(text, opts) {
+      opts = opts || {};
+      const val = (text || '').trim();
+      if (!val) { return false; }
+      stopAll();
+      if (textInput && opts.fill !== false) { textInput.value = val; }
+      const built = buildWordsAndSegments(val);
+      words = built.words;
+      segments = built.segments;
+      renderWords();
+      wordIndex = 0;
+      updateHighlighting();
+      if (opts.speak) {
+        announce(opts.message || 'Texto nuevo cargado.');
+        speakFrom(0);
+      } else {
+        announce((opts.message || 'Texto nuevo cargado.') + ' Pulsa Reproducir para escucharlo.');
+      }
+      return true;
+    }
+
+    const URL_RE = /^(https?:\/\/|www\.)\S+$/i;
+    function isUrl(v) { return URL_RE.test((v || '').trim()); }
+
     if (loadTextBtn && textInput) {
       loadTextBtn.addEventListener('click', function () {
         const val = textInput.value.trim();
@@ -634,15 +820,8 @@
           textInput.focus();
           return;
         }
-        const built = buildWordsAndSegments(val);
-        words = built.words;
-        segments = built.segments;
-        renderWords();
-        wordIndex = 0;
-        updateHighlighting();
-        announce('Texto nuevo cargado. Listo para lectura.');
-        isPaused = false;
-        speakFrom(0);
+        if (isUrl(val)) { readLink(val); return; }
+        loadText(val, { speak: true, message: 'Texto nuevo cargado. Listo para lectura.' });
       });
     }
 
@@ -662,7 +841,7 @@
         wordIndex = target;
         updateHighlighting();
         announce('Repitiendo el último párrafo leído.');
-        if (isPlaying || isPaused) { isPaused = false; speakFrom(target); }
+        if (isPlaying || isPaused) { isPaused = false; speakFrom(target, true); }
       });
     }
 
@@ -671,9 +850,426 @@
       twoFingerBtn.addEventListener('click', function () { togglePlayback(); });
     }
 
+    // =================================================================
+    // Traer texto sin escribir: enlace, portapapeles, dictado, cámara/OCR.
+    // =================================================================
+    const inputStatus = document.getElementById('input-status');
+    function setStatus(msg, speakIt) {
+      if (inputStatus) { inputStatus.textContent = msg || ''; }
+      if (speakIt !== false && msg) { announce(msg); }
+    }
+
+    // ---- Enlace (api/leer) ----
+    const linkInput = document.getElementById('link-input');
+    const readLinkBtn = document.getElementById('btn-read-link');
+    function readLink(url) {
+      url = (url || '').trim();
+      if (!url) { announce('Escribe o pega un enlace primero.'); if (linkInput) { linkInput.focus(); } return; }
+      if (!/^https?:\/\//i.test(url)) { url = 'https://' + url; }
+      setStatus('Abriendo el enlace y extrayendo el texto…');
+      if (readLinkBtn) { readLinkBtn.disabled = true; }
+      fetch('api/leer?url=' + encodeURIComponent(url)).then(function (res) {
+        return res.json().then(function (data) { if (!res.ok) { throw new Error(data.error || 'Error'); } return data; });
+      }).then(function (data) {
+        const title = data.title ? data.title + '. ' : '';
+        setStatus('Leyendo: ' + (data.title || url), false);
+        loadText(data.text, { speak: true, message: 'Página cargada. ' + title });
+      }).catch(function (err) {
+        const msg = (err && err.message && err.message !== 'Error') ? err.message : 'No se pudo leer ese enlace.';
+        setStatus(msg + ' Puedes copiar el texto de la página y usar "Pegar y leer".');
+      }).finally(function () { if (readLinkBtn) { readLinkBtn.disabled = false; } });
+    }
+    if (readLinkBtn && linkInput) {
+      readLinkBtn.addEventListener('click', function () { readLink(linkInput.value); });
+      linkInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); readLink(linkInput.value); } });
+    }
+
+    // ---- Portapapeles ----
+    function pasteAndRead() {
+      if (!navigator.clipboard || !navigator.clipboard.readText) {
+        setStatus('Este navegador no permite leer el portapapeles. Pega el texto en el cuadro con Ctrl+V.');
+        if (textInput) { textInput.focus(); }
+        return;
+      }
+      navigator.clipboard.readText().then(function (txt) {
+        txt = (txt || '').trim();
+        if (!txt) { setStatus('El portapapeles está vacío. Copia un texto y vuelve a intentarlo.'); return; }
+        if (isUrl(txt)) { readLink(txt); return; }
+        setStatus('Leyendo el texto copiado.', false);
+        loadText(txt, { speak: true, message: 'Texto copiado cargado.' });
+      }).catch(function () {
+        setStatus('No se pudo leer el portapapeles. Permite el acceso o pega el texto en el cuadro con Ctrl+V.');
+        if (textInput) { textInput.focus(); }
+      });
+    }
+    const pasteClipBtn = document.getElementById('btn-paste-clip');
+    if (pasteClipBtn) { pasteClipBtn.addEventListener('click', pasteAndRead); }
+
+    // ---- Dictado (Web Speech: reconocimiento) ----
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const dictateBtn = document.getElementById('btn-dictate');
+    const dictateTitle = document.getElementById('dictate-title');
+    let recognizer = null;
+    let dictating = false;
+    let dictated = '';
+    function setDictateUI(on) {
+      dictating = on;
+      if (!dictateBtn) return;
+      dictateBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      if (dictateTitle) { dictateTitle.textContent = on ? 'Detener dictado' : 'Dictar por voz'; }
+    }
+    function startDictation() {
+      if (!SR) { setStatus('Este navegador no tiene dictado por voz. Prueba con Chrome, Edge o Safari.'); return; }
+      if (dictating) { stopDictation(); return; }
+      stopAll();
+      dictated = '';
+      recognizer = new SR();
+      recognizer.lang = 'es-SV';
+      recognizer.continuous = true;
+      recognizer.interimResults = true;
+      recognizer.onresult = function (e) {
+        let interim = '';
+        for (let i = e.resultIndex; i < e.results.length; i++) {
+          const r = e.results[i];
+          if (r.isFinal) { dictated += (dictated ? ' ' : '') + r[0].transcript.trim(); } else { interim += r[0].transcript; }
+        }
+        if (textInput) { textInput.value = dictated + (interim ? ' ' + interim : ''); }
+        setStatus('Escuchando… ' + (dictated || interim).slice(-80), false);
+      };
+      recognizer.onerror = function (e) {
+        const err = e && e.error;
+        if (err === 'no-speech') { setStatus('No escuché nada. Pulsa "Dictar por voz" y habla cerca del micrófono.'); }
+        else if (err === 'not-allowed' || err === 'service-not-allowed') { setStatus('Permite el uso del micrófono para dictar.'); }
+        else if (err === 'network') { setStatus('El dictado necesita internet y no está disponible en este navegador. Prueba con Chrome, Edge o Safari.'); }
+        else if (err !== 'aborted') { setStatus('El dictado falló: ' + err); }
+        setDictateUI(false);
+      };
+      recognizer.onend = function () {
+        if (!dictating) { return; }
+        setDictateUI(false);
+        if (dictated) {
+          setStatus('Dictado terminado. Leyendo lo que dijiste.', false);
+          loadText(dictated, { speak: true, message: 'Dictado terminado. Leyendo.' });
+        }
+      };
+      try {
+        recognizer.start();
+        setDictateUI(true);
+        setStatus('Escuchando. Habla y, al terminar, pulsa de nuevo "Detener dictado".');
+      } catch (e) {
+        setStatus('No se pudo iniciar el dictado.');
+        setDictateUI(false);
+      }
+    }
+    function stopDictation() {
+      if (recognizer && dictating) { try { recognizer.stop(); } catch (e) {} }
+    }
+    if (dictateBtn) {
+      if (!SR) { dictateBtn.hidden = true; }
+      dictateBtn.addEventListener('click', startDictation);
+    }
+
+    // ---- OCR (Tesseract.js en el navegador) y cámara en vivo ----
+    const TESS_URL = 'https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/5.1.1/tesseract.min.js';
+    let ocrWorker = null;
+    let ocrLoading = null;
+    let ocrBusy = false;
+    function ensureOcr() {
+      if (ocrWorker) { return Promise.resolve(ocrWorker); }
+      if (ocrLoading) { return ocrLoading; }
+      setStatus('Preparando el reconocimiento de texto (solo la primera vez)…');
+      ocrLoading = new Promise(function (resolve, reject) {
+        if (window.Tesseract) { resolve(); return; }
+        const sc = document.createElement('script');
+        sc.src = TESS_URL;
+        sc.onload = resolve;
+        sc.onerror = function () { reject(new Error('No se pudo descargar el reconocedor de texto. Revisa tu conexión.')); };
+        document.head.appendChild(sc);
+      }).then(function () {
+        return window.Tesseract.createWorker('spa', 1, {
+          logger: function (m) {
+            if (m.status === 'loading language traineddata' || m.status === 'loading tesseract core') {
+              setStatus('Descargando el idioma español… ' + Math.round((m.progress || 0) * 100) + '%', false);
+            }
+          }
+        });
+      }).then(function (w) { ocrWorker = w; ocrLoading = null; return w; }).catch(function (e) { ocrLoading = null; throw e; });
+      return ocrLoading;
+    }
+
+    // Limpia el resultado del OCR: quita líneas sin letras suficientes.
+    function cleanOcr(text) {
+      const lines = (text || '').split('\n').map(function (l) { return l.replace(/\s+/g, ' ').trim(); });
+      const good = [];
+      lines.forEach(function (l) {
+        if (!l) { good.push(''); return; }
+        const letters = (l.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/g) || []).length;
+        if (letters >= 3 && letters / l.length >= 0.45) { good.push(l); }
+      });
+      return good.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+    }
+
+    function recognize(source, label) {
+      if (ocrBusy) { return Promise.resolve(null); }
+      ocrBusy = true;
+      if (cameraBox) { cameraBox.classList.add('is-busy'); }
+      return ensureOcr().then(function (w) {
+        setStatus(label || 'Buscando texto…', false);
+        return w.recognize(source);
+      }).then(function (res) {
+        const text = cleanOcr(res.data.text);
+        const conf = res.data.confidence || 0;
+        return { text: text, confidence: conf };
+      }).finally(function () {
+        ocrBusy = false;
+        if (cameraBox) { cameraBox.classList.remove('is-busy'); }
+      });
+    }
+
+    const fileInput = document.getElementById('ocr-file');
+    const fileLabel = document.getElementById('btn-ocr-file');
+    if (fileLabel) {
+      fileLabel.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); } });
+    }
+    if (fileInput) {
+      fileInput.addEventListener('change', function () {
+        const f = fileInput.files && fileInput.files[0];
+        if (!f) return;
+        stopAll();
+        recognize(f, 'Leyendo la imagen…').then(function (r) {
+          if (!r) return;
+          if (!r.text || r.text.length < 4) { setStatus('No encontré texto legible en la imagen. Prueba con más luz o más cerca.'); return; }
+          setStatus('Texto encontrado en la imagen.', false);
+          loadText(r.text, { speak: true, message: 'Texto de la imagen cargado.' });
+        }).catch(function (e) { setStatus(e.message || 'No se pudo leer la imagen.'); });
+        fileInput.value = '';
+      });
+    }
+
+    // Cámara en vivo: como Live Text (Apple) o Bixby Vision (Samsung).
+    const cameraBtn = document.getElementById('btn-camera');
+    const cameraPanel = document.getElementById('camera-panel');
+    const cameraBox = document.getElementById('camera-box');
+    const cameraVideo = document.getElementById('camera-video');
+    const cameraState = document.getElementById('camera-state');
+    const cameraReadBtn = document.getElementById('btn-camera-read');
+    const cameraAutoBtn = document.getElementById('btn-camera-auto');
+    const cameraOffBtn = document.getElementById('btn-camera-off');
+    let cameraStream = null;
+    let cameraStarting = false;
+    let cameraTimer = null;
+    let cameraAuto = true;
+    let lastCameraText = '';
+    const CAMERA_EVERY_MS = 4000;
+
+    function grabFrame() {
+      if (!cameraVideo || !cameraVideo.videoWidth) { return null; }
+      const scale = Math.min(1, 1280 / cameraVideo.videoWidth);
+      const c = document.createElement('canvas');
+      c.width = Math.round(cameraVideo.videoWidth * scale);
+      c.height = Math.round(cameraVideo.videoHeight * scale);
+      const ctx = c.getContext('2d');
+      ctx.drawImage(cameraVideo, 0, 0, c.width, c.height);
+      // Escala de grises con más contraste: el OCR acierta más.
+      const img = ctx.getImageData(0, 0, c.width, c.height);
+      const d = img.data;
+      for (let i = 0; i < d.length; i += 4) {
+        let g = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
+        g = Math.max(0, Math.min(255, (g - 128) * 1.3 + 128));
+        d[i] = d[i + 1] = d[i + 2] = g;
+      }
+      ctx.putImageData(img, 0, 0);
+      return c;
+    }
+
+    // ¿Es un texto casi igual al último leído? (evita repetir en modo continuo)
+    function sameText(a, b) {
+      const wa = a.toLowerCase().split(/\s+/), wb = b.toLowerCase().split(/\s+/);
+      if (!wa.length || !wb.length) { return false; }
+      const set = {}; wa.forEach(function (w) { set[w] = true; });
+      let hit = 0; wb.forEach(function (w) { if (set[w]) { hit += 1; } });
+      return hit / Math.max(wa.length, wb.length) > 0.7;
+    }
+
+    function cameraRead(manual) {
+      if (!cameraStream || ocrBusy) { return; }
+      if (!manual && (isPlaying || isPaused)) { return; } // espera a que termine la lectura actual
+      const frame = grabFrame();
+      if (!frame) { return; }
+      recognize(frame, manual ? 'Leyendo lo que ve la cámara…' : 'Buscando texto…').then(function (r) {
+        if (!r) return;
+        const ok = r.text && r.text.length >= 8 && r.confidence >= 55;
+        if (!ok) {
+          if (manual) { setStatus('No distingo texto. Acerca la cámara, mejora la luz y mantén el teléfono quieto.'); }
+          else { setStatus('Buscando texto… apunta a una carta, recibo o pantalla.', false); }
+          return;
+        }
+        if (!manual && sameText(lastCameraText, r.text)) { setStatus('Mismo texto. Mueve la cámara a otro fragmento.', false); return; }
+        lastCameraText = r.text;
+        setStatus('Texto encontrado. Leyendo.', false);
+        loadText(r.text, { speak: true, message: 'Texto encontrado.' });
+      }).catch(function (e) { setStatus(e.message || 'No se pudo leer la imagen.'); stopCameraLoop(); });
+    }
+
+    function startCameraLoop() {
+      stopCameraLoop();
+      if (!cameraAuto) { return; }
+      cameraTimer = setInterval(function () { cameraRead(false); }, CAMERA_EVERY_MS);
+    }
+    function stopCameraLoop() {
+      if (cameraTimer) { clearInterval(cameraTimer); cameraTimer = null; }
+    }
+
+    function setCameraState(txt) { if (cameraState) { cameraState.textContent = txt; } }
+
+    function startCamera() {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        setStatus('Este navegador no permite usar la cámara. Usa "Foto o imagen" para tomar una foto.');
+        if (fileInput) { fileInput.click(); }
+        return;
+      }
+      if (cameraStream) { stopCamera(); return; }
+      if (cameraStarting) { return; }
+      cameraStarting = true;
+      if (cameraPanel) { cameraPanel.hidden = false; }
+      if (cameraBtn) { cameraBtn.setAttribute('aria-expanded', 'true'); }
+      setCameraState('Encendiendo…');
+      setStatus('Encendiendo la cámara…');
+      navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 960 } } })
+        .then(function (stream) {
+          cameraStarting = false;
+          cameraStream = stream;
+          cameraVideo.srcObject = stream;
+          return cameraVideo.play().catch(function () {});
+        }).then(function () {
+          setCameraState(cameraAuto ? 'Leyendo sola' : 'Encendida');
+          setStatus(cameraAuto
+            ? 'Cámara encendida. Apunta al texto: lo leeré sola en unos segundos. También puedes pulsar "Leer lo que ve la cámara".'
+            : 'Cámara encendida. Apunta al texto y pulsa "Leer lo que ve la cámara".');
+          if (cameraPanel) { cameraPanel.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+          lastCameraText = '';
+          ensureOcr().catch(function (e) { setStatus(e.message); });
+          startCameraLoop();
+        }).catch(function (err) {
+          cameraStarting = false;
+          stopCamera();
+          const denied = err && (err.name === 'NotAllowedError' || err.name === 'SecurityError');
+          setStatus(denied ? 'Permite el uso de la cámara para leer texto con ella.' : 'No se encontró una cámara. Usa "Foto o imagen".');
+        });
+    }
+    function stopCamera() {
+      stopCameraLoop();
+      if (cameraStream) { cameraStream.getTracks().forEach(function (t) { t.stop(); }); cameraStream = null; }
+      if (cameraVideo) { cameraVideo.srcObject = null; }
+      if (cameraPanel) { cameraPanel.hidden = true; }
+      if (cameraBtn) { cameraBtn.setAttribute('aria-expanded', 'false'); }
+      setCameraState('Apagada');
+    }
+    if (cameraBtn) { cameraBtn.addEventListener('click', startCamera); }
+    if (cameraOffBtn) { cameraOffBtn.addEventListener('click', function () { stopCamera(); setStatus('Cámara apagada.'); if (cameraBtn) { cameraBtn.focus(); } }); }
+    if (cameraReadBtn) { cameraReadBtn.addEventListener('click', function () { cameraRead(true); }); }
+    if (cameraAutoBtn) {
+      cameraAutoBtn.addEventListener('click', function () {
+        cameraAuto = !cameraAuto;
+        cameraAutoBtn.setAttribute('aria-pressed', cameraAuto ? 'true' : 'false');
+        setCameraState(cameraStream ? (cameraAuto ? 'Leyendo sola' : 'Encendida') : 'Apagada');
+        announce(cameraAuto ? 'Lectura continua activada.' : 'Lectura continua desactivada.');
+        if (cameraStream) { startCameraLoop(); }
+      });
+    }
+    document.addEventListener('visibilitychange', function () { if (document.hidden) { stopCameraLoop(); } else if (cameraStream) { startCameraLoop(); } });
+
+    // =================================================================
+    // Control sin mirar: teclas de reproductor, botones de audífonos y
+    // registro global para los gestos/atajos de site.js.
+    // =================================================================
+    function rewind() { if (rewindBtn) { rewindBtn.click(); } }
+    function forward() { if (forwardBtn) { forwardBtn.click(); } }
+    function repeat() { if (repeatBtn) { repeatBtn.click(); } }
+    function stepSpeed(dir) {
+      const btns = Array.prototype.slice.call(speedButtons);
+      const i = btns.findIndex(function (b) { return b.getAttribute('aria-checked') === 'true'; });
+      const next = btns[Math.max(0, Math.min(btns.length - 1, i + dir))];
+      if (next) { next.click(); }
+    }
+    function readerToggle() {
+      if (!words.length) { announce('No hay texto cargado.'); return; }
+      togglePlayback();
+    }
+
+    window.MosaicReader = {
+      toggle: readerToggle,
+      rewind: rewind,
+      forward: forward,
+      repeat: repeat,
+      paste: pasteAndRead,
+      dictate: startDictation,
+      camera: startCamera,
+      stop: function () { stopAll(); wordIndex = 0; updateHighlighting(); }
+    };
+
+    document.addEventListener('keydown', function (e) {
+      if (e.ctrlKey || e.altKey || e.metaKey) { return; }
+      const t = e.target;
+      if (t && t.closest && t.closest('input, textarea, select, [contenteditable="true"]')) { return; }
+      switch (e.key) {
+        case ' ': case 'Spacebar':
+          // Sobre un botón, Espacio ya lo activa; no duplicar.
+          if (t && t.closest && t.closest('button, a, [role="button"]')) { return; }
+          e.preventDefault(); readerToggle(); break;
+        case 'ArrowLeft': e.preventDefault(); rewind(); break;
+        case 'ArrowRight': e.preventDefault(); forward(); break;
+        case 'Escape': window.MosaicReader.stop(); announce('Lectura detenida.'); break;
+        case '+': case '=': stepSpeed(1); break;
+        case '-': case '_': stepSpeed(-1); break;
+        default: return;
+      }
+    });
+
+    // Botones de audífonos / pantalla de bloqueo (cuando se usa el audio).
+    if ('mediaSession' in navigator) {
+      try {
+        navigator.mediaSession.metadata = new MediaMetadata({ title: 'Lectura en voz alta', artist: 'Mosaic', album: 'Lector de voz' });
+        navigator.mediaSession.setActionHandler('play', readerToggle);
+        navigator.mediaSession.setActionHandler('pause', readerToggle);
+        navigator.mediaSession.setActionHandler('seekbackward', rewind);
+        navigator.mediaSession.setActionHandler('seekforward', forward);
+        navigator.mediaSession.setActionHandler('previoustrack', rewind);
+        navigator.mediaSession.setActionHandler('nexttrack', forward);
+      } catch (e) { /* no disponible */ }
+    }
+
+    // =================================================================
+    // Texto recibido desde fuera: "Compartir con Mosaic" (manifest
+    // share_target: ?title=&text=&url=), un enlace directo (?text= / ?url=)
+    // o "Leer esta pantalla" desde otra página (sessionStorage).
+    // =================================================================
+    (function receiveShared() {
+      const q = new URLSearchParams(window.location.search);
+      let shared = null;
+      if (q.get('leer') === 'pantalla') {
+        try { shared = JSON.parse(sessionStorage.getItem('mosaic.readScreen') || 'null'); sessionStorage.removeItem('mosaic.readScreen'); } catch (e) {}
+        if (shared && shared.text) {
+          loadText(shared.text, { speak: true, message: 'Leyendo la pantalla: ' + (shared.title || '') + '.' });
+        } else {
+          announce('No se recibió el texto de la pantalla.');
+        }
+        return;
+      }
+      const url = (q.get('url') || '').trim();
+      const text = (q.get('text') || '').trim();
+      const title = (q.get('title') || '').trim();
+      if (url && /^https?:\/\//i.test(url)) { readLink(url); return; }
+      if (text && isUrl(text)) { readLink(text); return; }
+      if (text) {
+        loadText((title ? title + '\n\n' : '') + text, { speak: true, message: 'Texto compartido cargado.' });
+      }
+    })();
+
     window.addEventListener('beforeunload', function () {
       if (supportsTTS) { window.speechSynthesis.cancel(); }
       if (audioEl) { audioEl.pause(); }
+      stopCamera();
     });
   })();
 </script>

@@ -1,5 +1,10 @@
 {
   "functions": {
-    "api/tts.py": { "maxDuration": 30 }
+    "api/tts.py": {
+      "maxDuration": 30
+    },
+    "api/leer.py": {
+      "maxDuration": 20
+    }
   }
 }

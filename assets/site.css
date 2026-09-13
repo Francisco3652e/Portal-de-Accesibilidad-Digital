@@ -287,7 +287,7 @@ section > h2 + p, section > h2 + .muted { margin-top: 0.5rem; }
 @media (min-width: 900px) {
   .topnav { display: flex; gap: 0.4rem; }
   .topnav a {
-    display: inline-flex; align-items: center; gap: 0.4em; padding: 0.5em 0.85em;
+    display: inline-flex; align-items: center; gap: 0.4em; padding: 0.5em 0.7em;
     border: var(--line) solid transparent; border-radius: var(--radius-sm);
     font-weight: 800; text-decoration: none; font-size: 0.95rem;
   }
@@ -624,3 +624,31 @@ html[data-highlight-clickable="true"] :is(a, button, .choice, .switch):focus-vis
 html[data-wide-spacing="true"] p, html[data-wide-spacing="true"] li, html[data-wide-spacing="true"] .transcript {
   line-height: 2 !important; letter-spacing: 0.04em !important; word-spacing: 0.12em;
 }
+
+/* ------------------- Leer pantalla, cámara y atajos -------------------- */
+.topbar__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; }
+.read-screen { background: var(--yellow); }
+/* Con el menú de escritorio (≥900 px) la cabecera no cabe con dos rótulos: solo icono + tooltip. */
+.read-screen .contrast-switch__label { display: none; }
+@media (min-width: 640px) and (max-width: 899px) { .read-screen .contrast-switch__label { display: inline; } }
+.read-screen.is-speaking { background: var(--pink); }
+.cam-panel { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.25rem; }
+.cam-panel[hidden] { display: none; }
+.cam { position: relative; aspect-ratio: 4 / 3; max-height: 60vh; overflow: hidden; border: var(--line) solid var(--ink); border-radius: var(--radius); background: var(--ink); box-shadow: var(--shadow); }
+.cam video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cam__hint {
+  position: absolute; left: 0.75rem; right: 0.75rem; bottom: 0.75rem;
+  padding: 0.45rem 0.7rem; border: var(--line) solid var(--ink); border-radius: var(--radius-sm);
+  background: var(--yellow); font-weight: 800; text-align: center;
+}
+.cam__frame { position: absolute; inset: 8% 6%; border: 3px dashed var(--yellow); border-radius: var(--radius-sm); pointer-events: none; }
+.cam.is-busy .cam__frame { border-style: solid; border-color: var(--pink); }
+kbd {
+  display: inline-block; min-width: 1.8em; padding: 0.05em 0.5em; margin: 0 0.1em;
+  border: 2px solid var(--ink); border-bottom-width: 4px; border-radius: 6px;
+  background: var(--card); color: var(--ink); font-family: inherit; font-weight: 800; font-size: 0.9em; text-align: center; line-height: 1.5;
+}
+.keys { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+.keys li { display: flex; flex-wrap: wrap; gap: 0.3rem 0.75rem; align-items: center; }
+.keys li > span:last-child { flex: 1 1 10rem; }
+.ocr-status { min-height: 1.5em; font-weight: 700; }
