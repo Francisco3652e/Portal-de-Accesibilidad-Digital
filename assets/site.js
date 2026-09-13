@@ -227,7 +227,7 @@
   // "Leer esta pantalla": como Speak Screen (iOS) o Select to Speak
   // (Android). Reúne el contenido visible de <main> y lo manda al lector,
   // que lo lee en voz alta. Si ya estamos en el lector, alterna la lectura.
-  // Se activa con el botón de la cabecera, Alt+Mayús+L o deslizando dos
+  // Se activa con el botón de la cabecera, Alt+Mayús+L o deslizando cuatro
   // dedos hacia abajo. El lector se registra en window.MosaicReader.
   // ------------------------------------------------------------------
   function collectScreenText() {
@@ -277,25 +277,36 @@
       else if (action === "paste" || action === "dictate" || action === "camera") { window.location.href = "lector.html#entradas"; }
     });
 
-    // Gestos: dos dedos hacia abajo = leer pantalla; dos dedos (toque) =
+    // Gestos: cuatro dedos hacia abajo = leer pantalla; dos dedos (toque) =
     // pausa/reanudar; un dedo a la izquierda/derecha = retroceder/avanzar.
+    // El de cuatro dedos se detecta durante el movimiento (touchmove) porque
+    // el navegador suele "quedarse" el gesto multitáctil (zoom/desplazamiento)
+    // y dispara touchcancel en vez de touchend.
     var start = null;
     document.addEventListener("touchstart", function (e) {
       var t = e.touches[0];
-      start = { x: t.clientX, y: t.clientY, n: e.touches.length, at: Date.now(), target: e.target };
+      if (start && e.touches.length > 1) { start.n = Math.max(start.n, e.touches.length); return; }
+      start = { x: t.clientX, y: t.clientY, n: e.touches.length, at: Date.now(), target: e.target, fired: false };
     }, { passive: true });
     document.addEventListener("touchmove", function (e) {
-      if (start && e.touches.length > start.n) { start.n = e.touches.length; }
+      if (!start) { return; }
+      if (e.touches.length > start.n) { start.n = e.touches.length; }
+      if (start.fired || start.n < 4) { return; }
+      var t = e.touches[0];
+      var dy = t.clientY - start.y, dx = t.clientX - start.x;
+      if (dy > 80 && Math.abs(dx) < 90) { start.fired = true; readScreen(); }
     }, { passive: true });
+    document.addEventListener("touchcancel", function () { start = null; }, { passive: true });
     document.addEventListener("touchend", function (e) {
       if (!start || e.touches.length) { return; }
       var s = start; start = null;
+      if (s.fired) { return; }
       if (s.target && s.target.closest && s.target.closest("input, textarea, select, video, audio, .cam")) { return; }
       var t = e.changedTouches[0];
       var dx = t.clientX - s.x, dy = t.clientY - s.y, dt = Date.now() - s.at;
       var moved = Math.abs(dx) > 20 || Math.abs(dy) > 20;
-      if (s.n >= 2 && !moved && dt < 350) { e.preventDefault(); toggleReader(); return; }
-      if (s.n >= 2 && dy > 80 && Math.abs(dx) < 70) { readScreen(); return; }
+      if (s.n >= 4 && dy > 80 && Math.abs(dx) < 90) { readScreen(); return; }
+      if ((s.n === 2 || s.n === 3) && !moved && dt < 350) { e.preventDefault(); toggleReader(); return; }
       if (s.n === 1 && dt < 700 && Math.abs(dx) > 90 && Math.abs(dy) < 50 && window.MosaicReader) {
         if (dx < 0) { window.MosaicReader.rewind(); } else { window.MosaicReader.forward(); }
       }

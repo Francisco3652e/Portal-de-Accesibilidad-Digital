@@ -29,7 +29,7 @@ Personas con discapacidad **visual**, **auditiva**, **cognitiva** y **motriz**, 
 
 Inspirado en *Speak Screen* / *Live Text* (Apple) y *Select to Speak* / *Bixby Vision* (Samsung):
 
-- **Leer esta pantalla** — botón de la cabecera, `Alt+Mayús+L` o dos dedos hacia abajo en cualquier página:
+- **Leer esta pantalla** — botón de la cabecera, `Alt+Mayús+L` o cuatro dedos hacia abajo en cualquier página:
   reúne el contenido de la página y lo lee en el lector.
 - **Pegar y leer** — lee lo último copiado (`navigator.clipboard`). `Alt+Mayús+P`.
 - **Dictar por voz** — reconocimiento de voz del navegador (Chrome, Edge, Safari). `Alt+Mayús+D`.
