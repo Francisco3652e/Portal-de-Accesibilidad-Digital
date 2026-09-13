@@ -132,7 +132,7 @@ button { font: inherit; color: inherit; }
 .tag--sky { background: var(--sky); }
 .tag--ink { background: var(--ink); color: var(--paper); }
 .tag--proper { text-transform: none; letter-spacing: 0; font-size: 0.85rem; }
-.tag--demo { background: var(--ink); color: var(--paper); border-style: dashed; border-color: var(--paper); outline: var(--line) solid var(--ink); }
+.tag--demo { background: var(--ink); color: var(--paper); }
 
 /* ------------------------------ Botones -------------------------------- */
 .btn {
