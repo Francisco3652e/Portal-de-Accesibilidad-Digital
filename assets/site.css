@@ -304,6 +304,7 @@ section > h2 + p, section > h2 + .muted { margin-top: 0.5rem; }
 .contrast-switch:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
 .contrast-switch:active { transition-duration: 0ms; transform: translate(5px, 5px); box-shadow: none; }
 .contrast-switch[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.contrast-switch[aria-pressed="true"] .contrast-switch__state { background: var(--paper); color: var(--ink); border-color: var(--paper); }
 .contrast-switch__label { display: none; }
 @media (min-width: 560px) { .contrast-switch__label { display: inline; } }
 
