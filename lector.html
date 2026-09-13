@@ -265,6 +265,7 @@
 <li><span><kbd>Alt</kbd>+<kbd>Mayús</kbd>+<kbd>R</kbd></span><span>Repetir el párrafo.</span></li>
 <li><span><kbd>Alt</kbd>+<kbd>Mayús</kbd>+<kbd>P</kbd> / <kbd>D</kbd> / <kbd>C</kbd></span><span>Pegar, dictar o cámara.</span></li>
 <li><span><kbd>Alt</kbd>+<kbd>Mayús</kbd>+<kbd>H</kbd> o <kbd>?</kbd></span><span>Ayuda por voz: qué hay y cómo usarlo.</span></li>
+<li><span><kbd>Alt</kbd>+<kbd>Mayús</kbd>+<kbd>V</kbd></span><span>Voz al pasar el cursor: dice lo que hay bajo el puntero o el foco.</span></li>
 </ul>
 <p class="muted" data-easy="Funciona con tu lector de pantalla.">Las combinaciones con Alt+Mayús no chocan con NVDA, JAWS ni VoiceOver.</p>
 </div>
@@ -274,6 +275,7 @@
 <li><span><kbd>Dos dedos: dos toques</kbd></span><span>Leer esta pantalla (en cualquier página).</span></li>
 <li><span><kbd>Dos dedos: un toque</kbd></span><span>Reproducir o pausar en el lector.</span></li>
 <li><span><kbd>Deslizar ←</kbd> <kbd>→</kbd></span><span>Retroceder o avanzar.</span></li>
+<li><span><kbd>Mantener y arrastrar</kbd></span><span>Con «Voz al pasar el cursor» activa, dice lo que hay bajo el dedo.</span></li>
 <li><span><kbd>Audífonos</kbd></span><span>El botón de pausa y los de saltar también controlan la lectura.</span></li>
 <li><span><kbd>Compartir</kbd></span><span>Instala Mosaic y aparece en el menú Compartir de tu celular.</span></li>
 </ul>
@@ -1245,7 +1247,8 @@
       dictate: startDictation,
       camera: startCamera,
       stop: function () { stopAll(); wordIndex = 0; updateHighlighting(); },
-      say: function (text, title) { loadText(text, { speak: true, message: (title || 'Texto') + '.' }); }
+      say: function (text, title) { loadText(text, { speak: true, message: (title || 'Texto') + '.' }); },
+      isPlaying: function () { return isPlaying && !isPaused; }
     };
 
     document.addEventListener('keydown', function (e) {

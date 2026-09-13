@@ -142,6 +142,10 @@
 <span class="key__lead"><span class="ibox ibox--pink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-volume"/></svg></span><span>Leer esta página en voz alta</span></span>
 <span class="key__state" id="voice-status" aria-hidden="true">Ir</span>
 </button>
+<button class="key" id="btn-hover-quick" type="button" aria-pressed="false">
+<span class="key__lead"><span class="ibox ibox--sky" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-touch"/></svg></span><span>Voz al pasar el cursor</span></span>
+<span class="key__state" id="hover-status">Off</span>
+</button>
 <button class="key" id="btn-guided-quick" type="button" aria-pressed="false">
 <span class="key__lead"><span class="ibox ibox--mint" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg></span><span>Modo guiado paso a paso</span></span>
 <span class="key__state" id="guided-status">Off</span>
@@ -239,6 +243,20 @@
     // "Leer esta página en voz alta": mismo camino que el botón de la cabecera
     // (abre el lector con el contenido; funciona aunque el navegador no tenga voces).
     if (btn) { btn.addEventListener('click', function () { window.PortalA11y.readScreen(); }); }
+
+    // Tecla rápida de voz al pasar el cursor: mismo ajuste que en Ajustes.
+    var hoverBtn = document.getElementById('btn-hover-quick');
+    var hoverStatus = document.getElementById('hover-status');
+    function syncHover() {
+      var on = document.documentElement.getAttribute('data-hover-speak') === 'true';
+      hoverBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      hoverStatus.textContent = on ? 'On' : 'Off';
+    }
+    if (hoverBtn) {
+      hoverBtn.addEventListener('click', function () { window.PortalA11y.toggleHoverSpeak(); syncHover(); });
+      new MutationObserver(syncHover).observe(document.documentElement, { attributes: true, attributeFilter: ['data-hover-speak'] });
+      syncHover();
+    }
 
     // Tecla rápida de modo guiado: refleja y cambia el mismo ajuste que Ajustes.
     function syncGuided() {

@@ -656,3 +656,7 @@ kbd {
 .ocr-status { min-height: 1.5em; font-weight: 700; }
 
 .code-inline { display: inline-block; padding: 0.1em 0.45em; border: 2px solid var(--ink); border-radius: 6px; background: var(--card); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.85em; font-weight: 700; word-break: break-all; }
+
+/* Voz al pasar el cursor: contorno del elemento que se está diciendo */
+.hs-current { outline: 4px solid var(--pink) !important; outline-offset: 3px; }
+html[data-contrast="dark"] .hs-current, html[data-contrast="yellow"] .hs-current { outline-color: var(--yellow) !important; }

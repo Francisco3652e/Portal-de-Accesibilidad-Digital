@@ -19,7 +19,8 @@
     highlightClickable: false,
     wideSpacing: false,
     guidedMode: false,
-    easyMode: false
+    easyMode: false,
+    hoverSpeak: false
   };
 
   function loadState() {
@@ -47,6 +48,7 @@
     html.setAttribute("data-wide-spacing", state.wideSpacing ? "true" : "false");
     html.setAttribute("data-guided-mode", state.guidedMode ? "true" : "false");
     html.setAttribute("data-easy-mode", state.easyMode ? "true" : "false");
+    html.setAttribute("data-hover-speak", state.hoverSpeak ? "true" : "false");
     applyEasyText();
   }
 
@@ -104,6 +106,7 @@
     announce(label + (value ? " activado" : " desactivado"));
     syncControls();
     if (key === "guidedMode") { guided.refresh(); }
+    if (key === "hoverSpeak") { hoverSpeak.refresh(); }
   }
 
   function syncControls() {
@@ -137,7 +140,7 @@
     });
     var filterSelect = document.getElementById("color-filter-select");
     if (filterSelect) { filterSelect.value = state.colorFilter; }
-    var map = { "toggle-spacing": "wideSpacing", "toggle-guided-mode": "guidedMode", "toggle-highlight-clickable": "highlightClickable", "toggle-reduce-motion": "reduceMotion", "toggle-easy-mode": "easyMode" };
+    var map = { "toggle-spacing": "wideSpacing", "toggle-guided-mode": "guidedMode", "toggle-highlight-clickable": "highlightClickable", "toggle-reduce-motion": "reduceMotion", "toggle-easy-mode": "easyMode", "toggle-hover-speak": "hoverSpeak" };
     Object.keys(map).forEach(function (id) {
       var el = document.getElementById(id);
       if (el) { el.checked = !!state[map[id]]; }
@@ -224,6 +227,231 @@
   }
 
   // ------------------------------------------------------------------
+  // Voz al pasar el cursor: dice en voz alta lo que hay bajo el puntero
+  // (botón, enlace, encabezado, texto…), lo que recibe el foco con Tab y,
+  // en pantallas táctiles, lo que se toca manteniendo el dedo y arrastrando.
+  // Las frases cortas se dicen con la voz del navegador; si no hay voces,
+  // se piden a api/tts y se guardan en caché.
+  // ------------------------------------------------------------------
+  var hoverSpeak = (function () {
+    var SPEAKABLE = "a[href], button, input, select, textarea, summary, [role='button'], [role='radio'], [role='checkbox'], [role='switch'], [role='slider'], [role='tab'], h1, h2, h3, h4, h5, h6, p, li, dt, dd, label, legend, th, td, figcaption, blockquote, img[alt], svg[role='img'], kbd, code";
+    var ROLE_NAMES = { a: "enlace", button: "botón", summary: "desplegable", h1: "encabezado principal", h2: "encabezado", h3: "encabezado", h4: "encabezado", h5: "encabezado", h6: "encabezado", img: "imagen", svg: "imagen", li: "elemento de lista", kbd: "tecla", code: "código" };
+    var current = null;
+    var timer = null;
+    var ttsOk = true;          // la voz del navegador funciona
+    var audio = null;
+    var cache = {};
+    var cacheKeys = [];
+    var touchArmed = false;
+    var touchTimer = null;
+    var lastPoint = null;
+
+    function on() { return !!state.hoverSpeak; }
+
+    function nameOf(el) {
+      var label = el.getAttribute("aria-label");
+      if (label) { return label.trim(); }
+      var by = el.getAttribute("aria-labelledby");
+      if (by) {
+        var parts = by.split(/\s+/).map(function (id) { var n = document.getElementById(id); return n ? n.textContent.trim() : ""; }).filter(Boolean);
+        if (parts.length) { return parts.join(" "); }
+      }
+      if (el.id) {
+        var lbl = document.querySelector('label[for="' + el.id + '"]');
+        if (lbl) { return lbl.textContent.trim(); }
+      }
+      if (el.tagName === "IMG") { return el.getAttribute("alt") || ""; }
+      if (el.tagName === "INPUT") { return el.placeholder || el.value || ""; }
+      var clone = el.cloneNode(true);
+      Array.prototype.forEach.call(clone.querySelectorAll("[aria-hidden='true'], .sr-only, script, style"), function (n) { n.remove(); });
+      var text = (clone.textContent || "").replace(/\s+/g, " ").trim();
+      if (!text) { text = el.getAttribute("title") || ""; }
+      return text;
+    }
+
+    function roleOf(el) {
+      var role = el.getAttribute("role");
+      if (role === "button") { return "botón"; }
+      if (role === "radio") { return "opción"; }
+      if (role === "checkbox" || role === "switch") { return "interruptor"; }
+      if (role === "slider") { return "control deslizante"; }
+      if (role === "tab") { return "pestaña"; }
+      if (role === "img") { return "imagen"; }
+      var tag = el.tagName.toLowerCase();
+      if (tag === "input") {
+        var t = (el.getAttribute("type") || "text").toLowerCase();
+        if (t === "checkbox") { return "interruptor"; }
+        if (t === "radio") { return "opción"; }
+        if (t === "file") { return "selector de archivo"; }
+        if (t === "url") { return "campo de enlace"; }
+        return "campo de texto";
+      }
+      if (tag === "select") { return "lista desplegable"; }
+      if (tag === "textarea") { return "cuadro de texto"; }
+      if (tag === "label" || tag === "legend") { return "etiqueta"; }
+      return ROLE_NAMES[tag] || "";
+    }
+
+    function stateOf(el) {
+      var s = [];
+      var pressed = el.getAttribute("aria-pressed");
+      var checked = el.getAttribute("aria-checked");
+      if (el.tagName === "INPUT" && (el.type === "checkbox" || el.type === "radio")) { s.push(el.checked ? "activado" : "desactivado"); }
+      else if (pressed === "true" || checked === "true") { s.push("activado"); }
+      else if (pressed === "false" || checked === "false") { s.push("desactivado"); }
+      if (el.getAttribute("aria-expanded") === "true") { s.push("expandido"); }
+      if (el.getAttribute("aria-current") === "page") { s.push("página actual"); }
+      if (el.disabled || el.getAttribute("aria-disabled") === "true") { s.push("no disponible"); }
+      return s;
+    }
+
+    function describe(el) {
+      var name = nameOf(el);
+      if (!name) { return ""; }
+      if (name.length > 220) { name = name.slice(0, 217).replace(/\s+\S*$/, "") + "…"; }
+      var role = roleOf(el);
+      var st = stateOf(el);
+      var out = role ? role + ", " + name : name;
+      if (st.length) { out += ", " + st.join(", "); }
+      return out;
+    }
+
+    function target(node) {
+      if (!node || !node.closest) { return null; }
+      var el = node.closest(SPEAKABLE);
+      if (!el) { return null; }
+      if (el.closest("[aria-hidden='true'], .sr-only, #guide-bar[hidden], [hidden]")) { return null; }
+      // Un texto dentro de un control se describe por el control.
+      var ctrl = el.closest("a[href], button, summary, [role='button'], [role='radio'], [role='switch'], label");
+      return ctrl || el;
+    }
+
+    function stopSpeech() {
+      if (timer) { clearTimeout(timer); timer = null; }
+      if (ttsOk && "speechSynthesis" in window) { try { window.speechSynthesis.cancel(); } catch (e) {} }
+      if (audio) { audio.pause(); }
+    }
+
+    function speakServer(text) {
+      var play = function (url) {
+        if (!audio) { audio = new Audio(); }
+        audio.pause();
+        audio.src = url;
+        audio.play().catch(function () {});
+      };
+      if (cache[text]) { play(cache[text]); return; }
+      fetch("api/tts?q=" + encodeURIComponent(text)).then(function (r) { if (!r.ok) { throw new Error(); } return r.blob(); }).then(function (b) {
+        var url = URL.createObjectURL(b);
+        cache[text] = url; cacheKeys.push(text);
+        if (cacheKeys.length > 150) { var old = cacheKeys.shift(); URL.revokeObjectURL(cache[old]); delete cache[old]; }
+        play(url);
+      }).catch(function () { /* sin red: silencio */ });
+    }
+
+    function speak(text) {
+      if (!text) { return; }
+      if (!ttsOk || !("speechSynthesis" in window)) { speakServer(text); return; }
+      try {
+        window.speechSynthesis.cancel();
+        var u = new SpeechSynthesisUtterance(text);
+        u.lang = "es-ES";
+        u.rate = 1.1;
+        var v = window.speechSynthesis.getVoices().find(function (x) { return /^es/i.test(x.lang); });
+        if (v) { u.voice = v; }
+        var started = false;
+        var guard = setTimeout(function () { if (!started) { ttsOk = false; speakServer(text); } }, 1500);
+        u.onstart = function () { started = true; clearTimeout(guard); };
+        u.onerror = function (e) {
+          clearTimeout(guard);
+          if (e && e.error === "interrupted") { return; }
+          // 'not-allowed' antes de cualquier toque es el bloqueo de autoplay; después de
+          // interactuar significa que el navegador no puede hablar (p. ej. sin voces).
+          if (e && e.error === "not-allowed" && !(navigator.userActivation && navigator.userActivation.hasBeenActive)) { return; }
+          ttsOk = false; speakServer(text);
+        };
+        window.speechSynthesis.speak(u);
+      } catch (e) { ttsOk = false; speakServer(text); }
+    }
+
+    function readerBusy() {
+      return !!(window.MosaicReader && window.MosaicReader.isPlaying && window.MosaicReader.isPlaying());
+    }
+
+    function setCurrent(el) {
+      if (el === current) { return; }
+      if (current) { current.classList.remove("hs-current"); }
+      current = el;
+      if (!el) { stopSpeech(); return; }
+      el.classList.add("hs-current");
+      if (readerBusy()) { return; }
+      if (timer) { clearTimeout(timer); }
+      timer = setTimeout(function () { timer = null; speak(describe(el)); }, 120);
+    }
+
+    function onPointerMove(e) {
+      if (!on() || e.pointerType === "touch") { return; }
+      setCurrent(target(e.target));
+    }
+    function onFocusIn(e) {
+      if (!on()) { return; }
+      var el = target(e.target);
+      if (el && el !== current) { setCurrent(el); }
+    }
+    function onLeave() { if (on()) { setCurrent(null); } }
+
+    // Táctil: mantener el dedo quieto 350 ms y luego arrastrar = explorar.
+    function onTouchStart(e) {
+      if (!on() || e.touches.length !== 1) { touchArmed = false; return; }
+      var t = e.touches[0];
+      lastPoint = { x: t.clientX, y: t.clientY };
+      touchArmed = false;
+      if (touchTimer) { clearTimeout(touchTimer); }
+      touchTimer = setTimeout(function () {
+        touchArmed = true;
+        setCurrent(target(document.elementFromPoint(lastPoint.x, lastPoint.y)));
+      }, 350);
+    }
+    function onTouchMove(e) {
+      if (!on()) { return; }
+      var t = e.touches[0];
+      if (!touchArmed) {
+        if (lastPoint && (Math.abs(t.clientX - lastPoint.x) > 12 || Math.abs(t.clientY - lastPoint.y) > 12)) { clearTimeout(touchTimer); touchTimer = null; }
+        return;
+      }
+      e.preventDefault(); // explorando: no desplazar la página
+      lastPoint = { x: t.clientX, y: t.clientY };
+      setCurrent(target(document.elementFromPoint(t.clientX, t.clientY)));
+    }
+    function onTouchEnd() {
+      if (touchTimer) { clearTimeout(touchTimer); touchTimer = null; }
+      if (touchArmed) { touchArmed = false; setCurrent(null); }
+    }
+
+    var bound = false;
+    function bind() {
+      if (bound) { return; }
+      bound = true;
+      document.addEventListener("pointermove", onPointerMove, { passive: true });
+      document.addEventListener("focusin", onFocusIn);
+      document.addEventListener("mouseleave", onLeave);
+      document.addEventListener("touchstart", onTouchStart, { passive: true });
+      document.addEventListener("touchmove", onTouchMove, { passive: false });
+      document.addEventListener("touchend", onTouchEnd, { passive: true });
+      document.addEventListener("touchcancel", onTouchEnd, { passive: true });
+    }
+
+    return {
+      init: function () { if (on()) { bind(); } },
+      refresh: function () {
+        if (on()) { bind(); speak("Voz al pasar el cursor activada. Mueve el cursor o mantén el dedo y arrastra para escuchar lo que hay en pantalla."); }
+        else { setCurrent(null); }
+      },
+      toggle: function () { setBool("hoverSpeak", !state.hoverSpeak, "Voz al pasar el cursor"); },
+      speak: speak
+    };
+  })();
+
+  // ------------------------------------------------------------------
   // "Leer esta pantalla": como Speak Screen (iOS) o Select to Speak
   // (Android). Reúne el contenido visible de <main> y lo manda al lector,
   // que lo lee en voz alta. Si ya estamos en el lector, alterna la lectura.
@@ -256,6 +484,7 @@
     "En el lector puedes pausar con la barra espaciadora o con un toque de dos dedos, y retroceder o avanzar con las flechas o deslizando un dedo.",
     "El lector también lee enlaces que te compartan, lo que copies, lo que dictes, y el texto que vea la cámara: una receta, un recibo o una carta.",
     "Las secciones del portal son: Inicio, Lector de voz, Videos en Lengua de Señas, Ajustes, Acerca del proyecto y Contacto.",
+    "Si quieres oír lo que hay bajo el cursor o bajo tu dedo, activa Voz al pasar el cursor con Alt, Mayúscula y V, o desde Ajustes.",
     "Para repetir esta ayuda, pulsa Alt, Mayúscula y H."
   ].join(" ");
 
@@ -290,7 +519,7 @@
   // Atajos de teclado (Alt+Mayús+tecla, para no chocar con NVDA/JAWS/VoiceOver)
   // y gestos táctiles válidos en todo el sitio. En el lector, además, hay
   // teclas de reproductor (Espacio, flechas) definidas en lector.html.
-  var COMBOS = { l: "toggle", j: "rewind", k: "forward", r: "repeat", p: "paste", d: "dictate", c: "camera", h: "help" };
+  var COMBOS = { l: "toggle", j: "rewind", k: "forward", r: "repeat", p: "paste", d: "dictate", c: "camera", h: "help", v: "hover" };
   function initShortcuts() {
     document.addEventListener("keydown", function (e) {
       if (!e.altKey || !e.shiftKey || e.ctrlKey || e.metaKey) { return; }
@@ -302,6 +531,7 @@
       e.preventDefault();
       if (action === "toggle") { readScreen(); return; }
       if (action === "help") { speakHelp(); return; }
+      if (action === "hover") { hoverSpeak.toggle(); return; }
       if (window.MosaicReader && window.MosaicReader[action]) { window.MosaicReader[action](); }
       else if (action === "paste" || action === "dictate" || action === "camera") { window.location.href = "lector.html#entradas"; }
     });
@@ -417,7 +647,8 @@
       ["toggle-guided-mode", "guidedMode", "Modo guiado paso a paso"],
       ["toggle-highlight-clickable", "highlightClickable", "Destacado de elementos clicables"],
       ["toggle-reduce-motion", "reduceMotion", "Reducción de animaciones"],
-      ["toggle-easy-mode", "easyMode", "Modo fácil"]
+      ["toggle-easy-mode", "easyMode", "Modo fácil"],
+      ["toggle-hover-speak", "hoverSpeak", "Voz al pasar el cursor"]
     ];
     bools.forEach(function (b) {
       var el = document.getElementById(b[0]);
@@ -425,6 +656,7 @@
     });
 
     guided.init();
+    hoverSpeak.init();
     syncControls();
   }
 
@@ -434,5 +666,5 @@
     init();
   }
 
-  window.PortalA11y = { setContrast: setContrast, setFontScale: setFontScale, stepFontScale: stepFontScale, setColorFilter: setColorFilter, setBool: setBool, readScreen: readScreen, speakHelp: speakHelp, collectScreenText: collectScreenText };
+  window.PortalA11y = { setContrast: setContrast, setFontScale: setFontScale, stepFontScale: stepFontScale, setColorFilter: setColorFilter, setBool: setBool, readScreen: readScreen, speakHelp: speakHelp, collectScreenText: collectScreenText, toggleHoverSpeak: hoverSpeak.toggle };
 })();

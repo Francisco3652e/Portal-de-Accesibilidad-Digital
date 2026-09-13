@@ -44,6 +44,9 @@ Inspirado en *Speak Screen* / *Live Text* (Apple) y *Select to Speak* / *Bixby V
 - **Orientación por voz** — al entrar, el lector de pantalla anuncia cómo escuchar el portal (una vez por sesión);
   el segundo enlace de salto «Escuchar esta página en voz alta» es lo primero que se encuentra con Tab;
   `Alt+Mayús+H` (o `?` en el lector) lee una ayuda con lo que hay y cómo usarlo.
+- **Voz al pasar el cursor** (Ajustes, tecla rápida en Inicio o `Alt+Mayús+V`) — dice en voz alta lo que hay bajo el
+  puntero, lo que recibe el foco con Tab y, en pantallas táctiles, lo que hay bajo el dedo al mantener y arrastrar
+  (tipo, nombre y estado: «botón, Alto contraste, desactivado»). Si el navegador no tiene voces, usa `api/tts`.
 - **Control sin mirar** — `Espacio`, `←`/`→`, `Esc`, `+`/`-`; en celular un toque con dos dedos (pausa), deslizar a los lados y
   botones de audífonos (Media Session).
 
