@@ -4,7 +4,9 @@
 (function () {
   "use strict";
 
-  var STORAGE_KEY = "portalAccesibleA11y";
+  // v2: se renombró la clave para descartar preferencias guardadas por la versión anterior
+  // (que activaba "Destacar elementos clicables" por defecto).
+  var STORAGE_KEY = "mosaicA11y.v2";
   var FONT_ORDER = ["sm", "md", "lg", "xxl"];
   var FONT_LABELS = { sm: "Pequeña (85%)", md: "Normal (100%)", lg: "Grande (118%)", xxl: "Extra grande (140%)" };
   var CONTRAST_LABELS = { standard: "Contraste estándar", dark: "Alto contraste, blanco sobre negro", yellow: "Alto contraste, amarillo sobre negro" };

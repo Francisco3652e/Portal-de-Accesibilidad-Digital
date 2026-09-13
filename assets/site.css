@@ -581,8 +581,10 @@ html[data-reduce-motion="true"] *, html[data-reduce-motion="true"] *::before, ht
 
 /* Destacar elementos clicables */
 html[data-highlight-clickable="true"] a, html[data-highlight-clickable="true"] button, html[data-highlight-clickable="true"] .choice, html[data-highlight-clickable="true"] .switch {
-  outline: 3px dashed var(--ink); outline-offset: 3px;
+  outline: 3px solid var(--sky); outline-offset: 3px;
 }
+html[data-contrast="dark"][data-highlight-clickable="true"] :is(a, button, .choice, .switch),
+html[data-contrast="yellow"][data-highlight-clickable="true"] :is(a, button, .choice, .switch) { outline-color: var(--ink); }
 html[data-highlight-clickable="true"] :is(a, button, .choice, .switch):focus-visible { outline: 3px solid var(--focus); }
 
 /* Espaciado e interlineado amplio */
