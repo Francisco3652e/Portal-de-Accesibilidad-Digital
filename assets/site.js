@@ -49,6 +49,7 @@
 
   // Aplicar de inmediato (antes de DOMContentLoaded) para evitar parpadeos.
   applyState();
+  if ("IntersectionObserver" in window) { document.documentElement.setAttribute("data-reveal", ""); }
 
   function announce(msg) {
     var region = document.getElementById("a11y-announcer");
@@ -178,7 +179,34 @@
     };
   })();
 
+  // ------------------------------------------------------------------
+  // Aparición en cascada: cada sección revela sus piezas al entrar en pantalla.
+  // ------------------------------------------------------------------
+  var GROUPS = ".grid, .services, .ethics, .channels, .checklist, .guide-list, .console__keys, .help-band__actions, .hero__title, .console, .featured__side, .setting-group, .form";
+  function initReveal() {
+    if (!("IntersectionObserver" in window)) { return; }
+    var sections = document.querySelectorAll("main [data-step]");
+    sections.forEach(function (section) {
+      var items = [];
+      Array.prototype.forEach.call(section.children, function (child) {
+        if (child.matches(GROUPS) && child.children.length) {
+          Array.prototype.push.apply(items, child.children);
+        } else {
+          items.push(child);
+        }
+      });
+      items.forEach(function (el, i) { el.classList.add("rv"); el.style.setProperty("--i", i); });
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("rv-in"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    sections.forEach(function (s) { io.observe(s); });
+  }
+
   function init() {
+    initReveal();
     document.querySelectorAll('[data-action="toggle-contrast"]').forEach(function (btn) {
       btn.addEventListener("click", toggleContrast);
     });

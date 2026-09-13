@@ -506,6 +506,14 @@ a.channel:active { transition-duration: 0ms; transform: translate(5px, 5px); box
 .success { display: none; flex-direction: column; gap: 0.5rem; }
 .success.is-visible { display: flex; }
 
+/* --------------------- Aparición en cascada al desplazarse ---------------- */
+/* site.js marca html[data-reveal] antes del primer pintado y añade .rv-in a cada
+   sección cuando entra en pantalla. Sin JS nada queda oculto. */
+html[data-reveal] .rv { opacity: 0; transform: translate(-14px, -14px); }
+html[data-reveal] .rv-in .rv { animation: tile-in 600ms var(--ease-out) both; animation-delay: min(calc(var(--i, 0) * 60ms), 540ms); }
+html[data-reduce-motion="true"] .rv { opacity: 1 !important; transform: none !important; }
+@media (prefers-reduced-motion: reduce) { .rv { opacity: 1 !important; transform: none !important; } }
+
 /* --------------------------- Modo guiado ------------------------------- */
 .guide-bar { display: none; position: sticky; top: 4.5rem; z-index: 90; margin-bottom: 1.5rem; }
 html[data-guided-mode="true"] .guide-bar { display: block; }
