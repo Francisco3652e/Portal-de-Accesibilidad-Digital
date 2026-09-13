@@ -1,21 +1,20 @@
-// Lógica de accesibilidad compartida entre las 4 páginas del Portal Accesible.
+// Lógica de accesibilidad compartida entre las 6 páginas de Mosaic.
 // Guarda las preferencias en localStorage para que se mantengan al navegar
-// entre Inicio, Lector, Señas y Ajustes.
+// entre Inicio, Lector, Señas, Ajustes, Acerca y Contacto.
 (function () {
   "use strict";
 
   var STORAGE_KEY = "portalAccesibleA11y";
   var FONT_ORDER = ["sm", "md", "lg", "xxl"];
-  var CONTRAST_ORDER = ["standard", "dark", "yellow"];
-  var FONT_LABELS = { sm: "Pequeña (85%)", md: "Normal (100%)", lg: "Grande (125%)", xxl: "Extra grande (150%)" };
-  var CONTRAST_LABELS = { standard: "Contraste estándar", dark: "Alto contraste, blanco sobre negro", yellow: "Alto contraste, negro sobre amarillo" };
+  var FONT_LABELS = { sm: "Pequeña (85%)", md: "Normal (100%)", lg: "Grande (118%)", xxl: "Extra grande (140%)" };
+  var CONTRAST_LABELS = { standard: "Contraste estándar", dark: "Alto contraste, blanco sobre negro", yellow: "Alto contraste, amarillo sobre negro" };
 
   var defaults = {
     contrast: "standard",
     fontScale: "md",
     colorFilter: "none",
     reduceMotion: false,
-    highlightClickable: true,
+    highlightClickable: false,
     wideSpacing: false,
     guidedMode: false
   };
@@ -59,8 +58,9 @@
     announce(CONTRAST_LABELS[value] || value);
     syncControls();
   }
-  function toggleTheme() {
-    setContrast(state.contrast === "dark" ? "standard" : "dark");
+  // El interruptor de la cabecera alterna entre estándar y blanco sobre negro.
+  function toggleContrast() {
+    setContrast(state.contrast === "standard" ? "dark" : "standard");
   }
   function setFontScale(value) {
     if (FONT_ORDER.indexOf(value) === -1) return;
@@ -82,134 +82,132 @@
     state[key] = value; saveState(); applyState();
     announce(label + (value ? " activado" : " desactivado"));
     syncControls();
+    if (key === "guidedMode") { guided.refresh(); }
   }
 
   function syncControls() {
-    // Botón de tema claro/oscuro en la cabecera (presente en las 4 páginas)
-    var isDark = state.contrast === "dark";
-    document.querySelectorAll('[data-action="toggle-theme"]').forEach(function (btn) {
-      btn.setAttribute("aria-pressed", isDark ? "true" : "false");
-      btn.setAttribute("aria-label", isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
+    var isHigh = state.contrast !== "standard";
+
+    // Interruptor de alto contraste en la cabecera (presente en todas las páginas)
+    document.querySelectorAll('[data-action="toggle-contrast"]').forEach(function (btn) {
+      btn.setAttribute("aria-pressed", isHigh ? "true" : "false");
+      var lbl = btn.querySelector(".contrast-switch__state");
+      if (lbl) { lbl.textContent = isHigh ? "Sí" : "No"; }
     });
 
-    // Interruptor rápido de contraste en Inicio
+    // Tecla rápida de contraste en Inicio
     var quickContrastBtn = document.getElementById("btn-high-contrast");
     var quickContrastStatus = document.getElementById("contrast-status");
     if (quickContrastBtn && quickContrastStatus) {
-      quickContrastBtn.setAttribute("aria-pressed", isDark ? "true" : "false");
-      quickContrastStatus.textContent = isDark ? "Sí" : "No";
-      quickContrastBtn.classList.toggle("bg-inverse-surface", isDark);
-      quickContrastBtn.classList.toggle("text-inverse-on-surface", isDark);
+      quickContrastBtn.setAttribute("aria-pressed", isHigh ? "true" : "false");
+      quickContrastStatus.textContent = isHigh ? "Sí" : "No";
     }
 
-    // Selector rápido A- / A / A+ en Inicio
-    document.querySelectorAll("[data-font-quick]").forEach(function (btn) {
-      var active = btn.getAttribute("data-font-quick") === state.fontScale;
-      btn.setAttribute("aria-current", active ? "true" : "false");
-      btn.classList.toggle("bg-primary", active);
-      btn.classList.toggle("text-on-primary", active);
-      btn.classList.toggle("bg-surface-container", !active);
-      btn.classList.toggle("text-on-surface", !active);
+    // Selector rápido A- / A / A+ en Inicio y botones completos en Ajustes
+    document.querySelectorAll("[data-font-quick], [data-font-choice]").forEach(function (btn) {
+      var v = btn.getAttribute("data-font-quick") || btn.getAttribute("data-font-choice");
+      btn.setAttribute("aria-current", v === state.fontScale ? "true" : "false");
     });
+    var fontIndicator = document.getElementById("font-indicator");
+    if (fontIndicator) { fontIndicator.textContent = FONT_LABELS[state.fontScale]; }
 
-    // Controles completos en Ajustes
     document.querySelectorAll('input[name="contrast-mode"]').forEach(function (r) {
       r.checked = (r.value === state.contrast);
     });
     var filterSelect = document.getElementById("color-filter-select");
     if (filterSelect) { filterSelect.value = state.colorFilter; }
-    var fontIndicator = document.getElementById("font-indicator");
-    if (fontIndicator) { fontIndicator.textContent = FONT_LABELS[state.fontScale]; }
-    document.querySelectorAll("[data-font-choice]").forEach(function (btn) {
-      var active = btn.getAttribute("data-font-choice") === state.fontScale;
-      btn.classList.toggle("bg-primary-container", active);
-      btn.classList.toggle("text-on-primary", active);
-      btn.classList.toggle("font-bold", active);
-      btn.classList.toggle("bg-surface-container", !active);
-      btn.classList.toggle("text-on-surface", !active);
+    var map = { "toggle-spacing": "wideSpacing", "toggle-guided-mode": "guidedMode", "toggle-highlight-clickable": "highlightClickable", "toggle-reduce-motion": "reduceMotion" };
+    Object.keys(map).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) { el.checked = !!state[map[id]]; }
     });
-    var spacingToggle = document.getElementById("toggle-spacing");
-    if (spacingToggle) { spacingToggle.checked = state.wideSpacing; }
-    var guidedToggle = document.getElementById("toggle-guided-mode");
-    if (guidedToggle) { guidedToggle.checked = state.guidedMode; }
-    var highlightToggle = document.getElementById("toggle-highlight-clickable");
-    if (highlightToggle) { highlightToggle.checked = state.highlightClickable; }
-    var motionToggle = document.getElementById("toggle-reduce-motion");
-    if (motionToggle) { motionToggle.checked = state.reduceMotion; }
   }
 
-  // Oculta la cabecera y la barra inferior al bajar, las vuelve a mostrar al subir.
-  function initScrollHide() {
-    var lastY = window.scrollY;
-    var ticking = false;
-    var threshold = 12;
+  // ------------------------------------------------------------------
+  // Modo guiado: muestra una sola sección a la vez con Anterior / Siguiente.
+  // Las secciones candidatas llevan data-step; su nombre sale del primer
+  // encabezado o del aria-label.
+  // ------------------------------------------------------------------
+  var guided = (function () {
+    var steps = [];
+    var index = 0;
+    var bar = null;
 
-    function onScroll() {
-      var y = window.scrollY;
-      if (y <= 40) {
-        document.body.classList.remove("scroll-hide-ui");
-      } else if (y - lastY > threshold) {
-        document.body.classList.add("scroll-hide-ui");
-      } else if (lastY - y > threshold) {
-        document.body.classList.remove("scroll-hide-ui");
-      }
-      lastY = y;
-      ticking = false;
+    function stepName(el) {
+      var h = el.querySelector("h1, h2, h3");
+      return (h && h.textContent.trim()) || el.getAttribute("aria-label") || "Sección";
     }
 
-    window.addEventListener("scroll", function () {
-      if (!ticking) {
-        window.requestAnimationFrame(onScroll);
-        ticking = true;
-      }
-    }, { passive: true });
-  }
+    function build() {
+      steps = Array.prototype.slice.call(document.querySelectorAll("main [data-step]"));
+      bar = document.getElementById("guide-bar");
+      if (!steps.length || !bar) { return; }
+      bar.querySelector("[data-guide-prev]").addEventListener("click", function () { go(index - 1); });
+      bar.querySelector("[data-guide-next]").addEventListener("click", function () { go(index + 1); });
+      bar.querySelector("[data-guide-exit]").addEventListener("click", function () {
+        setBool("guidedMode", false, "Modo guiado paso a paso");
+      });
+    }
+
+    function go(i) {
+      index = Math.max(0, Math.min(steps.length - 1, i));
+      render();
+      var current = steps[index];
+      current.setAttribute("tabindex", "-1");
+      current.focus({ preventScroll: true });
+      current.scrollIntoView({ block: "start", behavior: state.reduceMotion ? "auto" : "smooth" });
+      announce("Paso " + (index + 1) + " de " + steps.length + ": " + stepName(current));
+    }
+
+    function render() {
+      if (!steps.length || !bar) { return; }
+      var on = state.guidedMode;
+      steps.forEach(function (s, i) { s.hidden = on && i !== index; });
+      if (!on) { return; }
+      bar.querySelector("[data-guide-count]").textContent = "Paso " + (index + 1) + " de " + steps.length;
+      bar.querySelector("[data-guide-title]").textContent = stepName(steps[index]);
+      bar.querySelector("[data-guide-prev]").disabled = index === 0;
+      bar.querySelector("[data-guide-next]").disabled = index === steps.length - 1;
+    }
+
+    return {
+      init: function () { build(); render(); },
+      refresh: function () { index = 0; render(); }
+    };
+  })();
 
   function init() {
-    document.querySelectorAll('[data-action="toggle-theme"]').forEach(function (btn) {
-      btn.addEventListener("click", toggleTheme);
+    document.querySelectorAll('[data-action="toggle-contrast"]').forEach(function (btn) {
+      btn.addEventListener("click", toggleContrast);
     });
-    initScrollHide();
-
     var quickContrastBtn = document.getElementById("btn-high-contrast");
-    if (quickContrastBtn) {
-      quickContrastBtn.addEventListener("click", toggleTheme);
-    }
-    document.querySelectorAll("[data-font-quick]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        setFontScale(btn.getAttribute("data-font-quick"));
-      });
-    });
+    if (quickContrastBtn) { quickContrastBtn.addEventListener("click", toggleContrast); }
 
+    document.querySelectorAll("[data-font-quick]").forEach(function (btn) {
+      btn.addEventListener("click", function () { setFontScale(btn.getAttribute("data-font-quick")); });
+    });
+    document.querySelectorAll("[data-font-choice]").forEach(function (btn) {
+      btn.addEventListener("click", function () { setFontScale(btn.getAttribute("data-font-choice")); });
+    });
     document.querySelectorAll('input[name="contrast-mode"]').forEach(function (input) {
-      input.addEventListener("change", function (e) {
-        if (e.target.checked) setContrast(e.target.value);
-      });
+      input.addEventListener("change", function (e) { if (e.target.checked) setContrast(e.target.value); });
     });
     var filterSelect = document.getElementById("color-filter-select");
     if (filterSelect) {
       filterSelect.addEventListener("change", function (e) { setColorFilter(e.target.value); });
     }
-    document.querySelectorAll("[data-font-choice]").forEach(function (btn) {
-      btn.addEventListener("click", function () { setFontScale(btn.getAttribute("data-font-choice")); });
+    var bools = [
+      ["toggle-spacing", "wideSpacing", "Espaciado e interlineado amplio"],
+      ["toggle-guided-mode", "guidedMode", "Modo guiado paso a paso"],
+      ["toggle-highlight-clickable", "highlightClickable", "Destacado de elementos clicables"],
+      ["toggle-reduce-motion", "reduceMotion", "Reducción de animaciones"]
+    ];
+    bools.forEach(function (b) {
+      var el = document.getElementById(b[0]);
+      if (el) { el.addEventListener("change", function (e) { setBool(b[1], e.target.checked, b[2]); }); }
     });
-    var spacingToggle = document.getElementById("toggle-spacing");
-    if (spacingToggle) {
-      spacingToggle.addEventListener("change", function (e) { setBool("wideSpacing", e.target.checked, "Espaciado e interlineado amplio"); });
-    }
-    var guidedToggle = document.getElementById("toggle-guided-mode");
-    if (guidedToggle) {
-      guidedToggle.addEventListener("change", function (e) { setBool("guidedMode", e.target.checked, "Modo guiado paso a paso"); });
-    }
-    var highlightToggle = document.getElementById("toggle-highlight-clickable");
-    if (highlightToggle) {
-      highlightToggle.addEventListener("change", function (e) { setBool("highlightClickable", e.target.checked, "Destacado de elementos clicables"); });
-    }
-    var motionToggle = document.getElementById("toggle-reduce-motion");
-    if (motionToggle) {
-      motionToggle.addEventListener("change", function (e) { setBool("reduceMotion", e.target.checked, "Reducción de animaciones"); });
-    }
 
+    guided.init();
     syncControls();
   }
 

@@ -2,409 +2,362 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>Mosaic — Lengua de Señas</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<link href="assets/site.css" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="assets/tailwind-config.js"></script>
+<meta name="description" content="Mosaic, Portal de Accesibilidad Digital de El Salvador: lector de voz, videos en LESSA, alto contraste y navegación sencilla."/>
+<link rel="stylesheet" href="assets/site.css"/>
+<script src="assets/site.js"></script>
 </head>
-<body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
+<body>
 <svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
 <defs>
 <filter id="f-protanopia"><feColorMatrix type="matrix" values="0.567,0.433,0,0,0 0.558,0.442,0,0,0 0,0.242,0.758,0,0 0,0,0,1,0"/></filter>
 <filter id="f-deuteranopia"><feColorMatrix type="matrix" values="0.625,0.375,0,0,0 0.7,0.3,0,0,0 0,0.3,0.7,0,0 0,0,0,1,0"/></filter>
 <filter id="f-tritanopia"><feColorMatrix type="matrix" values="0.95,0.05,0,0,0 0,0.433,0.567,0,0 0,0.475,0.525,0,0 0,0,0,1,0"/></filter>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></symbol>
+<symbol id="i-voice" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 20c0-3.3 3.1-5 7-5s7 1.7 7 5"/><path d="M17 5c1.6 1.6 1.6 4.4 0 6"/><path d="M20 2.5c3 3 3 8 0 11"/></symbol>
+<symbol id="i-sign" viewBox="0 0 24 24"><path d="M7 12V6.5a1.5 1.5 0 013 0V11"/><path d="M10 11V4a1.5 1.5 0 013 0v7"/><path d="M13 11V5.5a1.5 1.5 0 013 0V12"/><path d="M16 12V8.5a1.5 1.5 0 013 0V15a7 7 0 01-7 7h-1a7 7 0 01-6-3.3L3.2 14.3A1.6 1.6 0 015.8 12.6L7 14"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 6h8"/><path d="M18 6h2"/><path d="M4 12h2"/><path d="M12 12h8"/><path d="M4 18h10"/><path d="M20 18h0"/><circle cx="15" cy="6" r="2.5"/><circle cx="9" cy="12" r="2.5"/><circle cx="17" cy="18" r="2.5"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 7.5h.01"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+<symbol id="i-contrast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 010 18z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-text" viewBox="0 0 24 24"><path d="M3 18L8 6l5 12"/><path d="M5 14h6"/><path d="M15 18v-6a2.5 2.5 0 015 0v6"/><path d="M15 15h5"/></symbol>
+<symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 10v4h3l4 4V6L7 10z"/><path d="M15 9a4 4 0 010 6"/><path d="M18 6a8 8 0 010 12"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></symbol>
+<symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></symbol>
+<symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-ear" viewBox="0 0 24 24"><path d="M6 10a6 6 0 0112 0c0 3-2 4-3 6s-1 5-4 5a3 3 0 01-3-3"/><path d="M9.5 10a2.5 2.5 0 015 0c0 1.5-1.5 2-1.5 3.5"/></symbol>
+<symbol id="i-brain" viewBox="0 0 24 24"><path d="M11 4a3 3 0 00-5 2.5 3 3 0 00-2 5 3 3 0 002 5 3 3 0 005 2.5V4z"/><path d="M13 4a3 3 0 015 2.5 3 3 0 012 5 3 3 0 01-2 5 3 3 0 01-5 2.5V4z"/></symbol>
+<symbol id="i-touch" viewBox="0 0 24 24"><path d="M9 12V5a2 2 0 014 0v6"/><path d="M13 11a2 2 0 014 0v3"/><path d="M17 14a2 2 0 013 1v2a6 6 0 01-6 6h-2a6 6 0 01-5-2.7L4 15.5a1.6 1.6 0 012.5-2L9 16"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z" fill="currentColor"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14" stroke-width="4"/><path d="M16 5v14" stroke-width="4"/></symbol>
+<symbol id="i-rewind" viewBox="0 0 24 24"><path d="M11 18a6 6 0 100-12H6"/><path d="M8.5 3.5L6 6l2.5 2.5"/></symbol>
+<symbol id="i-forward" viewBox="0 0 24 24"><path d="M13 18a6 6 0 110-12h5"/><path d="M15.5 3.5L18 6l-2.5 2.5"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></symbol>
+<symbol id="i-repeat" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0114-5.3L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 01-14 5.3L4 16"/><path d="M4 20v-4h4"/></symbol>
+<symbol id="i-paste" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 11h6"/><path d="M9 15h4"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h5v17H6a2 2 0 00-2 2z"/><path d="M20 5a2 2 0 00-2-2h-5v17h5a2 2 0 012 2z"/></symbol>
+<symbol id="i-pinch" viewBox="0 0 24 24"><path d="M4 4l6 6"/><path d="M4 10V4h6"/><path d="M20 20l-6-6"/><path d="M20 14v6h-6"/></symbol>
+<symbol id="i-cc" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 10.5a2 2 0 100 3"/><path d="M16 10.5a2 2 0 100 3"/></symbol>
+<symbol id="i-cc-off" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 4l16 16"/></symbol>
+<symbol id="i-speed" viewBox="0 0 24 24"><path d="M4 16a8 8 0 0116 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.5"/></symbol>
+<symbol id="i-fullscreen" viewBox="0 0 24 24"><path d="M4 9V4h5"/><path d="M20 9V4h-5"/><path d="M4 15v5h5"/><path d="M20 15v5h-5"/></symbol>
+<symbol id="i-subtitles" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 14h6"/><path d="M15 14h2"/><path d="M7 10h2"/><path d="M11 10h6"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3L10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+<symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 8.5V13a3 3 0 003 3h6a3 3 0 013 3"/></symbol>
+<symbol id="i-motion-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 4l16 16"/></symbol>
+<symbol id="i-spacing" viewBox="0 0 24 24"><path d="M4 6h9"/><path d="M4 12h9"/><path d="M4 18h9"/><path d="M19 5v14"/><path d="M16.5 7.5L19 5l2.5 2.5"/><path d="M16.5 16.5L19 19l2.5-2.5"/></symbol>
+<symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 000 18c1.5 0 2-1 2-2s-.5-2 1-2h2a4 4 0 004-4 9 9 0 00-9-10z"/><circle cx="7.5" cy="10" r="1"/><circle cx="10.5" cy="6.5" r="1"/><circle cx="15" cy="6.5" r="1"/></symbol>
+<symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M19 19v1a2 2 0 01-2 2h-3"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 015 0c0 1.5-2.5 2-2.5 3.5"/><path d="M12 17h.01"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-9.5A3.5 3.5 0 0112 8a3.5 3.5 0 017 2.5c0 5-7 9.5-7 9.5z"/></symbol>
+<symbol id="i-balance" viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-3 7a3 3 0 006 0z"/><path d="M19 7l-3 7a3 3 0 006 0z"/><path d="M8 21h8"/></symbol>
+<symbol id="i-groups" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5"/><path d="M14 15c3 0 6 2 6 5"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v4"/><path d="M12 18h.01"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 4h12l-2 4 2 4H5"/></symbol>
+<symbol id="i-device" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-gesture" viewBox="0 0 24 24"><path d="M8 4v9"/><path d="M14 6v7"/><path d="M6 13c0 4 3 7 6 7s6-3 6-7"/></symbol>
+<symbol id="i-wave" viewBox="0 0 24 24"><path d="M4 10v4"/><path d="M8 6v12"/><path d="M12 3v18"/><path d="M16 7v10"/><path d="M20 10v4"/></symbol>
+<symbol id="i-apps" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-figure" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.2"/><path d="M6 9.5c4-1 8-1 12 0"/><path d="M12 9.5V15"/><path d="M12 15l-4 6"/><path d="M12 15l4 6"/></symbol>
 </defs>
 </svg>
-<a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-space-md focus:py-space-sm focus:bg-inverse-surface focus:text-inverse-on-surface focus:rounded-lg focus:outline-none" href="#main-content">Saltar al contenido principal</a>
+<a class="skip" href="#main-content">Saltar al contenido principal</a>
 <div aria-live="polite" class="sr-only" id="a11y-announcer" role="status"></div>
-<header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe">
-<div class="h-20 px-margin flex items-center justify-between gap-space-sm">
-<div class="flex items-center gap-space-sm min-w-0">
-<img alt="Logo de Mosaic" class="h-8 w-auto object-contain shrink-0" src="assets/logo.png"/>
-<div class="flex flex-col min-w-0">
-<span class="font-label-sm text-label-sm text-primary tracking-wide uppercase">Mosaic</span>
-<h1 class="font-headline-sm text-headline-sm text-on-surface truncate leading-tight">Lengua de Señas</h1>
-</div>
-</div>
-<div class="flex items-center gap-space-xs shrink-0">
-<button aria-label="Cambiar a modo oscuro" aria-pressed="false" class="theme-toggle w-11 h-11 flex items-center justify-center rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" data-action="toggle-theme" type="button"><span aria-hidden="true" class="material-symbols-outlined theme-icon theme-icon-sun text-[22px]">light_mode</span><span aria-hidden="true" class="material-symbols-outlined theme-icon theme-icon-moon text-[22px]">dark_mode</span></button>
-<div aria-label="Perfil de usuario" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs shrink-0"><span aria-hidden="true" class="material-symbols-outlined text-on-primary text-[18px]">person</span></div>
-</div>
+<header class="topbar">
+<div class="shell topbar__in">
+<a class="brand" href="index.html" aria-label="Mosaic, volver al inicio">
+<svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><g stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"><rect x="3" y="3" width="19" height="19" rx="4" fill="var(--yellow)"/><rect x="26" y="3" width="19" height="19" rx="4" fill="var(--pink)"/><rect x="3" y="26" width="19" height="19" rx="4" fill="var(--mint)"/><rect x="26" y="26" width="19" height="19" rx="4" fill="var(--sky)"/></g></svg>
+<span class="brand__text"><span class="brand__name">Mosaic</span><span class="brand__page">Lengua de señas</span></span>
+</a>
+<nav class="topnav" aria-label="Secciones del portal">
+<a href="index.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-home"/></svg><span>Inicio</span></a>
+<a href="lector.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-voice"/></svg><span>Lector</span></a>
+<a href="senas.html" aria-current="page"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-sign"/></svg><span>Señas</span></a>
+<a href="ajustes.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-settings"/></svg><span>Ajustes</span></a>
+<a href="acerca.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-info"/></svg><span>Acerca</span></a>
+<a href="contacto.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-mail"/></svg><span>Contacto</span></a>
+</nav>
+<button class="contrast-switch" type="button" data-action="toggle-contrast" aria-pressed="false" aria-label="Alto contraste">
+<svg class="ic" aria-hidden="true"><use href="#i-contrast"/></svg><span class="contrast-switch__label">Alto contraste</span><span class="tag contrast-switch__state" aria-hidden="true">No</span>
+</button>
 </div>
 </header>
-<main class="flex flex-col relative w-full pt-20 pb-24 bg-surface min-h-screen" id="main-content">
-<div class="flex flex-col w-full px-margin pb-space-xl gap-space-lg">
-<section aria-labelledby="section-heading" class="flex flex-col gap-space-xs pt-space-md">
-<div class="inline-flex items-center gap-space-xs w-fit bg-secondary-container text-on-secondary-container px-space-sm py-0.5 rounded-full">
-<span aria-hidden="true" class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">sign_language</span>
-<span class="font-label-sm text-label-sm uppercase tracking-wider">LESSA Certificada • WCAG 2.2 AAA</span>
+<main class="shell stack" id="main-content">
+<div class="guide-bar piece piece--yellow piece--tight" id="guide-bar" role="region" aria-label="Modo guiado paso a paso">
+<div class="guide-bar__in">
+<div class="guide-bar__step"><span data-guide-title>Sección</span><span class="tag" data-guide-count>Paso 1 de 1</span></div>
+<div class="guide-bar__nav">
+<button class="btn btn--flat" type="button" data-guide-prev><svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrow-left"/></svg><span>Anterior</span></button>
+<button class="btn btn--ink" type="button" data-guide-next><span>Siguiente</span><svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+<button class="btn btn--flat" type="button" data-guide-exit><svg class="ic ic--sm" aria-hidden="true"><use href="#i-close"/></svg><span>Salir</span></button>
 </div>
-<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface" id="section-heading">
-      Videos en Lengua de Señas
-    </h2>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-      Contenido audiovisual adaptado con intérpretes certificados, subtítulos descriptivos y transcripciones completas.
-    </p>
+</div>
+</div>
+<section data-step aria-labelledby="section-heading">
+<h1 id="section-heading" style="font-size:clamp(2.25rem,5vw,3.75rem)">Videos en Lengua de Señas</h1>
+<p class="lead measure" style="margin-top:.75rem">Contenido audiovisual adaptado con intérpretes certificados de LESSA, subtítulos descriptivos y transcripciones completas.</p>
+<div class="cluster" style="margin-top:1rem">
+<span class="tag tag--mint"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-sign"/></svg>LESSA certificada</span>
+<span class="tag">WCAG 2.2 AAA</span>
+<span class="tag tag--demo">Demostración simulada</span>
+</div>
 </section>
-<section aria-label="Reproductor de video destacado" class="flex flex-col bg-surface-container-lowest rounded-xl shadow-md overflow-hidden">
-<div class="relative w-full aspect-[16/10] bg-inverse-surface overflow-hidden flex flex-col justify-end">
-<img alt="Contenido didáctico del video sobre trámites accesibles" class="absolute inset-0 w-full h-full object-cover opacity-85" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_VypT33uTF27mDREaRqI1lc4YDRbATa72fOzj_pO00Iw0zqeVEDW2-TzrkcXuhlfkgg80_iVtPF9yGEu4fUnffC2bZ81iaCuPVXkEhvl5lSwQwR7NPTLpqCsOCEs5_RSj7JUtW7L-KsK2_KdOFm8HSix48XwWV8DirgvBuK-hB9aYVYblaVSbS0xcM-BCFJytEnTiQtC5x6Z7cEh8gJmj9Om34qZNz3Qmy0ZMhszBdRa-cE0fne12"/>
-<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface via-inverse-surface/30 to-transparent pointer-events-none"></div>
-<div aria-label="Recuadro de intérprete de lengua de señas en vivo" class="absolute top-3 right-3 w-28 sm:w-36 aspect-[3/4] bg-surface-container-lowest rounded-lg shadow-xl overflow-hidden z-20">
-<img alt="Intérprete certificada de lengua de señas" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARpOeUOj6iLuAifrwZmMJnvCS-cLBJRLthlnBc6glF2jW5BfnqzgyXU4wqln2ZIq4Tah82ad5PW1m5dpF2WKz8Tx0SqVcmo84Ul1lznpRek1Ghqh4k0rwjzKN_X8xeObzt-WVbTWw65d-dtOO6KgyZGahOX3mNDf6u-oHJe7klVuSd2KRuQRIa3rNSIUk9IVFccbZEvXQh0cWD9ir66m_NCzTXsxIoZGxJg1Yhw-nKq0EZSA0REcOj"/>
-<div class="absolute bottom-0 inset-x-0 bg-inverse-surface/90 text-inverse-on-surface text-center py-0.5 font-label-sm text-label-sm">
-          LESSA Activa
-        </div>
+
+<section class="featured" data-step aria-labelledby="featured-heading">
+<h2 id="featured-heading" class="sr-only">Reproductor de video destacado</h2>
+<div class="video">
+<svg class="video__scene" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="var(--sky)" class="art-fill"/><rect x="46" y="46" width="120" height="120" rx="16" fill="var(--ink)" class="art-ink"/><rect x="40" y="40" width="120" height="120" rx="16" fill="var(--yellow)" class="art-fill" stroke="var(--ink)" stroke-width="4"/><use href="#i-shield" x="68" y="68" width="64" height="64" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="art-stroke"/><rect x="186" y="46" width="120" height="120" rx="16" fill="var(--ink)" class="art-ink"/><rect x="180" y="40" width="120" height="120" rx="16" fill="var(--card)" class="art-fill" stroke="var(--ink)" stroke-width="4"/><use href="#i-subtitles" x="208" y="68" width="64" height="64" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="art-stroke"/><rect x="326" y="46" width="120" height="120" rx="16" fill="var(--ink)" class="art-ink"/><rect x="320" y="40" width="120" height="120" rx="16" fill="var(--pink)" class="art-fill" stroke="var(--ink)" stroke-width="4"/><use href="#i-sign" x="348" y="68" width="64" height="64" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="art-stroke"/><rect x="46" y="186" width="120" height="120" rx="16" fill="var(--ink)" class="art-ink"/><rect x="40" y="180" width="120" height="120" rx="16" fill="var(--mint)" class="art-fill" stroke="var(--ink)" stroke-width="4"/><use href="#i-cc" x="68" y="208" width="64" height="64" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="art-stroke"/><rect x="186" y="186" width="120" height="120" rx="16" fill="var(--ink)" class="art-ink"/><rect x="180" y="180" width="120" height="120" rx="16" fill="var(--yellow)" class="art-fill" stroke="var(--ink)" stroke-width="4"/><use href="#i-check" x="208" y="208" width="64" height="64" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="art-stroke"/><rect x="326" y="186" width="120" height="120" rx="16" fill="var(--ink)" class="art-ink"/><rect x="320" y="180" width="120" height="120" rx="16" fill="var(--card)" class="art-fill" stroke="var(--ink)" stroke-width="4"/><use href="#i-ear" x="348" y="208" width="64" height="64" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="art-stroke"/></svg>
+<div class="video__pip" aria-label="Recuadro de intérprete de lengua de señas en vivo" role="img">
+<svg viewBox="0 0 120 160" aria-hidden="true" focusable="false"><rect width="120" height="160" fill="var(--mint)" class="art-fill"/><use href="#i-sign" x="18" y="28" width="84" height="84" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="art-stroke"/></svg>
+<span class="video__pip-tag">Intérprete LESSA</span>
 </div>
-<div class="relative z-10 mx-3 mb-3 p-space-xs rounded bg-inverse-surface/95 text-inverse-on-surface shadow-md">
-<div class="flex items-center gap-1.5 mb-0.5">
-<span aria-hidden="true" class="material-symbols-outlined text-secondary-fixed text-[16px]">subtitles</span>
-<span class="font-label-sm text-label-sm text-secondary-fixed tracking-wide uppercase">[Sonido: Campana de notificación suave]</span>
-</div>
-<p class="font-body-sm text-body-sm font-medium leading-snug">
-          "Para autenticar tu firma digital, selecciona la opción con verificación biométrica asistida..."
-        </p>
+<div class="video__cc" id="cc-box">
+<small>[Sonido: campana de notificación suave]</small>
+"Para autenticar tu firma digital, selecciona la opción con verificación biométrica asistida…"
 </div>
 </div>
-<div class="p-space-md flex flex-col gap-space-md bg-surface-container-lowest">
-<div class="flex flex-col gap-1">
-<div class="flex items-center gap-space-xs text-on-surface-variant">
-<span aria-hidden="true" class="material-symbols-outlined text-[18px]">verified_user</span>
-<span class="font-label-sm text-label-sm">Intérprete: Lic. Carmen Morales (Intérprete certificada de LESSA)</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface">
-          Guía de derechos y trámites digitales accesibles
-        </h3>
-</div>
-<div aria-label="Progreso del video" class="flex flex-col gap-1" role="region">
-<div aria-label="Línea de tiempo de reproducción" aria-valuemax="100" aria-valuemin="0" aria-valuenow="38" class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden relative cursor-pointer" role="slider" tabindex="0">
-<div class="bg-primary h-full w-[38%] rounded-full"></div>
-</div>
-<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<div class="featured__side">
+<h3>Guía de derechos y trámites digitales accesibles</h3>
+<p class="cluster"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-shield"/></svg><span><strong>Intérprete:</strong> Lic. Carmen Morales, certificada en LESSA</span></p>
+<div class="piece" style="display:flex;flex-direction:column;gap:1rem">
+<div class="timeline" role="region" aria-label="Progreso del video">
 <span>04:12</span>
+<div class="timeline__track" role="slider" tabindex="0" aria-label="Línea de tiempo de reproducción" aria-valuemin="0" aria-valuemax="100" aria-valuenow="38" aria-valuetext="4 minutos 12 segundos de 11 minutos 5 segundos"><div class="timeline__fill" style="width:38%"></div></div>
 <span>11:05</span>
 </div>
-</div>
-<div class="flex items-center justify-between gap-space-xs flex-wrap">
-<div class="flex items-center gap-space-xs">
-<button aria-label="Pausar video" class="h-12 px-space-md bg-primary text-on-primary rounded-lg flex items-center justify-center gap-space-xs shadow-sm hover:bg-primary-container active:scale-95 transition-all" id="btn-play-pause" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[24px]" id="play-icon" style="font-variation-settings: 'FILL' 1;">pause</span>
-<span class="font-label-lg text-label-lg" id="play-text">Pausar</span>
-</button>
-<button aria-label="Retroceder 10 segundos" class="h-12 w-12 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg flex items-center justify-center transition-colors" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[22px]">replay_10</span>
-</button>
-</div>
-<div class="flex items-center gap-space-xs">
-<button aria-label="Subtítulos descriptivos activados" aria-pressed="true" class="h-12 px-space-sm bg-surface-container text-primary font-bold rounded-lg flex items-center gap-1.5 hover:bg-surface-container-high transition-colors" id="btn-toggle-cc" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">closed_caption</span>
-<span class="font-label-md text-label-md uppercase">CC On</span>
-</button>
-<button aria-label="Velocidad de reproducción actual 1.0x" class="h-12 px-space-sm bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg flex items-center gap-1 transition-colors" id="btn-speed" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]">speed</span>
-<span class="font-label-md text-label-md font-semibold" id="speed-indicator">1.0x</span>
-</button>
-<button aria-label="Modo pantalla completa" class="h-12 w-12 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg flex items-center justify-center transition-colors" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[22px]">fullscreen</span>
-</button>
+<div class="controls">
+<button class="btn btn--yellow" id="btn-play-pause" type="button" aria-label="Pausar video"><svg class="ic" aria-hidden="true"><use id="play-icon" href="#i-pause"/></svg><span id="play-text">Pausar</span></button>
+<button class="btn btn--sq" type="button" aria-label="Retroceder 10 segundos"><svg class="ic" aria-hidden="true"><use href="#i-rewind"/></svg></button>
+<button class="btn" id="btn-toggle-cc" type="button" aria-pressed="true" aria-label="Subtítulos descriptivos activados"><svg class="ic" aria-hidden="true"><use id="cc-icon" href="#i-cc"/></svg><span id="cc-text">CC On</span></button>
+<button class="btn" id="btn-speed" type="button" aria-label="Velocidad de reproducción actual 1.0x"><svg class="ic" aria-hidden="true"><use href="#i-speed"/></svg><span id="speed-indicator">1.0x</span></button>
+<button class="btn btn--sq" type="button" aria-label="Modo pantalla completa"><svg class="ic" aria-hidden="true"><use href="#i-fullscreen"/></svg></button>
 </div>
 </div>
 </div>
 </section>
-<section aria-labelledby="accessibility-settings-heading" class="flex flex-col bg-surface-container-low rounded-xl p-space-md gap-space-md shadow-sm">
-<div class="flex items-center gap-space-xs text-on-surface">
-<span aria-hidden="true" class="material-symbols-outlined text-primary text-[24px]">tune</span>
-<h3 class="font-headline-sm text-headline-sm" id="accessibility-settings-heading">
-        Opciones de Accesibilidad del Video
-      </h3>
+
+<section data-step aria-labelledby="accessibility-settings-heading">
+<div class="section-head">
+<h2 id="accessibility-settings-heading">Opciones de accesibilidad del video</h2>
 </div>
-<div class="flex flex-col gap-space-sm">
-<div class="flex items-center justify-between p-space-sm bg-surface-container-lowest rounded-lg">
-<div class="flex items-start gap-space-sm pr-space-xs">
-<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0 mt-0.5">
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]">subtitles</span>
+<div class="grid grid--3">
+<div class="toggle-row piece piece--flat">
+<div class="toggle-row__lead"><span class="ibox ibox--sky" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-subtitles"/></svg></span>
+<div class="toggle-row__text"><label class="toggle-row__title" for="switch-subtitles">Subtítulos descriptivos (SDH)</label><span class="toggle-row__hint">Identificación de hablantes, música y sonidos de contexto.</span></div></div>
+<span class="switch"><input type="checkbox" id="switch-subtitles" checked aria-label="Activar subtítulos descriptivos"/><span class="switch__track"></span></span>
 </div>
-<div class="flex flex-col">
-<label class="font-label-lg text-label-lg text-on-surface cursor-pointer" for="switch-subtitles">
-              Subtítulos descriptivos (SDH)
-            </label>
-<span class="font-body-sm text-body-sm text-on-surface-variant">
-              Identificación de hablantes, música y sonidos de contexto.
-            </span>
+<div class="piece piece--flat" style="display:flex;flex-direction:column;gap:.75rem">
+<div class="toggle-row__lead"><span class="ibox ibox--pink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-speed"/></svg></span>
+<div class="toggle-row__text"><span class="toggle-row__title" id="signer-speed-label">Velocidad del intérprete</span><span class="toggle-row__hint">Sincronización visual asistida · <strong id="label-signer-speed">1.00x Normal</strong></span></div></div>
+<div class="seg" role="group" aria-labelledby="signer-speed-label">
+<button type="button" data-signer-speed="0.75x Lenta">0.75x Lenta</button>
+<button type="button" data-signer-speed="1.00x Normal" aria-current="true">1.0x Normal</button>
+<button type="button" data-signer-speed="1.25x Rápida">1.25x Rápida</button>
 </div>
 </div>
-<input aria-label="Activar subtítulos descriptivos" checked="" class="w-7 h-7 accent-primary cursor-pointer shrink-0" id="switch-subtitles" type="checkbox"/>
-</div>
-<div class="flex flex-col gap-space-xs p-space-sm bg-surface-container-lowest rounded-lg">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shrink-0">
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]">slow_motion_video</span>
-</div>
-<div class="flex flex-col">
-<span class="font-label-lg text-label-lg text-on-surface">Velocidad del intérprete</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Sincronización visual asistida</span>
-</div>
-</div>
-<span class="font-label-md text-label-md text-primary font-bold px-space-xs py-0.5 bg-surface-container rounded" id="label-signer-speed">1.00x Normal</span>
-</div>
-<div class="grid grid-cols-3 gap-space-xs pt-space-xs">
-<button class="h-11 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md py-1 flex items-center justify-center transition-all" data-signer-speed="0.75x Lenta" type="button">
-            0.75x Lenta
-          </button>
-<button class="h-11 rounded-lg bg-primary text-on-primary font-label-md text-label-md py-1 flex items-center justify-center shadow-sm" data-signer-speed="1.00x Normal" type="button">
-            1.0x Normal
-          </button>
-<button class="h-11 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md py-1 flex items-center justify-center transition-all" data-signer-speed="1.25x Rápida" type="button">
-            1.25x Rápida
-          </button>
-</div>
-</div>
-<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-space-sm bg-surface-container-lowest rounded-lg gap-space-sm">
-<div class="flex items-start gap-space-sm">
-<div class="w-10 h-10 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0 mt-0.5">
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]">description</span>
-</div>
-<div class="flex flex-col">
-<span class="font-label-lg text-label-lg text-on-surface">Transcripción completa</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Texto plano estructurado listo para lectores de pantalla.</span>
-</div>
-</div>
-<div class="flex items-center gap-space-xs w-full sm:w-auto">
-<button aria-label="Descargar transcripción completa en formato accesible" class="flex-1 sm:flex-none h-12 px-space-md bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg flex items-center justify-center gap-1.5 font-label-md text-label-md transition-colors" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]">download</span>
-<span>Descargar TXT</span>
-</button>
-<button aria-label="Abrir panel de lectura de transcripción" class="flex-1 sm:flex-none h-12 px-space-md bg-secondary text-on-secondary rounded-lg flex items-center justify-center gap-1.5 font-label-md text-label-md transition-colors" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]">visibility</span>
-<span>Leer en vivo</span>
-</button>
+<div class="piece piece--flat" style="display:flex;flex-direction:column;gap:.75rem">
+<div class="toggle-row__lead"><span class="ibox ibox--yellow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg></span>
+<div class="toggle-row__text"><span class="toggle-row__title">Transcripción completa</span><span class="toggle-row__hint">Texto plano estructurado listo para lectores de pantalla.</span></div></div>
+<div class="cluster">
+<button class="btn" type="button" aria-label="Descargar transcripción completa en formato accesible"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-download"/></svg><span>Descargar TXT</span></button>
+<button class="btn btn--flat" type="button" aria-label="Abrir panel de lectura de transcripción"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-volume"/></svg><span>Leer en vivo</span></button>
 </div>
 </div>
 </div>
 </section>
-<section aria-labelledby="thematic-heading" class="flex flex-col gap-space-md">
-<div class="flex flex-col gap-0.5">
-<h3 class="font-headline-sm text-headline-sm text-on-surface" id="thematic-heading">
-        Colección Temática en Lengua de Señas
-      </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-        Explora cápsulas educativas con soporte completo de accesibilidad sensorial.
-      </p>
+
+<section id="thematic-heading-section" data-step aria-labelledby="thematic-heading">
+<div class="section-head">
+<h2 id="thematic-heading">Colección temática en Lengua de Señas</h2>
+<p>Explora cápsulas educativas con soporte completo de accesibilidad sensorial.</p>
 </div>
-<div class="flex flex-col gap-space-md">
-<article class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-<div class="relative w-full h-44 bg-surface-container overflow-hidden">
-<img alt="Miniatura de video: Educación digital y accesibilidad en trámites" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMNkTWrPyE-KNLYa2OoJIRlB9KJ-QWc7wjbyOXsUT4UEdTIyKZsZ7TxrtORXHrbzdGyebJcQ8Qf_5BD2CzlmaktBgXIOidyfMTeK35tr3qXOYvKrSt_qa-9rCbiDHS8qWMW9ayKNDsQNtiUvN9YSLw3dAflnEVguN5uZqgNGYkJDxcTH8k3KDjriVkTOO3Kuc8N0AsWUuHaZmfhxkOP1-wa-RZHuyvXwszQPU-jbrwh4f0tcfF4w-d"/>
-<div class="absolute top-2.5 left-2.5 bg-inverse-surface/90 text-inverse-on-surface px-space-sm py-1 rounded-md flex items-center gap-1 shadow-sm">
-<span aria-hidden="true" class="material-symbols-outlined text-secondary-fixed text-[16px]" style="font-variation-settings: 'FILL' 1;">sign_language</span>
-<span class="font-label-sm text-label-sm">Intérprete en pantalla</span>
-</div>
-<span class="absolute bottom-2.5 right-2.5 bg-inverse-surface/90 text-inverse-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded">
-            08:45 min
-          </span>
-</div>
-<div class="p-space-md flex flex-col gap-space-sm">
-<div class="flex flex-col gap-1">
-<span class="font-label-sm text-label-sm text-primary font-bold uppercase">Trámites y Ciudadanía</span>
-<h4 class="font-headline-sm text-headline-sm text-on-surface">
-              Educación digital y accesibilidad en trámites
-            </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
-              Aprende a navegar portales del estado, solicitar turnos preferenciales y presentar formularios sin barreras de comunicación.
-            </p>
-</div>
-<div class="flex items-center gap-space-xs text-on-surface-variant py-1">
-<span aria-hidden="true" class="material-symbols-outlined text-[18px]">interpreter_mode</span>
-<span class="font-label-sm text-label-sm">Intérprete: Prof. Daniel Aranda</span>
-</div>
-<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
-<button aria-label="Reproducir video Educación digital y accesibilidad" class="video-play-btn h-12 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-1.5 shadow-sm active:scale-98 transition-all" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-<span>Reproducir</span>
-</button>
-<button aria-label="Leer transcripción de Educación digital" class="h-12 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-1.5 transition-colors" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]">article</span>
-<span>Transcripción</span>
-</button>
-</div>
+<div class="grid grid--3">
+<article class="vcard piece piece--lg">
+<div class="vcard__thumb"><svg viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+<rect width="320" height="180" fill="var(--yellow)" class="art-fill"/>
+<g class="art-stroke" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round">
+<rect x="26" y="26" width="60" height="60" rx="10" fill="var(--card)" class="art-fill"/>
+<rect x="96" y="26" width="60" height="60" rx="10" fill="var(--card)" class="art-fill"/>
+<rect x="26" y="96" width="60" height="60" rx="10" fill="var(--card)" class="art-fill"/>
+<rect x="96" y="96" width="60" height="60" rx="10" fill="var(--card)" class="art-fill"/>
+<circle cx="236" cy="70" r="32" fill="var(--card)" class="art-fill"/>
+<path d="M186 180c0-36 22-58 50-58s50 22 50 58" fill="var(--card)" class="art-fill"/>
+<use href="#i-sign" x="40" y="40" width="32" height="32" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg><span class="vcard__dur">08:45 min</span></div>
+<div class="cluster"><span class="tag tag--yellow">Trámites y ciudadanía</span><span class="tag"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-sign"/></svg>Intérprete en pantalla</span></div>
+<h3>Educación digital y accesibilidad en trámites</h3>
+<p>Aprende a navegar portales del Estado, solicitar turnos preferenciales y presentar formularios sin barreras de comunicación.</p>
+<p class="vcard__meta">Intérprete: Prof. Daniel Aranda</p>
+<div class="cluster">
+<button class="btn btn--yellow video-play-btn" type="button" aria-label="Reproducir video Educación digital y accesibilidad"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-play"/></svg><span>Reproducir</span></button>
+<button class="btn btn--flat" type="button" aria-label="Leer transcripción de Educación digital y accesibilidad"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-subtitles"/></svg><span>Transcripción</span></button>
 </div>
 </article>
-<article class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-<div class="relative w-full h-44 bg-surface-container overflow-hidden">
-<img alt="Miniatura de video: Salud y servicios de emergencia accesibles" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe_Z7GAPxsKZc2qtI4ctjlhR-eM6_7HT9aD7TnGene0ZuEkFGcM513XVjiHHaDgb-eNUJkGX_YVMdFwANTq7cWxnMg6U4nBCDgHcyms0uFd3qyoPmfWirb6uanm4AgOAYDfykfMfwMQs8GEUlBHpnCXo0WoONCzJr9LYTeRS8W7QESj6VSeQoHGsf2XjA-n2EAhHHPidUTaChHuq9aHYjzXvWhxqeDlEu6Oc9kgDMcCvHUj7ivFq3R"/>
-<div class="absolute top-2.5 left-2.5 bg-inverse-surface/90 text-inverse-on-surface px-space-sm py-1 rounded-md flex items-center gap-1 shadow-sm">
-<span aria-hidden="true" class="material-symbols-outlined text-secondary-fixed text-[16px]" style="font-variation-settings: 'FILL' 1;">sign_language</span>
-<span class="font-label-sm text-label-sm">Intérprete en pantalla</span>
-</div>
-<span class="absolute bottom-2.5 right-2.5 bg-inverse-surface/90 text-inverse-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded">
-            14:20 min
-          </span>
-</div>
-<div class="p-space-md flex flex-col gap-space-sm">
-<div class="flex flex-col gap-1">
-<span class="font-label-sm text-label-sm text-primary font-bold uppercase">Salud y Asistencia</span>
-<h4 class="font-headline-sm text-headline-sm text-on-surface">
-              Salud y servicios de emergencia accesibles
-            </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
-              Protocolo de videollamada directa con intérpretes en guardias médicas y sistemas de alerta por vibración y destello lumínico.
-            </p>
-</div>
-<div class="flex items-center gap-space-xs text-on-surface-variant py-1">
-<span aria-hidden="true" class="material-symbols-outlined text-[18px]">interpreter_mode</span>
-<span class="font-label-sm text-label-sm">Intérprete: Lic. Carmen Morales</span>
-</div>
-<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
-<button aria-label="Reproducir video Salud y emergencias accesibles" class="video-play-btn h-12 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-1.5 shadow-sm active:scale-98 transition-all" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-<span>Reproducir</span>
-</button>
-<button aria-label="Leer transcripción de Salud y emergencias" class="h-12 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-1.5 transition-colors" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]">article</span>
-<span>Transcripción</span>
-</button>
-</div>
+<article class="vcard piece piece--lg">
+<div class="vcard__thumb"><svg viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+<rect width="320" height="180" fill="var(--pink)" class="art-fill"/>
+<g class="art-stroke" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round">
+<rect x="26" y="26" width="60" height="60" rx="10" fill="var(--card)" class="art-fill"/>
+<rect x="96" y="26" width="60" height="60" rx="10" fill="var(--card)" class="art-fill"/>
+<rect x="26" y="96" width="60" height="60" rx="10" fill="var(--card)" class="art-fill"/>
+<rect x="96" y="96" width="60" height="60" rx="10" fill="var(--card)" class="art-fill"/>
+<circle cx="236" cy="70" r="32" fill="var(--card)" class="art-fill"/>
+<path d="M186 180c0-36 22-58 50-58s50 22 50 58" fill="var(--card)" class="art-fill"/>
+<use href="#i-sign" x="40" y="40" width="32" height="32" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg><span class="vcard__dur">14:20 min</span></div>
+<div class="cluster"><span class="tag tag--pink">Salud y asistencia</span><span class="tag"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-sign"/></svg>Intérprete en pantalla</span></div>
+<h3>Salud y servicios de emergencia accesibles</h3>
+<p>Protocolo de videollamada directa con intérpretes en guardias médicas y sistemas de alerta por vibración y destello lumínico.</p>
+<p class="vcard__meta">Intérprete: Lic. Carmen Morales</p>
+<div class="cluster">
+<button class="btn btn--yellow video-play-btn" type="button" aria-label="Reproducir video Salud y emergencias accesibles"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-play"/></svg><span>Reproducir</span></button>
+<button class="btn btn--flat" type="button" aria-label="Leer transcripción de Salud y emergencias accesibles"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-subtitles"/></svg><span>Transcripción</span></button>
 </div>
 </article>
-<article class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-<div class="relative w-full h-44 bg-surface-container overflow-hidden">
-<img alt="Miniatura de video: Tecnología asistiva: cómo aprovechar tu smartphone" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_3XmY0PkfAHcZaFq8e-Ol2Nktyaj77vKos-A3DIhdpuSAurVoB7CTbAlBGuFS-IaiZvaGLNbbeqOGzChLkYedEv2noBBoeznlXT0FRrZwDGTxG9tZWuhwL4V7C8ILqksqbUZqTZh6FEai9h0en3q57p5Ymw2KCak73rNuco8CkAqDF8LWP_7L4z84YfD_6ScrYVVof1xCM2s6AaXgJ2gF3PvFiTGGkUbXz8GMN-I4CSUOD0k_RVfw"/>
-<div class="absolute top-2.5 left-2.5 bg-inverse-surface/90 text-inverse-on-surface px-space-sm py-1 rounded-md flex items-center gap-1 shadow-sm">
-<span aria-hidden="true" class="material-symbols-outlined text-secondary-fixed text-[16px]" style="font-variation-settings: 'FILL' 1;">sign_language</span>
-<span class="font-label-sm text-label-sm">Intérprete en pantalla</span>
-</div>
-<span class="absolute bottom-2.5 right-2.5 bg-inverse-surface/90 text-inverse-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded">
-            06:15 min
-          </span>
-</div>
-<div class="p-space-md flex flex-col gap-space-sm">
-<div class="flex flex-col gap-1">
-<span class="font-label-sm text-label-sm text-primary font-bold uppercase">Herramientas Asistivas</span>
-<h4 class="font-headline-sm text-headline-sm text-on-surface">
-              Tecnología asistiva: cómo aprovechar tu smartphone
-            </h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
-              Configuraciones avanzadas de subtitulado instantáneo automático, amplificadores de sonido ambiental y síntesis háptica.
-            </p>
-</div>
-<div class="flex items-center gap-space-xs text-on-surface-variant py-1">
-<span aria-hidden="true" class="material-symbols-outlined text-[18px]">interpreter_mode</span>
-<span class="font-label-sm text-label-sm">Intérprete: Prof. Daniel Aranda</span>
-</div>
-<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
-<button aria-label="Reproducir video Tecnología asistiva smartphone" class="video-play-btn h-12 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-1.5 shadow-sm active:scale-98 transition-all" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-<span>Reproducir</span>
-</button>
-<button aria-label="Leer transcripción de Tecnología asistiva smartphone" class="h-12 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-1.5 transition-colors" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]">article</span>
-<span>Transcripción</span>
-</button>
-</div>
+<article class="vcard piece piece--lg">
+<div class="vcard__thumb"><svg viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+<rect width="320" height="180" fill="var(--sky)" class="art-fill"/>
+<g class="art-stroke" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round">
+<rect x="26" y="26" width="60" height="60" rx="10" fill="var(--card)" class="art-fill"/>
+<rect x="96" y="26" width="60" height="60" rx="10" fill="var(--card)" class="art-fill"/>
+<rect x="26" y="96" width="60" height="60" rx="10" fill="var(--card)" class="art-fill"/>
+<rect x="96" y="96" width="60" height="60" rx="10" fill="var(--card)" class="art-fill"/>
+<circle cx="236" cy="70" r="32" fill="var(--card)" class="art-fill"/>
+<path d="M186 180c0-36 22-58 50-58s50 22 50 58" fill="var(--card)" class="art-fill"/>
+<use href="#i-sign" x="40" y="40" width="32" height="32" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg><span class="vcard__dur">06:15 min</span></div>
+<div class="cluster"><span class="tag tag--sky">Herramientas asistivas</span><span class="tag"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-sign"/></svg>Intérprete en pantalla</span></div>
+<h3>Tecnología asistiva: cómo aprovechar tu smartphone</h3>
+<p>Configuraciones avanzadas de subtitulado instantáneo automático, amplificadores de sonido ambiental y síntesis háptica.</p>
+<p class="vcard__meta">Intérprete: Prof. Daniel Aranda</p>
+<div class="cluster">
+<button class="btn btn--yellow video-play-btn" type="button" aria-label="Reproducir video Tecnología asistiva smartphone"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-play"/></svg><span>Reproducir</span></button>
+<button class="btn btn--flat" type="button" aria-label="Leer transcripción de Tecnología asistiva smartphone"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-subtitles"/></svg><span>Transcripción</span></button>
 </div>
 </article>
 </div>
 </section>
-<aside aria-label="Información sobre acreditación" class="flex items-start gap-space-md p-space-md bg-secondary-container/40 text-on-secondary-container rounded-xl shadow-sm">
-<span aria-hidden="true" class="material-symbols-outlined text-[28px] text-secondary shrink-0 mt-0.5">school</span>
-<div class="flex flex-col gap-0.5">
-<span class="font-label-lg text-label-lg font-bold">Intérpretes Oficiales de Lengua de Señas</span>
-<p class="font-body-sm text-body-sm text-on-secondary-container">
-        Todos nuestros videos son elaborados junto a la comunidad sorda para garantizar una correcta interpretación gramatical y contextual en cada región.
-      </p>
+
+<section class="piece piece--lg piece--mint" data-step aria-labelledby="accred-heading" style="display:flex;gap:1rem;align-items:flex-start">
+<span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></span>
+<div>
+<h2 id="accred-heading" style="font-size:1.3rem">Intérpretes oficiales de Lengua de Señas</h2>
+<p class="measure" style="margin-top:.4rem">Todos nuestros videos son elaborados junto a la comunidad sorda para garantizar una correcta interpretación gramatical y contextual en cada región.</p>
 </div>
-</aside>
-</div>
-<script>
-  (function() {
-    const playBtn = document.getElementById('btn-play-pause');
-    const playIcon = document.getElementById('play-icon');
-    const playText = document.getElementById('play-text');
-    let isPlaying = true;
-
-    if (playBtn) {
-      playBtn.addEventListener('click', () => {
-        isPlaying = !isPlaying;
-        if (isPlaying) {
-          playIcon.textContent = 'pause';
-          playText.textContent = 'Pausar';
-          playBtn.setAttribute('aria-label', 'Pausar video');
-        } else {
-          playIcon.textContent = 'play_arrow';
-          playText.textContent = 'Reanudar';
-          playBtn.setAttribute('aria-label', 'Reanudar reproducción de video');
-        }
-      });
-    }
-
-    document.querySelectorAll('.video-play-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        if (!isPlaying && playBtn) { playBtn.click(); }
-      });
-    });
-
-    const ccBtn = document.getElementById('btn-toggle-cc');
-    let ccActive = true;
-    if (ccBtn) {
-      ccBtn.addEventListener('click', () => {
-        ccActive = !ccActive;
-        ccBtn.setAttribute('aria-pressed', ccActive.toString());
-        if (ccActive) {
-          ccBtn.classList.remove('text-on-surface-variant');
-          ccBtn.classList.add('text-primary');
-          ccBtn.innerHTML = '<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: \'FILL\' 1;" aria-hidden="true">closed_caption</span><span class="font-label-md text-label-md uppercase">CC On</span>';
-        } else {
-          ccBtn.classList.remove('text-primary');
-          ccBtn.classList.add('text-on-surface-variant');
-          ccBtn.innerHTML = '<span class="material-symbols-outlined text-[22px]" aria-hidden="true">closed_caption_disabled</span><span class="font-label-md text-label-md uppercase">CC Off</span>';
-        }
-      });
-    }
-
-    const speeds = ['1.0x', '1.25x', '1.5x', '0.75x'];
-    let currentSpeedIdx = 0;
-    const speedBtn = document.getElementById('btn-speed');
-    const speedIndicator = document.getElementById('speed-indicator');
-
-    if (speedBtn && speedIndicator) {
-      speedBtn.addEventListener('click', () => {
-        currentSpeedIdx = (currentSpeedIdx + 1) % speeds.length;
-        speedIndicator.textContent = speeds[currentSpeedIdx];
-        speedBtn.setAttribute('aria-label', `Velocidad de reproducción cambiada a ${speeds[currentSpeedIdx]}`);
-      });
-    }
-
-    const signerLabel = document.getElementById('label-signer-speed');
-    document.querySelectorAll('[data-signer-speed]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('[data-signer-speed]').forEach((b) => {
-          b.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
-          b.classList.add('bg-surface-container', 'text-on-surface');
-        });
-        btn.classList.remove('bg-surface-container', 'text-on-surface');
-        btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
-        if (signerLabel) { signerLabel.textContent = btn.getAttribute('data-signer-speed'); }
-      });
-    });
-  })();
-</script>
+</section>
 </main>
-<nav aria-label="Navegación principal" class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.06)]">
-<div class="grid grid-cols-6 items-center h-20 px-space-xs">
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="index.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">home</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Inicio</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="lector.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">record_voice_over</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Lector</span></a>
-<a aria-current="page" class="flex flex-col items-center justify-center h-full transition-colors gap-0.5 text-primary font-bold" href="senas.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">sign_language</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Señas</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="ajustes.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">settings_accessibility</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Ajustes</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="acerca.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">info</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Acerca</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="contacto.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">mail</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Contacto</span></a>
+<script>
+(function() {
+  const playBtn = document.getElementById('btn-play-pause');
+  const playIcon = document.getElementById('play-icon');
+  const playText = document.getElementById('play-text');
+  let isPlaying = true;
+
+  if (playBtn) {
+    playBtn.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      playIcon.setAttribute('href', isPlaying ? '#i-pause' : '#i-play');
+      playText.textContent = isPlaying ? 'Pausar' : 'Reanudar';
+      playBtn.setAttribute('aria-label', isPlaying ? 'Pausar video' : 'Reanudar reproducción de video');
+    });
+  }
+
+  document.querySelectorAll('.video-play-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (!isPlaying && playBtn) { playBtn.click(); }
+    });
+  });
+
+  const ccBtn = document.getElementById('btn-toggle-cc');
+  const ccIcon = document.getElementById('cc-icon');
+  const ccText = document.getElementById('cc-text');
+  const ccBox = document.getElementById('cc-box');
+  const subtitlesSwitch = document.getElementById('switch-subtitles');
+  let ccActive = true;
+  function setCC(on) {
+    ccActive = on;
+    ccBtn.setAttribute('aria-pressed', String(on));
+    ccBtn.setAttribute('aria-label', on ? 'Subtítulos descriptivos activados' : 'Subtítulos descriptivos desactivados');
+    ccIcon.setAttribute('href', on ? '#i-cc' : '#i-cc-off');
+    ccText.textContent = on ? 'CC On' : 'CC Off';
+    if (ccBox) { ccBox.hidden = !on; }
+    if (subtitlesSwitch) { subtitlesSwitch.checked = on; }
+  }
+  if (ccBtn) { ccBtn.addEventListener('click', () => setCC(!ccActive)); }
+  if (subtitlesSwitch) { subtitlesSwitch.addEventListener('change', (e) => setCC(e.target.checked)); }
+
+  const speeds = ['1.0x', '1.25x', '1.5x', '0.75x'];
+  let currentSpeedIdx = 0;
+  const speedBtn = document.getElementById('btn-speed');
+  const speedIndicator = document.getElementById('speed-indicator');
+  if (speedBtn && speedIndicator) {
+    speedBtn.addEventListener('click', () => {
+      currentSpeedIdx = (currentSpeedIdx + 1) % speeds.length;
+      speedIndicator.textContent = speeds[currentSpeedIdx];
+      speedBtn.setAttribute('aria-label', `Velocidad de reproducción cambiada a ${speeds[currentSpeedIdx]}`);
+    });
+  }
+
+  const signerLabel = document.getElementById('label-signer-speed');
+  document.querySelectorAll('[data-signer-speed]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-signer-speed]').forEach((b) => b.setAttribute('aria-current', 'false'));
+      btn.setAttribute('aria-current', 'true');
+      if (signerLabel) { signerLabel.textContent = btn.getAttribute('data-signer-speed'); }
+    });
+  });
+
+  // Línea de tiempo operable con teclado (flechas) y clic.
+  const slider = document.querySelector('.timeline__track');
+  const fill = document.querySelector('.timeline__fill');
+  if (slider && fill) {
+    function setPos(v) {
+      v = Math.max(0, Math.min(100, Math.round(v)));
+      slider.setAttribute('aria-valuenow', String(v));
+      fill.style.width = v + '%';
+      const total = 665, s = Math.round(total * v / 100);
+      const mm = String(Math.floor(s / 60)).padStart(2, '0'), ss = String(s % 60).padStart(2, '0');
+      slider.setAttribute('aria-valuetext', `${mm}:${ss} de 11:05`);
+      slider.parentElement.querySelector('span').textContent = `${mm}:${ss}`;
+    }
+    slider.addEventListener('keydown', (e) => {
+      const v = Number(slider.getAttribute('aria-valuenow'));
+      if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { setPos(v + 5); e.preventDefault(); }
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { setPos(v - 5); e.preventDefault(); }
+      if (e.key === 'Home') { setPos(0); e.preventDefault(); }
+      if (e.key === 'End') { setPos(100); e.preventDefault(); }
+    });
+    slider.addEventListener('click', (e) => {
+      const r = slider.getBoundingClientRect();
+      setPos((e.clientX - r.left) / r.width * 100);
+    });
+  }
+})();
+</script>
+<nav class="tabbar" aria-label="Navegación principal">
+<div class="tabbar__in">
+<a href="index.html"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg><span>Inicio</span></a>
+<a href="lector.html"><svg class="ic" aria-hidden="true"><use href="#i-voice"/></svg><span>Lector</span></a>
+<a href="senas.html" aria-current="page"><svg class="ic" aria-hidden="true"><use href="#i-sign"/></svg><span>Señas</span></a>
+<a href="ajustes.html"><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg><span>Ajustes</span></a>
+<a href="acerca.html"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg><span>Acerca</span></a>
+<a href="contacto.html"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span>Contacto</span></a>
 </div>
 </nav>
-<script src="assets/site.js"></script>
 </body>
 </html>

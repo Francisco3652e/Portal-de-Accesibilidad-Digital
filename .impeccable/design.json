@@ -1,0 +1,663 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-13T00:00:00Z",
+  "title": "Design System: Mosaic",
+  "source": {
+    "stylesheet": "assets/site.css",
+    "font": "assets/fonts/Lexend-latin.woff2",
+    "iconSprite": "inline <svg> con <symbol id=\"i-*\"> en cada página",
+    "brandMark": "inline SVG .brand__mark (assets/logo.png eliminado)"
+  },
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Crema papel",
+        "canonical": "#fff8e8",
+        "cssVar": "--paper",
+        "tonalRamp": [
+          "oklch(15.0% 0.013 87.1)",
+          "oklch(25.0% 0.022 87.1)",
+          "oklch(35.0% 0.022 87.1)",
+          "oklch(45.0% 0.022 87.1)",
+          "oklch(55.0% 0.022 87.1)",
+          "oklch(65.0% 0.022 87.1)",
+          "oklch(75.0% 0.022 87.1)",
+          "oklch(90.0% 0.013 87.1)"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Crema tarjeta",
+        "canonical": "#fffdf6",
+        "cssVar": "--card",
+        "tonalRamp": [
+          "oklch(15.0% 0.006 93.6)",
+          "oklch(25.0% 0.009 93.6)",
+          "oklch(35.0% 0.009 93.6)",
+          "oklch(45.0% 0.009 93.6)",
+          "oklch(55.0% 0.009 93.6)",
+          "oklch(65.0% 0.009 93.6)",
+          "oklch(75.0% 0.009 93.6)",
+          "oklch(90.0% 0.006 93.6)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#111111",
+        "cssVar": "--ink",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 89.9)",
+          "oklch(25.0% 0.000 89.9)",
+          "oklch(35.0% 0.000 89.9)",
+          "oklch(45.0% 0.000 89.9)",
+          "oklch(55.0% 0.000 89.9)",
+          "oklch(65.0% 0.000 89.9)",
+          "oklch(75.0% 0.000 89.9)",
+          "oklch(90.0% 0.000 89.9)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Tinta suave",
+        "canonical": "#3f3a30",
+        "cssVar": "--ink-2",
+        "tonalRamp": [
+          "oklch(15.0% 0.011 84.6)",
+          "oklch(25.0% 0.018 84.6)",
+          "oklch(35.0% 0.018 84.6)",
+          "oklch(45.0% 0.018 84.6)",
+          "oklch(55.0% 0.018 84.6)",
+          "oklch(65.0% 0.018 84.6)",
+          "oklch(75.0% 0.018 84.6)",
+          "oklch(90.0% 0.011 84.6)"
+        ]
+      },
+      "yellow": {
+        "role": "primary",
+        "displayName": "Amarillo acción",
+        "canonical": "#ffd23f",
+        "cssVar": "--yellow",
+        "tonalRamp": [
+          "oklch(15.0% 0.072 90.9)",
+          "oklch(25.0% 0.120 90.9)",
+          "oklch(35.0% 0.120 90.9)",
+          "oklch(45.0% 0.120 90.9)",
+          "oklch(55.0% 0.120 90.9)",
+          "oklch(65.0% 0.120 90.9)",
+          "oklch(75.0% 0.120 90.9)",
+          "oklch(90.0% 0.072 90.9)"
+        ]
+      },
+      "pink": {
+        "role": "secondary",
+        "displayName": "Rosa voz",
+        "canonical": "#ff8fb1",
+        "cssVar": "--pink",
+        "tonalRamp": [
+          "oklch(15.0% 0.072 1.4)",
+          "oklch(25.0% 0.120 1.4)",
+          "oklch(35.0% 0.120 1.4)",
+          "oklch(45.0% 0.120 1.4)",
+          "oklch(55.0% 0.120 1.4)",
+          "oklch(65.0% 0.120 1.4)",
+          "oklch(75.0% 0.120 1.4)",
+          "oklch(90.0% 0.072 1.4)"
+        ]
+      },
+      "mint": {
+        "role": "secondary",
+        "displayName": "Menta señas",
+        "canonical": "#9bf0c8",
+        "cssVar": "--mint",
+        "tonalRamp": [
+          "oklch(15.0% 0.060 163.1)",
+          "oklch(25.0% 0.100 163.1)",
+          "oklch(35.0% 0.100 163.1)",
+          "oklch(45.0% 0.100 163.1)",
+          "oklch(55.0% 0.100 163.1)",
+          "oklch(65.0% 0.100 163.1)",
+          "oklch(75.0% 0.100 163.1)",
+          "oklch(90.0% 0.060 163.1)"
+        ]
+      },
+      "sky": {
+        "role": "secondary",
+        "displayName": "Celeste visión",
+        "canonical": "#8ed3ff",
+        "cssVar": "--sky",
+        "tonalRamp": [
+          "oklch(15.0% 0.056 237.4)",
+          "oklch(25.0% 0.093 237.4)",
+          "oklch(35.0% 0.093 237.4)",
+          "oklch(45.0% 0.093 237.4)",
+          "oklch(55.0% 0.093 237.4)",
+          "oklch(65.0% 0.093 237.4)",
+          "oklch(75.0% 0.093 237.4)",
+          "oklch(90.0% 0.056 237.4)"
+        ]
+      },
+      "error-ink": {
+        "role": "error",
+        "displayName": "Error tinta",
+        "canonical": "#b3003b",
+        "tonalRamp": [
+          "oklch(15.0% 0.072 14.7)",
+          "oklch(25.0% 0.120 14.7)",
+          "oklch(35.0% 0.120 14.7)",
+          "oklch(45.0% 0.120 14.7)",
+          "oklch(55.0% 0.120 14.7)",
+          "oklch(65.0% 0.120 14.7)",
+          "oklch(75.0% 0.120 14.7)",
+          "oklch(90.0% 0.072 14.7)"
+        ]
+      },
+      "error-bg": {
+        "role": "error",
+        "displayName": "Error fondo",
+        "canonical": "#ffe1ea",
+        "tonalRamp": [
+          "oklch(15.0% 0.021 357.7)",
+          "oklch(25.0% 0.035 357.7)",
+          "oklch(35.0% 0.035 357.7)",
+          "oklch(45.0% 0.035 357.7)",
+          "oklch(55.0% 0.035 357.7)",
+          "oklch(65.0% 0.035 357.7)",
+          "oklch(75.0% 0.035 357.7)",
+          "oklch(90.0% 0.021 357.7)"
+        ]
+      },
+      "hc-black": {
+        "role": "high-contrast",
+        "displayName": "Negro alto contraste",
+        "canonical": "#000000",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 0.0)",
+          "oklch(25.0% 0.000 0.0)",
+          "oklch(35.0% 0.000 0.0)",
+          "oklch(45.0% 0.000 0.0)",
+          "oklch(55.0% 0.000 0.0)",
+          "oklch(65.0% 0.000 0.0)",
+          "oklch(75.0% 0.000 0.0)",
+          "oklch(90.0% 0.000 0.0)"
+        ]
+      },
+      "hc-white": {
+        "role": "high-contrast",
+        "displayName": "Blanco alto contraste",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 89.9)",
+          "oklch(25.0% 0.000 89.9)",
+          "oklch(35.0% 0.000 89.9)",
+          "oklch(45.0% 0.000 89.9)",
+          "oklch(55.0% 0.000 89.9)",
+          "oklch(65.0% 0.000 89.9)",
+          "oklch(75.0% 0.000 89.9)",
+          "oklch(90.0% 0.000 89.9)"
+        ]
+      },
+      "hc-yellow": {
+        "role": "high-contrast",
+        "displayName": "Amarillo alto contraste",
+        "canonical": "#ffe600",
+        "tonalRamp": [
+          "oklch(15.0% 0.072 101.4)",
+          "oklch(25.0% 0.120 101.4)",
+          "oklch(35.0% 0.120 101.4)",
+          "oklch(45.0% 0.120 101.4)",
+          "oklch(55.0% 0.120 101.4)",
+          "oklch(65.0% 0.120 101.4)",
+          "oklch(75.0% 0.120 101.4)",
+          "oklch(90.0% 0.072 101.4)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "h1 de cada página; solo «Mosaic» alcanza el tope. En el hero line-height 0.95."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "h2 de sección; 1.75rem dentro de la consola."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "h3 de pieza (1.5rem en servicios, 1.3rem en ética, 1.2rem en tarjetas de video)."
+      },
+      "subtitle": {
+        "displayName": "Subtitle",
+        "purpose": "h4."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Párrafo introductorio bajo el h1 y transcripción del lector (line-height 1.8)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Cuerpo; medida máxima 68ch (.measure)."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Botones, teclas, títulos de fila, navegación (0.95rem topnav, 0.7rem tabbar)."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Etiquetas de estado en mayúsculas espaciadas (.tag, .key__state, .res__meta)."
+      },
+      "hint": {
+        "displayName": "Hint",
+        "purpose": "Pistas bajo títulos en --ink-2."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow",
+        "value": "5px 5px 0 var(--ink)",
+        "purpose": "Reposo de piezas y controles elevados (--shadow)."
+      },
+      {
+        "name": "shadow-hover",
+        "value": "7px 7px 0 var(--ink)",
+        "purpose": "Hover con translate(-2px,-2px) en botones, teclas, opciones, recursos, canales."
+      },
+      {
+        "name": "shadow-lg",
+        "value": "8px 8px 0 var(--ink)",
+        "purpose": "Hover de piezas de servicio (.svc) con translate(-3px,-3px) (--shadow-lg)."
+      },
+      {
+        "name": "shadow-pressed",
+        "value": "0 0 0 var(--ink)",
+        "purpose": ":active / opción marcada: translate(5px,5px), transition-duration 0ms."
+      },
+      {
+        "name": "shadow-short",
+        "value": "3px 3px 0 var(--ink)",
+        "purpose": "Enlace de navegación actual; drop-shadow de la marca."
+      },
+      {
+        "name": "shadow-pip",
+        "value": "4px 4px 0 var(--ink)",
+        "purpose": "Ventana PiP del intérprete."
+      },
+      {
+        "name": "shadow-word",
+        "value": "2px 2px 0 var(--ink)",
+        "purpose": "Palabra actual de la transcripción."
+      },
+      {
+        "name": "shadow-input-inset",
+        "value": "inset 4px 4px 0 rgba(17, 17, 17, 0.08)",
+        "purpose": "Campos en reposo; se elimina en alto contraste."
+      },
+      {
+        "name": "scrim",
+        "value": "rgba(17, 17, 17, 0.55)",
+        "purpose": "Velo del diálogo (0.85 en alto contraste)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "--ease-out: easing del recorrido de tecla."
+      },
+      {
+        "name": "lift",
+        "value": "transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out)",
+        "purpose": "--lift: transición de hover/reposo en todo control elevado."
+      },
+      {
+        "name": "press",
+        "value": "transition-duration: 0ms",
+        "purpose": ":active y estados marcados hunden sin transición."
+      },
+      {
+        "name": "micro",
+        "value": "120ms–200ms ease",
+        "purpose": "Chevrones, punto de radio (120ms), palabra actual (150ms), barras de onda (200ms)."
+      },
+      {
+        "name": "switch-thumb",
+        "value": "transform 150ms cubic-bezier(.2,.8,.2,1)",
+        "purpose": "Deslizamiento del pulgar del interruptor."
+      },
+      {
+        "name": "tile-in",
+        "value": "tile-in 600ms cubic-bezier(.2,.8,.2,1) both; delay 60ms × n",
+        "purpose": "Entrada escalonada de las teselas del hero (opacity 0, translate(-14px,-14px) → reposo). Solo con prefers-reduced-motion: no-preference y html[data-reduce-motion=\"false\"]."
+      },
+      {
+        "name": "reduce-motion",
+        "value": "animation: none !important; transition: none !important; scroll-behavior: auto !important",
+        "purpose": "html[data-reduce-motion=\"true\"] y @media (prefers-reduced-motion: reduce)."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "label-contrast",
+        "value": "560px",
+        "purpose": "Aparece el texto «Alto contraste» del interruptor de cabecera; por debajo (559px) se reducen PiP y subtítulos."
+      },
+      {
+        "name": "channels-2col",
+        "value": "640px–959px",
+        "purpose": ".channels en dos columnas."
+      },
+      {
+        "name": "bento",
+        "value": "720px",
+        "purpose": ".services en 3 columnas con piezas 1 y 4 en span 2; diálogo centrado."
+      },
+      {
+        "name": "help-band",
+        "value": "800px",
+        "purpose": ".help-band 1.3fr 1fr."
+      },
+      {
+        "name": "nav",
+        "value": "900px",
+        "purpose": "topnav visible, tabbar oculta, body sin padding-bottom; .player, .ethics, .about-hero a escritorio."
+      },
+      {
+        "name": "page-grids",
+        "value": "960px",
+        "purpose": ".hero 1.15fr 1fr, .settings 2 columnas, .contact-grid 1fr 1.2fr."
+      },
+      {
+        "name": "featured",
+        "value": "1000px",
+        "purpose": ".featured 1.55fr 1fr."
+      },
+      {
+        "name": "wall",
+        "value": "1200px",
+        "purpose": "--wall: ancho máximo del contenedor .shell."
+      }
+    ],
+    "borders": [
+      {
+        "name": "line",
+        "value": "3px",
+        "purpose": "--line: borde de piezas, controles, campos, separadores."
+      },
+      {
+        "name": "line-thin",
+        "value": "2px",
+        "purpose": ".res__meta y .ibox de la lista de comprobación."
+      },
+      {
+        "name": "focus-ring",
+        "value": "3px solid var(--focus); outline-offset: 3px; border-radius: 4px",
+        "purpose": ":focus-visible global; -4px hacia dentro en .seg y .tabbar; 0 en .input."
+      }
+    ],
+    "highContrast": {
+      "dark": {
+        "selector": "html[data-contrast=\"dark\"]",
+        "--paper": "#000",
+        "--card": "#000",
+        "--ink": "#fff",
+        "--ink-2": "#fff",
+        "--yellow": "#000",
+        "--pink": "#000",
+        "--mint": "#000",
+        "--sky": "#000",
+        "--focus": "#ffe600"
+      },
+      "yellow": {
+        "selector": "html[data-contrast=\"yellow\"]",
+        "--paper": "#000",
+        "--card": "#000",
+        "--ink": "#ffe600",
+        "--ink-2": "#ffe600",
+        "--yellow": "#000",
+        "--pink": "#000",
+        "--mint": "#000",
+        "--sky": "#000",
+        "--focus": "#fff"
+      },
+      "collapse": "Estados que en el tema base usan un pigmento (eslogan, nav actual, palabra actual, summary abierto, choice marcada, switch encendido, timeline fill, ::selection) pasan a background var(--ink) / color var(--paper). Sombra interna de campo eliminada; campo inválido en borde discontinuo sobre negro; drop-shadow de la marca eliminado; velo del diálogo 0.85."
+    },
+    "htmlPreferences": [
+      {
+        "attr": "data-contrast",
+        "values": [
+          "dark",
+          "yellow"
+        ],
+        "effect": "Esquemas de alto contraste; pigmentos colapsan a #000, --focus a #ffe600 / #fff."
+      },
+      {
+        "attr": "data-font-scale",
+        "values": [
+          "sm",
+          "lg",
+          "xxl"
+        ],
+        "effect": "font-size raíz 87.5% / 118% / 140%."
+      },
+      {
+        "attr": "data-color-filter",
+        "values": [
+          "protanopia",
+          "deuteranopia",
+          "tritanopia",
+          "grayscale"
+        ],
+        "effect": "filter: url(#f-*) con feColorMatrix inline; grayscale(1)."
+      },
+      {
+        "attr": "data-reduce-motion",
+        "values": [
+          "true",
+          "false"
+        ],
+        "effect": "Anula animaciones y transiciones; false habilita tile-in."
+      },
+      {
+        "attr": "data-highlight-clickable",
+        "values": [
+          "true"
+        ],
+        "effect": "outline 3px dashed var(--ink) offset 3px en a, button, .choice, .switch."
+      },
+      {
+        "attr": "data-wide-spacing",
+        "values": [
+          "true"
+        ],
+        "effect": "line-height 2, letter-spacing 0.04em, word-spacing 0.12em en p, li, .transcript."
+      },
+      {
+        "attr": "data-guided-mode",
+        "values": [
+          "true"
+        ],
+        "effect": "Muestra .guide-bar; una sola sección [data-step] visible a la vez."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón amarillo (acción principal)",
+      "kind": "button",
+      "refersTo": "button-yellow",
+      "description": "Acción principal de una pieza; pigmento de acción, recorrido de tecla completo.",
+      "html": "<button class=\"ds-btn ds-btn--yellow\" type=\"button\">Activar lector <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:3rem;padding:.6em 1.15em;border:var(--line,3px) solid var(--ink,#111);border-radius:var(--radius-sm,8px);background:var(--card,#fffdf6);color:var(--ink,#111);font-family:var(--font,Lexend,sans-serif);font-weight:800;line-height:1.2;text-decoration:none;cursor:pointer;box-shadow:var(--shadow,5px 5px 0 var(--ink,#111));transition:var(--lift,transform 180ms cubic-bezier(.16,1,.3,1),box-shadow 180ms cubic-bezier(.16,1,.3,1))}.ds-btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink,#111)}.ds-btn:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink,#111);transition-duration:0ms}.ds-btn:focus-visible{outline:3px solid var(--focus,#8ed3ff);outline-offset:3px;border-radius:4px}.ds-btn[aria-pressed=\"true\"]{background:var(--ink,#111);color:var(--paper,#fff8e8)}.ds-btn--yellow{background:var(--yellow,#ffd23f)}"
+    },
+    {
+      "name": "Botón tinta",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Paso siguiente y acciones fuertes; relleno de tinta con texto crema.",
+      "html": "<button class=\"ds-btn ds-btn--ink\" type=\"button\">Siguiente <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:3rem;padding:.6em 1.15em;border:var(--line,3px) solid var(--ink,#111);border-radius:var(--radius-sm,8px);background:var(--card,#fffdf6);color:var(--ink,#111);font-family:var(--font,Lexend,sans-serif);font-weight:800;line-height:1.2;text-decoration:none;cursor:pointer;box-shadow:var(--shadow,5px 5px 0 var(--ink,#111));transition:var(--lift,transform 180ms cubic-bezier(.16,1,.3,1),box-shadow 180ms cubic-bezier(.16,1,.3,1))}.ds-btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink,#111)}.ds-btn:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink,#111);transition-duration:0ms}.ds-btn:focus-visible{outline:3px solid var(--focus,#8ed3ff);outline-offset:3px;border-radius:4px}.ds-btn[aria-pressed=\"true\"]{background:var(--ink,#111);color:var(--paper,#fff8e8)}.ds-btn--ink{background:var(--ink,#111);color:var(--paper,#fff8e8)}"
+    },
+    {
+      "name": "Botón plano",
+      "kind": "button",
+      "refersTo": "button-flat-hover",
+      "description": "Acción secundaria dentro de una pieza ya sombreada; sin sombra, hover en amarillo, hunde 2px.",
+      "html": "<button class=\"ds-btn ds-btn--flat\" type=\"button\">Anterior</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:3rem;padding:.6em 1.15em;border:var(--line,3px) solid var(--ink,#111);border-radius:var(--radius-sm,8px);background:var(--card,#fffdf6);color:var(--ink,#111);font-family:var(--font,Lexend,sans-serif);font-weight:800;line-height:1.2;text-decoration:none;cursor:pointer;box-shadow:var(--shadow,5px 5px 0 var(--ink,#111));transition:var(--lift,transform 180ms cubic-bezier(.16,1,.3,1),box-shadow 180ms cubic-bezier(.16,1,.3,1))}.ds-btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink,#111)}.ds-btn:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink,#111);transition-duration:0ms}.ds-btn:focus-visible{outline:3px solid var(--focus,#8ed3ff);outline-offset:3px;border-radius:4px}.ds-btn[aria-pressed=\"true\"]{background:var(--ink,#111);color:var(--paper,#fff8e8)}.ds-btn--flat{box-shadow:none}.ds-btn--flat:hover{transform:none;box-shadow:none;background:var(--yellow,#ffd23f)}.ds-btn--flat:active{transform:translate(2px,2px);transition-duration:0ms}"
+    },
+    {
+      "name": "Grupo segmentado",
+      "kind": "chip",
+      "refersTo": "button-on",
+      "description": "Botones pegados A- / A / A+; el actual se rellena de tinta.",
+      "html": "<div class=\"ds-seg\" role=\"group\" aria-label=\"Tamaño de texto\"><button type=\"button\">A-</button><button type=\"button\" aria-current=\"true\">A</button><button type=\"button\">A+</button></div>",
+      "css": ".ds-seg{display:inline-flex;border:var(--line,3px) solid var(--ink,#111);border-radius:var(--radius-sm,8px);overflow:hidden;box-shadow:var(--shadow,5px 5px 0 var(--ink,#111));background:var(--card,#fffdf6);font-family:var(--font,Lexend,sans-serif)}.ds-seg>button{min-width:3rem;min-height:3rem;padding:.4em .9em;border:0;border-right:var(--line,3px) solid var(--ink,#111);background:transparent;color:var(--ink,#111);font:inherit;font-weight:800;cursor:pointer}.ds-seg>button:last-child{border-right:0}.ds-seg>button:hover{background:var(--yellow,#ffd23f)}.ds-seg>button[aria-current=\"true\"]{background:var(--ink,#111);color:var(--paper,#fff8e8)}.ds-seg>button:focus-visible{outline:3px solid var(--focus,#8ed3ff);outline-offset:-4px}"
+    },
+    {
+      "name": "Tecla de consola",
+      "kind": "custom",
+      "refersTo": "key",
+      "description": "Tecla de ajuste rápido: icono en caja, nombre y píldora de estado; encendida se rellena de tinta.",
+      "html": "<button class=\"ds-key\" type=\"button\" aria-pressed=\"false\"><span class=\"ds-key__lead\"><span class=\"ds-ibox ds-ibox--sky\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 3v18M12 3a9 9 0 0 1 0 18z\" fill=\"currentColor\"/></svg></span><span>Alto contraste</span></span><span class=\"ds-key__state\">No</span></button>",
+      "css": ".ds-key{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;width:100%;min-height:4.25rem;padding:.75rem 1rem;border:var(--line,3px) solid var(--ink,#111);border-radius:var(--radius-sm,8px);background:var(--card,#fffdf6);color:var(--ink,#111);font-family:var(--font,Lexend,sans-serif);font-weight:800;box-shadow:var(--shadow,5px 5px 0 var(--ink,#111));cursor:pointer;text-align:left;transition:transform 180ms cubic-bezier(.16,1,.3,1),box-shadow 180ms cubic-bezier(.16,1,.3,1)}.ds-key:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink,#111)}.ds-key:active{transition-duration:0ms;transform:translate(5px,5px);box-shadow:none}.ds-key:focus-visible{outline:3px solid var(--focus,#8ed3ff);outline-offset:3px}.ds-key__lead{display:flex;align-items:center;gap:.75rem;font-size:1.1rem}.ds-ibox{display:inline-flex;align-items:center;justify-content:center;width:3.25rem;height:3.25rem;border:var(--line,3px) solid var(--ink,#111);border-radius:var(--radius-sm,8px);background:var(--card,#fffdf6)}.ds-ibox--sky{background:var(--sky,#8ed3ff)}.ds-key__state{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding:.2em .6em;border:var(--line,3px) solid var(--ink,#111);border-radius:999px;background:var(--paper,#fff8e8)}.ds-key[aria-pressed=\"true\"]{background:var(--ink,#111);color:var(--paper,#fff8e8)}.ds-key[aria-pressed=\"true\"] .ds-key__state{background:var(--yellow,#ffd23f);color:var(--ink,#111)}.ds-key[aria-pressed=\"true\"] .ds-ibox{background:var(--paper,#fff8e8);color:var(--ink,#111)}"
+    },
+    {
+      "name": "Etiqueta de estado",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Píldora de metadato en mayúsculas espaciadas; variantes de pigmento y tinta.",
+      "html": "<span class=\"ds-tag ds-tag--mint\"><svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l5 5L20 7\"/></svg>Se guardan aquí</span> <span class=\"ds-tag\">LESSA</span> <span class=\"ds-tag ds-tag--ink\">Paso 1 de 3</span>",
+      "css": ".ds-tag{display:inline-flex;align-items:center;gap:.35em;padding:.2em .7em;border:var(--line,3px) solid var(--ink,#111);border-radius:999px;background:var(--card,#fffdf6);color:var(--ink,#111);font-family:var(--font,Lexend,sans-serif);font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;line-height:1.4;white-space:nowrap}.ds-tag--mint{background:var(--mint,#9bf0c8)}.ds-tag--ink{background:var(--ink,#111);color:var(--paper,#fff8e8)}"
+    },
+    {
+      "name": "Campo de texto",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Campo con sombra interna leve que sale del tablero al enfocar.",
+      "html": "<label class=\"ds-field\"><span>Nombre</span><input class=\"ds-input\" type=\"text\" placeholder=\"Tu nombre\"></label>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:.4rem;font-family:var(--font,Lexend,sans-serif);color:var(--ink,#111)}.ds-field>span{font-weight:800}.ds-input{width:100%;min-height:3.25rem;padding:.7em .9em;border:var(--line,3px) solid var(--ink,#111);border-radius:var(--radius-sm,8px);background:var(--card,#fffdf6);color:var(--ink,#111);font:inherit;font-weight:500;box-shadow:inset 4px 4px 0 rgba(17,17,17,.08);caret-color:var(--ink,#111)}.ds-input::placeholder{color:var(--ink-2,#3f3a30);opacity:1}.ds-input:focus-visible{outline:3px solid var(--focus,#8ed3ff);outline-offset:0;box-shadow:var(--shadow,5px 5px 0 var(--ink,#111))}.ds-input[aria-invalid=\"true\"]{background:#ffe1ea;border-color:#b3003b}"
+    },
+    {
+      "name": "Opción de tarjeta",
+      "kind": "input",
+      "refersTo": "choice",
+      "description": "Radio envuelto en pieza; marcada se hunde y se rellena de celeste.",
+      "html": "<label class=\"ds-choice\"><input type=\"radio\" name=\"ds-c\" checked><span class=\"ds-dot\"></span><span class=\"ds-choice__body\"><span class=\"ds-choice__title\">Predeterminado</span><span class=\"ds-choice__hint\">Crema con piezas de color</span></span></label>",
+      "css": ".ds-choice{position:relative;display:flex;align-items:center;gap:.9rem;cursor:pointer;padding:.9rem 1rem;border:var(--line,3px) solid var(--ink,#111);border-radius:var(--radius-sm,8px);background:var(--card,#fffdf6);color:var(--ink,#111);font-family:var(--font,Lexend,sans-serif);box-shadow:var(--shadow,5px 5px 0 var(--ink,#111));transition:transform 180ms cubic-bezier(.16,1,.3,1),box-shadow 180ms cubic-bezier(.16,1,.3,1)}.ds-choice:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink,#111)}.ds-choice input{position:absolute;opacity:0;width:1px;height:1px}.ds-dot{width:1.5rem;height:1.5rem;flex:none;border:var(--line,3px) solid var(--ink,#111);border-radius:50%;background:var(--card,#fffdf6);display:grid;place-items:center}.ds-dot::after{content:\"\";width:.7rem;height:.7rem;border-radius:50%;background:var(--ink,#111);transform:scale(0);transition:transform 120ms ease}.ds-choice:has(input:checked){transition-duration:0ms;background:var(--sky,#8ed3ff);transform:translate(5px,5px);box-shadow:none}.ds-choice:has(input:checked) .ds-dot::after{transform:scale(1)}.ds-choice:has(input:focus-visible){outline:3px solid var(--focus,#8ed3ff);outline-offset:3px}.ds-choice__body{display:flex;flex-direction:column;gap:.15rem}.ds-choice__title{font-weight:800}.ds-choice__hint{font-size:.9rem;color:var(--ink-2,#3f3a30)}"
+    },
+    {
+      "name": "Fila con interruptor",
+      "kind": "input",
+      "refersTo": "toggle-row",
+      "description": "Pieza plana con caja de icono, título, pista e interruptor de menta.",
+      "html": "<div class=\"ds-toggle-row\"><div class=\"ds-toggle-row__lead\"><span class=\"ds-ibox ds-ibox--yellow\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l5 5L20 7\"/></svg></span><div class=\"ds-toggle-row__text\"><label class=\"ds-toggle-row__title\" for=\"ds-sw\">Espaciado amplio</label><span class=\"ds-toggle-row__hint\">Aumenta la separación entre renglones</span></div></div><span class=\"ds-switch\"><input type=\"checkbox\" id=\"ds-sw\" checked><span class=\"ds-switch__track\"></span></span></div>",
+      "css": ".ds-toggle-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;padding:1rem;border:var(--line,3px) solid var(--ink,#111);border-radius:var(--radius-sm,8px);background:var(--card,#fffdf6);color:var(--ink,#111);font-family:var(--font,Lexend,sans-serif)}.ds-toggle-row__lead{display:flex;align-items:center;gap:.9rem}.ds-toggle-row__text{display:flex;flex-direction:column;gap:.15rem}.ds-toggle-row__title{font-weight:800}.ds-toggle-row__hint{font-size:.9rem;color:var(--ink-2,#3f3a30)}.ds-ibox{display:inline-flex;align-items:center;justify-content:center;width:3.25rem;height:3.25rem;border:var(--line,3px) solid var(--ink,#111);border-radius:var(--radius-sm,8px);background:var(--card,#fffdf6)}.ds-ibox--yellow{background:var(--yellow,#ffd23f)}.ds-switch{position:relative;display:inline-flex;flex:none;width:4rem;height:2.25rem}.ds-switch input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}.ds-switch__track{width:100%;height:100%;border:var(--line,3px) solid var(--ink,#111);border-radius:999px;background:var(--card,#fffdf6);position:relative;transition:background 150ms ease}.ds-switch__track::after{content:\"\";position:absolute;top:3px;left:3px;width:calc(2.25rem - 12px);height:calc(2.25rem - 12px);background:var(--ink,#111);border-radius:50%;transition:transform 150ms cubic-bezier(.2,.8,.2,1)}.ds-switch input:checked+.ds-switch__track{background:var(--mint,#9bf0c8)}.ds-switch input:checked+.ds-switch__track::after{transform:translateX(calc(4rem - 2.25rem))}.ds-switch input:focus-visible+.ds-switch__track{outline:3px solid var(--focus,#8ed3ff);outline-offset:3px}"
+    },
+    {
+      "name": "Pieza de servicio (bento)",
+      "kind": "card",
+      "refersTo": "piece",
+      "description": "Pieza-enlace con pigmento del módulo, caja de icono en tinta, etiqueta, título y CTA con flecha.",
+      "html": "<a class=\"ds-svc ds-svc--pink\" href=\"#\"><div class=\"ds-svc__top\"><span class=\"ds-ibox ds-ibox--ink\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l5 5L20 7\"/></svg></span><span class=\"ds-tag\">Audio</span></div><h3>Lector de pantalla</h3><p>Escucha el contenido con síntesis de voz y control de lectura pausada.</p><span class=\"ds-svc__cta\">Iniciar lectura por voz <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a>",
+      "css": ".ds-svc{display:flex;flex-direction:column;gap:1rem;padding:1.25rem;border:var(--line,3px) solid var(--ink,#111);border-radius:var(--radius,12px);background:var(--card,#fffdf6);color:var(--ink,#111);font-family:var(--font,Lexend,sans-serif);font-weight:500;line-height:1.55;text-decoration:none;box-shadow:var(--shadow,5px 5px 0 var(--ink,#111));transition:transform 180ms cubic-bezier(.16,1,.3,1),box-shadow 180ms cubic-bezier(.16,1,.3,1)}.ds-svc--pink{background:var(--pink,#ff8fb1)}.ds-svc:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--ink,#111)}.ds-svc:active{transition-duration:0ms;transform:translate(5px,5px);box-shadow:none}.ds-svc:focus-visible{outline:3px solid var(--focus,#8ed3ff);outline-offset:3px}.ds-svc__top{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem}.ds-svc h3{margin:0;font-size:1.5rem;font-weight:800;line-height:1.1;letter-spacing:-.02em}.ds-svc p{margin:0}.ds-svc__cta{display:inline-flex;align-items:center;gap:.4em;font-weight:800;margin-top:auto}.ds-svc__cta svg{transition:transform 150ms ease}.ds-svc:hover .ds-svc__cta svg{transform:translateX(4px)}.ds-ibox{display:inline-flex;align-items:center;justify-content:center;width:3.25rem;height:3.25rem;border:var(--line,3px) solid var(--ink,#111);border-radius:var(--radius-sm,8px);background:var(--card,#fffdf6)}.ds-ibox--ink{background:var(--ink,#111);color:var(--paper,#fff8e8)}.ds-tag{display:inline-flex;align-items:center;padding:.2em .7em;border:var(--line,3px) solid var(--ink,#111);border-radius:999px;background:var(--card,#fffdf6);font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;line-height:1.4}"
+    },
+    {
+      "name": "Navegación de cabecera",
+      "kind": "nav",
+      "refersTo": "topnav-link-current",
+      "description": "Enlaces de escritorio con borde transparente; actual en amarillo con sombra corta.",
+      "html": "<nav class=\"ds-topnav\" aria-label=\"Principal\"><a href=\"#\" aria-current=\"page\">Inicio</a><a href=\"#\">Lector</a><a href=\"#\">Señas</a><a href=\"#\">Ajustes</a><a href=\"#\">Acerca</a><a href=\"#\">Contacto</a></nav>",
+      "css": ".ds-topnav{display:flex;gap:.4rem;font-family:var(--font,Lexend,sans-serif)}.ds-topnav a{display:inline-flex;align-items:center;gap:.4em;padding:.5em .85em;border:var(--line,3px) solid transparent;border-radius:var(--radius-sm,8px);color:var(--ink,#111);font-weight:800;font-size:.95rem;text-decoration:none}.ds-topnav a:hover{border-color:var(--ink,#111);background:var(--card,#fffdf6)}.ds-topnav a[aria-current=\"page\"]{border-color:var(--ink,#111);background:var(--yellow,#ffd23f);box-shadow:3px 3px 0 var(--ink,#111)}.ds-topnav a:focus-visible{outline:3px solid var(--focus,#8ed3ff);outline-offset:3px;border-radius:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "El tablero de piezas",
+    "overview": "Mosaic es un tablero de piezas físicas sobre un fondo crema. Cada bloque de contenido y cada control es una pieza con borde de tinta grueso, sombra dura desplazada sin difuminado y relleno plano: crema para el contenido, tinta para el estado encendido y uno de cuatro pigmentos (amarillo, rosa, menta, celeste) cuando el módulo tiene un rol propio. Nada flota, nada se degrada, nada se transparenta: la profundidad es un desplazamiento de tinta que se mueve con la mano. Las piezas se elevan al pasar el cursor y se hunden hasta perder la sombra al pulsarlas, igual que una tecla con recorrido.\n\nLa densidad es alta pero legible: todo escala con `rem` para que la escala de letra del usuario (87.5 % a 140 %) agrande la interfaz completa, los objetivos táctiles nunca bajan de 3rem y el texto de cuerpo se fija en Lexend 500 a 1.0625rem. Los titulares van en Lexend 800 con tracking negativo; las mayúsculas espaciadas se reservan para etiquetas de estado. El mundo se declara neobrutalista por decisión vinculante del producto y rechaza dos patrones: la \"app Material\" de tarjetas blancas flotantes con sombra difusa, y la \"landing\" de hero más rejilla de tarjetas iguales.\n\nEl sistema tiene tres versiones del mismo tablero: el estándar de crema y pigmentos, y dos esquemas de alto contraste (blanco sobre negro; amarillo #ffe600 sobre negro) en los que los cuatro pigmentos colapsan a negro y toda la jerarquía se sostiene con tinta, borde y relleno invertido. Un solo juego de tokens gobierna las tres versiones porque sombras, bordes y rellenos de estado están todos escritos con `var(--ink)` y `var(--paper)`.",
+    "keyCharacteristics": [
+      "Bordes sólidos de 3px (`--line`) en tinta sobre cada pieza, control, campo y separador.",
+      "Sombras duras desplazadas sin blur (`5px 5px 0`), en el color de la tinta; la elevación es un gesto de estado, no una capa ambiental.",
+      "Cuatro pigmentos con rol fijo: amarillo = acción, rosa = voz y audio, menta = señas y ayuda humana, celeste = visión y ajustes.",
+      "Recorrido de tecla: hover eleva a `7px 7px 0`, `:active` hunde `translate(5px, 5px)` con sombra 0 y transición de 0ms.",
+      "Encendido = relleno de tinta con texto crema (`aria-pressed`, `aria-current`, `aria-checked`, `.is-on`).",
+      "Un solo tipo, Lexend variable autohospedada (400–900), sin fuente de display separada.",
+      "Iconos SVG de trazo 2.4 en un sprite inline `#i-*`, siempre dentro de un contenedor cuadrado con borde (`.ibox`).",
+      "Toda preferencia de accesibilidad vive como atributo `data-*` en `<html>` y el CSS responde a ella sin JS adicional."
+    ],
+    "rules": [
+      {
+        "name": "La regla del pigmento con oficio",
+        "body": "Cada pigmento tiene un rol y no se intercambia: amarillo para la acción, rosa para voz, menta para señas y ayuda humana, celeste para visión y ajustes. Una nueva superficie elige su pigmento por el módulo al que pertenece, no por gusto.",
+        "section": "colors"
+      },
+      {
+        "name": "La regla de la tinta encendida",
+        "body": "El estado activo, presionado o actual de un control se muestra siempre como relleno `--ink` con texto `--paper`. Solo dos excepciones existen en el build y ambas son selectores nativos: la opción de tarjeta marcada (celeste) y el interruptor encendido (menta).",
+        "section": "colors"
+      },
+      {
+        "name": "La regla del colapso",
+        "body": "En alto contraste los cuatro pigmentos valen `#000`. Toda diferencia que una superficie nueva exprese solo con pigmento desaparece en esos esquemas; debe sobrevivir con borde, relleno invertido o texto.",
+        "section": "colors"
+      },
+      {
+        "name": "La regla de los dos pesos",
+        "body": "800 manda, 500 lee, 700 solo en `h4`, `.radio` y subtítulos de video. No se introducen 400 ni 600 en el texto de interfaz; el ancho variable de la fuente existe para la escala del usuario, no para matices.",
+        "section": "typography"
+      },
+      {
+        "name": "La regla de las mayúsculas de estado",
+        "body": "Las mayúsculas espaciadas solo aparecen en etiquetas de estado y metadatos (tags, contadores, duración). Nunca en titulares, botones ni navegación.",
+        "section": "typography"
+      },
+      {
+        "name": "La regla del rem",
+        "body": "Todo tamaño de texto, control y espaciado se escribe en `rem` o `em` para que `html[data-font-scale]` (87.5 %, 100 %, 118 %, 140 %) escale la interfaz entera. Solo los bordes (`--line`), las sombras y el anillo de foco quedan en px.",
+        "section": "typography"
+      },
+      {
+        "name": "La regla del min-width 0",
+        "body": "Todo hijo directo de una rejilla o flex de página (`.grid`, `.settings`, `.services`, `.hero`, `.contact-grid`, `.featured`, `.ethics`, `.about-hero`, `.channels`, `.player`, `.help-band`, `.console__keys`, `.stack`) recibe `min-width: 0` para que ninguna pieza fuerce desbordamiento horizontal en móvil. Una rejilla nueva se añade a esa lista.",
+        "section": "layout"
+      },
+      {
+        "name": "La regla de la sombra de tinta",
+        "body": "Toda sombra es `N N 0 var(--ink)`: sin blur, sin alfa, sin segundo color. Con eso el alto contraste la convierte en blanca o amarilla sin reglas adicionales.",
+        "section": "elevation"
+      },
+      {
+        "name": "La regla del recorrido",
+        "body": "Un control que se eleva en hover debe hundirse en `:active` con la misma distancia (5px) y sin transición. Un control sin sombra no se eleva; como mucho cambia de relleno.",
+        "section": "elevation"
+      },
+      {
+        "name": "La regla de la pieza dentro de la pieza",
+        "body": "La pieza contenedora lleva la sombra; los controles dentro de ella también, pero las subpiezas de solo lectura (filas de ajuste, ítems de lista, detalles) van planas con borde.",
+        "section": "elevation"
+      },
+      {
+        "name": "La regla de la marca",
+        "body": "La marca Mosaic es el SVG inline `.brand__mark`: cuatro teselas 2×2 de los cuatro pigmentos con borde de tinta y `drop-shadow(3px 3px 0)`, con nombre en Lexend 900 y tracking -0.03em. No existe versión raster; `assets/logo.png` fue eliminado.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** construir toda superficie nueva con piezas: borde `var(--line)` sólido en `--ink`, radio 12px (contenedor) u 8px (control), sombra `5px 5px 0 var(--ink)` en reposo.",
+      "**Do** dar a todo control elevado el recorrido completo: hover `translate(-2px, -2px)` + `7px 7px 0`, `:active` `translate(5px, 5px)` + sombra 0 + `transition-duration: 0ms`.",
+      "**Do** marcar el estado activo con relleno `--ink` y texto `--paper` mediante `aria-pressed`, `aria-current` o `aria-checked`, y comprobar que sigue distinguible con los pigmentos en negro (alto contraste).",
+      "**Do** escribir sombras, bordes y rellenos de estado con `var(--ink)` / `var(--paper)` para que los esquemas de contraste los hereden sin reglas nuevas.",
+      "**Do** elegir el pigmento por el módulo (amarillo acción, rosa voz, menta señas/ayuda humana, celeste visión/ajustes) y presentar los iconos dentro de un `.ibox` con borde.",
+      "**Do** medir todo en `rem`/`em`, mantener objetivos táctiles de al menos 3rem y añadir cada rejilla nueva a la lista de `min-width: 0`.",
+      "**Do** usar el sprite `#i-*` inline y la Lexend autohospedada; ningún recurso remoto."
+    ],
+    "donts": [
+      "**Don't** usar sombras con blur, sombras con alfa, degradados de superficie, transparencias ni tarjetas blancas flotantes: el mundo rechaza explícitamente la \"app Material\".",
+      "**Don't** usar un segundo tipo, pesos 400 o 600 en interfaz, ni mayúsculas espaciadas fuera de etiquetas de estado.",
+      "**Don't** introducir grises intermedios: el texto secundario es `--ink-2` y nada más.",
+      "**Don't** expresar un estado solo con pigmento; en alto contraste los cuatro colapsan a negro.",
+      "**Don't** elevar controles sin sombra (`.btn--flat`, teclas de `.seg`): cambian de relleno, no de posición.",
+      "**Don't** componer una página como hero más rejilla de tarjetas iguales; el bento de servicios usa anchos distintos a propósito.",
+      "**Don't** reintroducir un logotipo raster, un modo oscuro decorativo ni fuentes o iconos por CDN."
+    ]
+  }
+}

@@ -25,6 +25,16 @@ Personas con discapacidad **visual**, **auditiva**, **cognitiva** y **motriz**, 
 | `senas.html` | Videos en Lengua de Señas Salvadoreña (LESSA) |
 | `ajustes.html` | Alto contraste, filtros de daltonismo, tamaño de letra, navegación simplificada |
 
+## Diseño
+
+Estilo neo-brutalista: bordes negros gruesos, sombras duras sin desenfoque, cuatro pigmentos planos (amarillo, rosa, menta, celeste) sobre crema y tipografía Lexend en negrita. Cada control es una "pieza" que se hunde al pulsarla. El alto contraste (blanco o amarillo sobre negro) está siempre disponible desde la cabecera y en Ajustes.
+
 ## Cómo verlo
 
-Abrir `index.html` en el navegador (requiere conexión a internet para Tailwind, fuentes e imágenes).
+Abrir `index.html` en el navegador. **No requiere internet**: la fuente (`assets/fonts/`), los iconos (SVG en línea) y las ilustraciones están incluidos en el proyecto.
+
+## Estructura
+
+- `assets/site.css` — hoja de estilos única (tokens, componentes, alto contraste, filtros de daltonismo).
+- `assets/site.js` — preferencias de accesibilidad persistentes (`localStorage`) y modo guiado paso a paso.
+- `assets/fonts/Lexend-latin.woff2` — fuente autohospedada (licencia OFL).

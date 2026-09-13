@@ -2,288 +2,224 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-<title>Mosaic — Lector de Pantalla</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<link href="assets/site.css" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="assets/tailwind-config.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Mosaic — Lector de pantalla</title>
+<meta name="description" content="Mosaic, Portal de Accesibilidad Digital de El Salvador: lector de voz, videos en LESSA, alto contraste y navegación sencilla."/>
+<link rel="stylesheet" href="assets/site.css"/>
+<script src="assets/site.js"></script>
 </head>
-<body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
+<body>
 <svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
 <defs>
 <filter id="f-protanopia"><feColorMatrix type="matrix" values="0.567,0.433,0,0,0 0.558,0.442,0,0,0 0,0.242,0.758,0,0 0,0,0,1,0"/></filter>
 <filter id="f-deuteranopia"><feColorMatrix type="matrix" values="0.625,0.375,0,0,0 0.7,0.3,0,0,0 0,0.3,0.7,0,0 0,0,0,1,0"/></filter>
 <filter id="f-tritanopia"><feColorMatrix type="matrix" values="0.95,0.05,0,0,0 0,0.433,0.567,0,0 0,0.475,0.525,0,0 0,0,0,1,0"/></filter>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></symbol>
+<symbol id="i-voice" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 20c0-3.3 3.1-5 7-5s7 1.7 7 5"/><path d="M17 5c1.6 1.6 1.6 4.4 0 6"/><path d="M20 2.5c3 3 3 8 0 11"/></symbol>
+<symbol id="i-sign" viewBox="0 0 24 24"><path d="M7 12V6.5a1.5 1.5 0 013 0V11"/><path d="M10 11V4a1.5 1.5 0 013 0v7"/><path d="M13 11V5.5a1.5 1.5 0 013 0V12"/><path d="M16 12V8.5a1.5 1.5 0 013 0V15a7 7 0 01-7 7h-1a7 7 0 01-6-3.3L3.2 14.3A1.6 1.6 0 015.8 12.6L7 14"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 6h8"/><path d="M18 6h2"/><path d="M4 12h2"/><path d="M12 12h8"/><path d="M4 18h10"/><path d="M20 18h0"/><circle cx="15" cy="6" r="2.5"/><circle cx="9" cy="12" r="2.5"/><circle cx="17" cy="18" r="2.5"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 7.5h.01"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+<symbol id="i-contrast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 010 18z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-text" viewBox="0 0 24 24"><path d="M3 18L8 6l5 12"/><path d="M5 14h6"/><path d="M15 18v-6a2.5 2.5 0 015 0v6"/><path d="M15 15h5"/></symbol>
+<symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 10v4h3l4 4V6L7 10z"/><path d="M15 9a4 4 0 010 6"/><path d="M18 6a8 8 0 010 12"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></symbol>
+<symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></symbol>
+<symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-ear" viewBox="0 0 24 24"><path d="M6 10a6 6 0 0112 0c0 3-2 4-3 6s-1 5-4 5a3 3 0 01-3-3"/><path d="M9.5 10a2.5 2.5 0 015 0c0 1.5-1.5 2-1.5 3.5"/></symbol>
+<symbol id="i-brain" viewBox="0 0 24 24"><path d="M11 4a3 3 0 00-5 2.5 3 3 0 00-2 5 3 3 0 002 5 3 3 0 005 2.5V4z"/><path d="M13 4a3 3 0 015 2.5 3 3 0 012 5 3 3 0 01-2 5 3 3 0 01-5 2.5V4z"/></symbol>
+<symbol id="i-touch" viewBox="0 0 24 24"><path d="M9 12V5a2 2 0 014 0v6"/><path d="M13 11a2 2 0 014 0v3"/><path d="M17 14a2 2 0 013 1v2a6 6 0 01-6 6h-2a6 6 0 01-5-2.7L4 15.5a1.6 1.6 0 012.5-2L9 16"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z" fill="currentColor"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14" stroke-width="4"/><path d="M16 5v14" stroke-width="4"/></symbol>
+<symbol id="i-rewind" viewBox="0 0 24 24"><path d="M11 18a6 6 0 100-12H6"/><path d="M8.5 3.5L6 6l2.5 2.5"/></symbol>
+<symbol id="i-forward" viewBox="0 0 24 24"><path d="M13 18a6 6 0 110-12h5"/><path d="M15.5 3.5L18 6l-2.5 2.5"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></symbol>
+<symbol id="i-repeat" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0114-5.3L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 01-14 5.3L4 16"/><path d="M4 20v-4h4"/></symbol>
+<symbol id="i-paste" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 11h6"/><path d="M9 15h4"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h5v17H6a2 2 0 00-2 2z"/><path d="M20 5a2 2 0 00-2-2h-5v17h5a2 2 0 012 2z"/></symbol>
+<symbol id="i-pinch" viewBox="0 0 24 24"><path d="M4 4l6 6"/><path d="M4 10V4h6"/><path d="M20 20l-6-6"/><path d="M20 14v6h-6"/></symbol>
+<symbol id="i-cc" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 10.5a2 2 0 100 3"/><path d="M16 10.5a2 2 0 100 3"/></symbol>
+<symbol id="i-cc-off" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 4l16 16"/></symbol>
+<symbol id="i-speed" viewBox="0 0 24 24"><path d="M4 16a8 8 0 0116 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.5"/></symbol>
+<symbol id="i-fullscreen" viewBox="0 0 24 24"><path d="M4 9V4h5"/><path d="M20 9V4h-5"/><path d="M4 15v5h5"/><path d="M20 15v5h-5"/></symbol>
+<symbol id="i-subtitles" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 14h6"/><path d="M15 14h2"/><path d="M7 10h2"/><path d="M11 10h6"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3L10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+<symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 8.5V13a3 3 0 003 3h6a3 3 0 013 3"/></symbol>
+<symbol id="i-motion-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 4l16 16"/></symbol>
+<symbol id="i-spacing" viewBox="0 0 24 24"><path d="M4 6h9"/><path d="M4 12h9"/><path d="M4 18h9"/><path d="M19 5v14"/><path d="M16.5 7.5L19 5l2.5 2.5"/><path d="M16.5 16.5L19 19l2.5-2.5"/></symbol>
+<symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 000 18c1.5 0 2-1 2-2s-.5-2 1-2h2a4 4 0 004-4 9 9 0 00-9-10z"/><circle cx="7.5" cy="10" r="1"/><circle cx="10.5" cy="6.5" r="1"/><circle cx="15" cy="6.5" r="1"/></symbol>
+<symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M19 19v1a2 2 0 01-2 2h-3"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 015 0c0 1.5-2.5 2-2.5 3.5"/><path d="M12 17h.01"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-9.5A3.5 3.5 0 0112 8a3.5 3.5 0 017 2.5c0 5-7 9.5-7 9.5z"/></symbol>
+<symbol id="i-balance" viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-3 7a3 3 0 006 0z"/><path d="M19 7l-3 7a3 3 0 006 0z"/><path d="M8 21h8"/></symbol>
+<symbol id="i-groups" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5"/><path d="M14 15c3 0 6 2 6 5"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v4"/><path d="M12 18h.01"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 4h12l-2 4 2 4H5"/></symbol>
+<symbol id="i-device" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-gesture" viewBox="0 0 24 24"><path d="M8 4v9"/><path d="M14 6v7"/><path d="M6 13c0 4 3 7 6 7s6-3 6-7"/></symbol>
+<symbol id="i-wave" viewBox="0 0 24 24"><path d="M4 10v4"/><path d="M8 6v12"/><path d="M12 3v18"/><path d="M16 7v10"/><path d="M20 10v4"/></symbol>
+<symbol id="i-apps" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-figure" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.2"/><path d="M6 9.5c4-1 8-1 12 0"/><path d="M12 9.5V15"/><path d="M12 15l-4 6"/><path d="M12 15l4 6"/></symbol>
 </defs>
 </svg>
-<a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-space-md focus:py-space-sm focus:bg-inverse-surface focus:text-inverse-on-surface focus:rounded-lg focus:outline-none" href="#main-content">Saltar al contenido principal</a>
+<a class="skip" href="#main-content">Saltar al contenido principal</a>
 <div aria-live="polite" class="sr-only" id="a11y-announcer" role="status"></div>
-<header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe">
-<div class="h-20 px-margin flex items-center justify-between gap-space-sm">
-<div class="flex items-center gap-space-sm min-w-0">
-<img alt="Logo de Mosaic" class="h-8 w-auto object-contain shrink-0" src="assets/logo.png"/>
-<div class="flex flex-col min-w-0">
-<span class="font-label-sm text-label-sm text-primary tracking-wide uppercase">Mosaic</span>
-<h1 class="font-headline-sm text-headline-sm text-on-surface truncate leading-tight">Lector de Voz</h1>
-</div>
-</div>
-<div class="flex items-center gap-space-xs shrink-0">
-<button aria-label="Cambiar a modo oscuro" aria-pressed="false" class="theme-toggle w-11 h-11 flex items-center justify-center rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" data-action="toggle-theme" type="button"><span aria-hidden="true" class="material-symbols-outlined theme-icon theme-icon-sun text-[22px]">light_mode</span><span aria-hidden="true" class="material-symbols-outlined theme-icon theme-icon-moon text-[22px]">dark_mode</span></button>
-<div aria-label="Perfil de usuario" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs shrink-0"><span aria-hidden="true" class="material-symbols-outlined text-on-primary text-[18px]">person</span></div>
-</div>
+<header class="topbar">
+<div class="shell topbar__in">
+<a class="brand" href="index.html" aria-label="Mosaic, volver al inicio">
+<svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><g stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"><rect x="3" y="3" width="19" height="19" rx="4" fill="var(--yellow)"/><rect x="26" y="3" width="19" height="19" rx="4" fill="var(--pink)"/><rect x="3" y="26" width="19" height="19" rx="4" fill="var(--mint)"/><rect x="26" y="26" width="19" height="19" rx="4" fill="var(--sky)"/></g></svg>
+<span class="brand__text"><span class="brand__name">Mosaic</span><span class="brand__page">Lector de voz</span></span>
+</a>
+<nav class="topnav" aria-label="Secciones del portal">
+<a href="index.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-home"/></svg><span>Inicio</span></a>
+<a href="lector.html" aria-current="page"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-voice"/></svg><span>Lector</span></a>
+<a href="senas.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-sign"/></svg><span>Señas</span></a>
+<a href="ajustes.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-settings"/></svg><span>Ajustes</span></a>
+<a href="acerca.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-info"/></svg><span>Acerca</span></a>
+<a href="contacto.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-mail"/></svg><span>Contacto</span></a>
+</nav>
+<button class="contrast-switch" type="button" data-action="toggle-contrast" aria-pressed="false" aria-label="Alto contraste">
+<svg class="ic" aria-hidden="true"><use href="#i-contrast"/></svg><span class="contrast-switch__label">Alto contraste</span><span class="tag contrast-switch__state" aria-hidden="true">No</span>
+</button>
 </div>
 </header>
-<main class="flex flex-col relative w-full pt-20 pb-24 bg-surface min-h-screen" id="main-content">
-<div class="flex flex-col w-full px-margin pb-space-xl gap-space-lg">
-<div class="flex flex-col gap-space-xs pt-space-sm">
-<div class="inline-flex items-center gap-space-xs self-start px-space-md py-1 rounded-full bg-secondary-container text-on-secondary-container shadow-sm">
-<span aria-hidden="true" class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
-<span class="font-label-sm text-label-sm uppercase tracking-wider">Motor de síntesis activo • Español neutro</span>
+<main class="shell stack" id="main-content">
+<div class="guide-bar piece piece--yellow piece--tight" id="guide-bar" role="region" aria-label="Modo guiado paso a paso">
+<div class="guide-bar__in">
+<div class="guide-bar__step"><span data-guide-title>Sección</span><span class="tag" data-guide-count>Paso 1 de 1</span></div>
+<div class="guide-bar__nav">
+<button class="btn btn--flat" type="button" data-guide-prev><svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrow-left"/></svg><span>Anterior</span></button>
+<button class="btn btn--ink" type="button" data-guide-next><span>Siguiente</span><svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+<button class="btn btn--flat" type="button" data-guide-exit><svg class="ic ic--sm" aria-hidden="true"><use href="#i-close"/></svg><span>Salir</span></button>
 </div>
-<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">
-      Lector de Pantalla y Asistente de Voz
-    </h2>
-<p class="font-body-md text-body-md text-on-surface-variant">
-      Convierte cualquier texto en audio nítido con navegación por comandos o toques grandes.
-    </p>
 </div>
-<section aria-label="Reproductor de voz asistida" class="flex flex-col bg-surface-container rounded-xl p-space-md shadow-md gap-space-md">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
-<span aria-hidden="true" class="material-symbols-outlined text-[24px]">graphic_eq</span>
 </div>
+<section data-step aria-labelledby="reader-heading">
+<h1 id="reader-heading" style="font-size:clamp(2.25rem,5vw,3.75rem)">Lector de pantalla y asistente de voz</h1>
+<p class="lead measure" style="margin-top:.75rem">Convierte cualquier texto en audio nítido con navegación por comandos o toques grandes.</p>
+<div class="cluster" style="margin-top:1rem">
+<span class="tag tag--pink"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-wave"/></svg>Motor de síntesis activo</span>
+<span class="tag">Español neutro</span>
+</div>
+</section>
+
+<section class="player" data-step aria-labelledby="player-heading">
+<h2 id="player-heading" class="sr-only">Reproductor de voz asistida</h2>
+<div class="piece piece--lg piece--pink" style="display:flex;flex-direction:column;gap:1.25rem">
+<div class="row row--between">
+<div class="row" style="gap:.9rem">
+<span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-wave"/></svg></span>
 <div>
-<p class="font-label-lg text-label-lg text-on-surface">Voz Camila (Natural HD)</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant" id="player-time-status">Progreso: 00:42 / 02:15</p>
+<p><strong>Voz Camila</strong> · Natural HD</p>
+<p class="muted" id="player-time-status">Progreso: 00:42 / 02:15</p>
 </div>
 </div>
-<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm">
-        WCAG AAA
-      </span>
+<span class="tag tag--demo">Demostración simulada</span>
 </div>
-<div aria-hidden="true" class="flex items-end justify-between h-10 px-space-sm bg-surface-container-high rounded-lg gap-1 overflow-hidden" id="soundwave-container">
-<div class="w-full bg-primary/40 rounded-full transition-all duration-300 h-3"></div>
-<div class="w-full bg-primary rounded-full transition-all duration-300 h-6"></div>
-<div class="w-full bg-primary/70 rounded-full transition-all duration-300 h-8"></div>
-<div class="w-full bg-primary rounded-full transition-all duration-300 h-4"></div>
-<div class="w-full bg-primary/50 rounded-full transition-all duration-300 h-7"></div>
-<div class="w-full bg-primary rounded-full transition-all duration-300 h-9"></div>
-<div class="w-full bg-primary/80 rounded-full transition-all duration-300 h-5"></div>
-<div class="w-full bg-primary rounded-full transition-all duration-300 h-8"></div>
-<div class="w-full bg-primary/60 rounded-full transition-all duration-300 h-3"></div>
-<div class="w-full bg-primary rounded-full transition-all duration-300 h-7"></div>
+<div class="wave" id="soundwave-container" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="transport">
+<button class="btn btn--sq" id="btn-rewind" type="button" aria-label="Retroceder 15 segundos"><svg class="ic" aria-hidden="true"><use href="#i-rewind"/></svg></button>
+<button class="btn btn--sq btn--lg btn--yellow" id="btn-play-pause" type="button" aria-label="Reproducir lectura en voz alta" aria-pressed="false"><svg class="ic" aria-hidden="true" style="width:2.25rem;height:2.25rem"><use id="play-pause-icon" href="#i-play"/></svg></button>
+<button class="btn btn--sq" id="btn-forward" type="button" aria-label="Avanzar 15 segundos"><svg class="ic" aria-hidden="true"><use href="#i-forward"/></svg></button>
 </div>
-<div class="flex items-center justify-center gap-space-md py-space-xs">
-<button aria-label="Retroceder 15 segundos" class="flex flex-col items-center justify-center gap-0.5 w-14 h-14 rounded-full bg-surface-container-lowest text-on-surface shadow-sm active:scale-95 transition-transform" id="btn-rewind" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[22px]">replay</span>
-<span class="font-label-sm text-[10px] leading-none text-on-surface-variant font-bold">-15s</span>
-</button>
-<button aria-label="Reproducir lectura en voz alta" aria-pressed="false" class="flex items-center justify-center w-20 h-20 rounded-full bg-primary-container text-on-primary shadow-lg hover:bg-primary active:scale-90 transition-all focus:outline-none" id="btn-play-pause" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[44px]" id="play-pause-icon" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-</button>
-<button aria-label="Avanzar 15 segundos" class="flex flex-col items-center justify-center gap-0.5 w-14 h-14 rounded-full bg-surface-container-lowest text-on-surface shadow-sm active:scale-95 transition-transform" id="btn-forward" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[22px]">forward_media</span>
-<span class="font-label-sm text-[10px] leading-none text-on-surface-variant font-bold">+15s</span>
-</button>
-</div>
-<div class="flex flex-col gap-space-xs">
-<div class="flex items-center justify-between">
-<span class="font-label-md text-label-md text-on-surface">Velocidad de habla:</span>
-<span class="font-label-sm text-label-sm text-primary font-bold" id="current-speed-label">1.0x (Normal)</span>
-</div>
-<div aria-label="Seleccionar velocidad de reproducción" class="grid grid-cols-4 gap-space-xs" role="radiogroup">
-<button aria-checked="false" class="speed-btn py-space-sm rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md transition-all active:scale-95 shadow-sm" data-speed="0.75" role="radio" type="button">
-          0.75x
-        </button>
-<button aria-checked="true" class="speed-btn py-space-sm rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-md transition-all active:scale-95" data-speed="1.0" role="radio" type="button">
-          1.0x
-        </button>
-<button aria-checked="false" class="speed-btn py-space-sm rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md transition-all active:scale-95 shadow-sm" data-speed="1.25" role="radio" type="button">
-          1.25x
-        </button>
-<button aria-checked="false" class="speed-btn py-space-sm rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md transition-all active:scale-95 shadow-sm" data-speed="1.5" role="radio" type="button">
-          1.5x
-        </button>
+<div class="row row--between">
+<span><strong>Velocidad de habla:</strong> <span id="current-speed-label">1.0x (Normal)</span></span>
+<div class="seg" role="radiogroup" aria-label="Seleccionar velocidad de reproducción">
+<button class="speed-btn" type="button" role="radio" aria-checked="false" data-speed="0.75">0.75x</button>
+<button class="speed-btn" type="button" role="radio" aria-checked="true" data-speed="1.0">1.0x</button>
+<button class="speed-btn" type="button" role="radio" aria-checked="false" data-speed="1.25">1.25x</button>
+<button class="speed-btn" type="button" role="radio" aria-checked="false" data-speed="1.5">1.5x</button>
 </div>
 </div>
-</section>
-<section aria-label="Texto de lectura en tiempo real" class="flex flex-col bg-surface-container-lowest rounded-xl p-space-md shadow-sm gap-space-md">
-<div class="flex items-center justify-between gap-space-sm">
-<div class="flex items-center gap-space-xs">
-<span aria-hidden="true" class="material-symbols-outlined text-primary text-[22px]">article</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface">Lectura en curso</h3>
 </div>
-<button aria-label="Abrir formulario para pegar texto o enlace" class="inline-flex items-center gap-1.5 px-space-md py-space-xs rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm active:scale-95 transition-transform" id="btn-paste-modal" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[18px]">content_paste</span>
-<span>Pegar texto o link</span>
-</button>
+
+<div class="piece piece--lg" style="display:flex;flex-direction:column;gap:1rem">
+<div class="row row--between">
+<h3>Lectura en curso</h3>
+<button class="btn btn--flat" id="btn-paste-modal" type="button" aria-controls="paste-section"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-paste"/></svg><span>Pegar texto o link</span></button>
 </div>
-<div aria-live="polite" class="p-space-md bg-surface-container-low rounded-lg leading-relaxed text-on-surface select-none text-body-lg font-body-lg break-words [overflow-wrap:anywhere] max-w-full overflow-hidden" id="synchronized-transcript">
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">La</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">accesibilidad</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">digital</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">es</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">un</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm font-bold bg-primary text-on-primary">derecho</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">fundamental</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">que</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">garantiza</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">la</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">participación</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">plena</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">de</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">todas</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">las</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">personas</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">en</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">la</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">sociedad</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">de</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">la</span>
-<span class="word-node transition-colors duration-200 px-1 py-0.5 rounded-sm">información.</span>
-</div>
+<div class="transcript" id="synchronized-transcript" aria-live="polite"><span class="word-node">La</span> <span class="word-node">accesibilidad</span> <span class="word-node">digital</span> <span class="word-node">es</span> <span class="word-node">un</span> <span class="word-node">derecho</span> <span class="word-node">fundamental</span> <span class="word-node">que</span> <span class="word-node">garantiza</span> <span class="word-node">la</span> <span class="word-node">participación</span> <span class="word-node">plena</span> <span class="word-node">de</span> <span class="word-node">todas</span> <span class="word-node">las</span> <span class="word-node">personas</span> <span class="word-node">en</span> <span class="word-node">la</span> <span class="word-node">sociedad</span> <span class="word-node">de</span> <span class="word-node">la</span> <span class="word-node">información.</span></div>
 <div aria-live="assertive" class="sr-only" id="status-announcer"></div>
+<div class="field" id="paste-section">
+<label for="custom-text-input">Leer tu propio contenido</label>
+<textarea class="input" id="custom-text-input" rows="3" placeholder="Escribe aquí o pega la URL de un artículo web…"></textarea>
+<div class="cluster">
+<button class="btn btn--yellow" id="btn-load-text" type="button"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-volume"/></svg><span>Cargar y leer</span></button>
+<button class="btn btn--flat" id="btn-clear-text" type="button">Limpiar</button>
+</div>
+</div>
+</div>
 </section>
-<div class="flex flex-col bg-surface-container-low rounded-xl p-space-md gap-space-sm transition-all shadow-sm" id="paste-section">
-<div class="flex items-center justify-between">
-<label class="font-label-md text-label-md text-on-surface font-bold" for="custom-text-input">
-        Leer tu propio contenido (Requerido)
-      </label>
-<span class="font-label-sm text-label-sm text-on-surface-variant">Pegar o escribir</span>
+
+<section data-step aria-labelledby="shortcuts-heading">
+<div class="section-head">
+<h2 id="shortcuts-heading">Atajos rápidos</h2>
+<p>Funcionan aunque no veas la pantalla.</p>
 </div>
-<textarea class="w-full p-space-sm rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="custom-text-input" placeholder="Ingresa texto aquí o pega la URL de un artículo web..." rows="3"></textarea>
-<div class="flex gap-space-sm justify-end">
-<button class="px-space-md py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md active:scale-95 transition-transform" id="btn-clear-text" type="button">
-        Limpiar
-      </button>
-<button class="px-space-md py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-sm active:scale-95 transition-transform flex items-center gap-1" id="btn-load-text" type="button">
-<span aria-hidden="true" class="material-symbols-outlined text-[18px]">speech_to_text</span>
-<span>Cargar y Leer</span>
+<div class="grid grid--3">
+<button class="shortcut piece" id="btn-two-finger-pause" type="button">
+<span class="ibox ibox--pink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-gesture"/></svg></span>
+<span class="shortcut__body"><span class="shortcut__title">Pausar con dos toques</span><span class="shortcut__hint">Toca cualquier zona con dos dedos para detener o reanudar al instante.</span></span>
+<svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg>
 </button>
-</div>
-</div>
-<section aria-label="Atajos de accesibilidad táctil" class="flex flex-col gap-space-sm">
-<div class="flex items-center gap-space-xs">
-<span aria-hidden="true" class="material-symbols-outlined text-secondary text-[22px]">touch_app</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface">Atajos rápidos</h3>
-</div>
-<div class="grid grid-cols-1 gap-space-sm">
-<button class="w-full flex items-center justify-between p-space-md rounded-xl bg-surface-container-lowest text-left shadow-sm hover:bg-surface-container active:scale-[0.99] transition-all" id="btn-two-finger-pause" type="button">
-<div class="flex items-center gap-space-md min-w-0">
-<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container shrink-0">
-<span aria-hidden="true" class="material-symbols-outlined text-[26px]">gesture</span>
-</div>
-<div class="min-w-0">
-<h4 class="font-label-lg text-label-lg text-on-surface">Pausar con dos toques</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Toca cualquier zona con dos dedos para detener o reanudar al instante.</p>
-</div>
-</div>
-<span aria-hidden="true" class="material-symbols-outlined text-outline shrink-0 ml-2">chevron_right</span>
+<button class="shortcut piece" id="btn-repeat-paragraph" type="button">
+<span class="ibox ibox--yellow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg></span>
+<span class="shortcut__body"><span class="shortcut__title">Repetir último párrafo</span><span class="shortcut__hint">Vuelve al inicio de la idea actual sin perder el ritmo.</span></span>
+<svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg>
 </button>
-<button class="w-full flex items-center justify-between p-space-md rounded-xl bg-surface-container-lowest text-left shadow-sm hover:bg-surface-container active:scale-[0.99] transition-all" id="btn-repeat-paragraph" type="button">
-<div class="flex items-center gap-space-md min-w-0">
-<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed shrink-0">
-<span aria-hidden="true" class="material-symbols-outlined text-[26px]">replay</span>
-</div>
-<div class="min-w-0">
-<h4 class="font-label-lg text-label-lg text-on-surface">Repetir último párrafo</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Vuelve al inicio de la idea actual sin perder el ritmo.</p>
-</div>
-</div>
-<span aria-hidden="true" class="material-symbols-outlined text-outline shrink-0 ml-2">chevron_right</span>
-</button>
-<button class="w-full flex items-center justify-between p-space-md rounded-xl bg-surface-container-lowest text-left shadow-sm hover:bg-surface-container active:scale-[0.99] transition-all" id="btn-download-audio" type="button">
-<div class="flex items-center gap-space-md min-w-0">
-<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed shrink-0">
-<span aria-hidden="true" class="material-symbols-outlined text-[26px]">download</span>
-</div>
-<div class="min-w-0">
-<h4 class="font-label-lg text-label-lg text-on-surface">Descargar audio MP3</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Escucha sin conexión en cualquier reproductor o dispositivo táctil.</p>
-</div>
-</div>
-<span aria-hidden="true" class="material-symbols-outlined text-outline shrink-0 ml-2">arrow_downward</span>
+<button class="shortcut piece" id="btn-download-audio" type="button">
+<span class="ibox ibox--sky" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg></span>
+<span class="shortcut__body"><span class="shortcut__title" id="download-label">Descargar audio MP3</span><span class="shortcut__hint">Escucha sin conexión en cualquier reproductor o dispositivo táctil.</span></span>
+<svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg>
 </button>
 </div>
 </section>
-<section aria-label="Guía para TalkBack y VoiceOver" class="flex flex-col gap-space-sm">
-<div class="flex items-center gap-space-xs">
-<span aria-hidden="true" class="material-symbols-outlined text-primary text-[22px]">menu_book</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface">Guía de lectores del sistema</h3>
+
+<section id="guia-lectores" data-step aria-labelledby="guide-heading">
+<div class="section-head">
+<h2 id="guide-heading">Guía de lectores del sistema</h2>
+<p>Gestos clave de TalkBack y VoiceOver.</p>
 </div>
-<div class="grid grid-cols-1 gap-space-md">
-<div class="flex flex-col bg-surface-container rounded-xl p-space-md gap-space-sm shadow-sm">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-space-xs">
-<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
-<span aria-hidden="true" class="material-symbols-outlined text-[18px]">android</span>
-</div>
-<h4 class="font-label-lg text-label-lg text-on-surface">TalkBack (Android)</h4>
-</div>
-<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface">Gestos clave</span>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-          Optimizado para lectura lineal y navegación por jerarquías con gestos simples:
-        </p>
-<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface">
-<li class="flex items-start gap-2">
-<span aria-hidden="true" class="material-symbols-outlined text-secondary text-[20px] shrink-0">swipe_right</span>
-<span><strong>Deslizar a la derecha:</strong> Pasa al siguiente botón o párrafo.</span>
-</li>
-<li class="flex items-start gap-2">
-<span aria-hidden="true" class="material-symbols-outlined text-secondary text-[20px] shrink-0">touch_app</span>
-<span><strong>Doble toque rápido:</strong> Activa el control enfocado (como Reproducir).</span>
-</li>
-<li class="flex items-start gap-2">
-<span aria-hidden="true" class="material-symbols-outlined text-secondary text-[20px] shrink-0">swipe_up</span>
-<span><strong>Deslizar arriba y abajo:</strong> Ajusta encabezados y velocidad de lectura.</span>
-</li>
+<div class="grid grid--2">
+<div class="piece piece--lg piece--mint" style="display:flex;flex-direction:column;gap:.9rem">
+<div class="row row--between"><div class="row" style="gap:.75rem"><span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-device"/></svg></span><h3>TalkBack (Android)</h3></div><span class="tag">Gestos clave</span></div>
+<p>Optimizado para lectura lineal y navegación por jerarquías con gestos simples:</p>
+<ul class="guide-list">
+<li><svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg><span><strong>Deslizar a la derecha:</strong> pasa al siguiente botón o párrafo.</span></li>
+<li><svg class="ic" aria-hidden="true"><use href="#i-touch"/></svg><span><strong>Doble toque rápido:</strong> activa el control enfocado (como Reproducir).</span></li>
+<li><svg class="ic" aria-hidden="true"><use href="#i-arrow-up"/></svg><span><strong>Deslizar arriba y abajo:</strong> ajusta encabezados y velocidad de lectura.</span></li>
 </ul>
 </div>
-<div class="flex flex-col bg-surface-container rounded-xl p-space-md gap-space-sm shadow-sm">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-space-xs">
-<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center">
-<span aria-hidden="true" class="material-symbols-outlined text-[18px]">phone_iphone</span>
-</div>
-<h4 class="font-label-lg text-label-lg text-on-surface">VoiceOver (iOS)</h4>
-</div>
-<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface">Rotor interactivo</span>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant">
-          Navega cómodamente usando el rotor táctil y gestos de doble pulsación:
-        </p>
-<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface">
-<li class="flex items-start gap-2">
-<span aria-hidden="true" class="material-symbols-outlined text-primary text-[20px] shrink-0">pinch</span>
-<span><strong>Giro de dos dedos (Rotor):</strong> Cambia entre navegar por títulos, enlaces o palabras.</span>
-</li>
-<li class="flex items-start gap-2">
-<span aria-hidden="true" class="material-symbols-outlined text-primary text-[20px] shrink-0">tap_and_play</span>
-<span><strong>Doble toque con dos dedos (Magic Tap):</strong> Inicia o detiene la reproducción instantáneamente.</span>
-</li>
-<li class="flex items-start gap-2">
-<span aria-hidden="true" class="material-symbols-outlined text-primary text-[20px] shrink-0">swipe_vertical</span>
-<span><strong>Deslizar dos dedos abajo:</strong> Lee toda la pantalla desde el cursor actual.</span>
-</li>
+<div class="piece piece--lg piece--sky" style="display:flex;flex-direction:column;gap:.9rem">
+<div class="row row--between"><div class="row" style="gap:.75rem"><span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-device"/></svg></span><h3>VoiceOver (iOS)</h3></div><span class="tag">Rotor interactivo</span></div>
+<p>Navega cómodamente usando el rotor táctil y gestos de doble pulsación:</p>
+<ul class="guide-list">
+<li><svg class="ic" aria-hidden="true"><use href="#i-pinch"/></svg><span><strong>Giro de dos dedos (Rotor):</strong> cambia entre navegar por títulos, enlaces o palabras.</span></li>
+<li><svg class="ic" aria-hidden="true"><use href="#i-gesture"/></svg><span><strong>Doble toque con dos dedos (Magic Tap):</strong> inicia o detiene la reproducción instantáneamente.</span></li>
+<li><svg class="ic" aria-hidden="true"><use href="#i-arrow-up"/></svg><span><strong>Deslizar dos dedos abajo:</strong> lee toda la pantalla desde el cursor actual.</span></li>
 </ul>
 </div>
 </div>
 </section>
-<div class="flex items-center gap-space-md p-space-md bg-tertiary-fixed rounded-xl text-on-tertiary-fixed shadow-sm">
-<div class="w-12 h-12 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center shrink-0">
-<span aria-hidden="true" class="material-symbols-outlined text-[26px]">volunteer_activism</span>
+
+<section class="piece piece--tight" data-step aria-labelledby="voice-tip-heading" style="display:flex;gap:1rem;align-items:center">
+<span class="ibox ibox--yellow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg></span>
+<div>
+<h2 id="voice-tip-heading" style="font-size:1.1rem">¿Tienes sugerencias de voz?</h2>
+<p class="muted">Puedes cambiar a voces de tono bajo o sintetizadores regionales desde <a href="ajustes.html">Ajustes</a>.</p>
 </div>
-<div class="flex flex-col min-w-0">
-<span class="font-label-md text-label-md font-bold">¿Tienes sugerencias de voz?</span>
-<span class="font-body-sm text-body-sm">Puedes cambiar a voces de tono bajo o sintetizadores regionales desde <a class="underline font-bold" href="ajustes.html">Ajustes</a>.</span>
-</div>
-</div>
-</div>
+</section>
+</main>
 <script>
   (function initVoiceReader() {
     const supportsTTS = 'speechSynthesis' in window;
@@ -300,7 +236,7 @@
     const playIcon = document.getElementById('play-pause-icon');
     const announcer = document.getElementById('status-announcer');
     const transcriptContainer = document.getElementById('synchronized-transcript');
-    const soundwaves = document.querySelectorAll('#soundwave-container div');
+    const soundwaves = document.querySelectorAll('#soundwave-container i');
     const speedButtons = document.querySelectorAll('.speed-btn');
     const speedLabel = document.getElementById('current-speed-label');
     const loadTextBtn = document.getElementById('btn-load-text');
@@ -308,6 +244,7 @@
     const textInput = document.getElementById('custom-text-input');
     const repeatBtn = document.getElementById('btn-repeat-paragraph');
     const downloadBtn = document.getElementById('btn-download-audio');
+    const pasteBtn = document.getElementById('btn-paste-modal');
 
     let words = Array.prototype.map.call(transcriptContainer.querySelectorAll('.word-node'), function (w) {
       return w.textContent.trim();
@@ -358,18 +295,19 @@
       transcriptContainer.innerHTML = '';
       words.forEach(function (w) {
         const span = document.createElement('span');
-        span.className = 'word-node transition-colors duration-200 px-1 py-0.5 rounded-sm';
+        span.className = 'word-node';
         span.textContent = w;
         transcriptContainer.appendChild(span);
+        transcriptContainer.appendChild(document.createTextNode(' '));
       });
     }
 
     function updateHighlighting() {
       const nodes = transcriptContainer.querySelectorAll('.word-node');
       if (!nodes.length) return;
-      nodes.forEach(function (w) { w.classList.remove('bg-primary', 'text-on-primary', 'font-bold'); });
+      nodes.forEach(function (w) { w.classList.remove('is-current'); });
       if (wordIndex >= 0 && wordIndex < nodes.length) {
-        nodes[wordIndex].classList.add('bg-primary', 'text-on-primary', 'font-bold');
+        nodes[wordIndex].classList.add('is-current');
         nodes[wordIndex].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       }
     }
@@ -388,60 +326,45 @@
       stopWave();
       waveInterval = setInterval(function () {
         soundwaves.forEach(function (bar) {
-          bar.style.height = (Math.floor(Math.random() * 28) + 8) + 'px';
+          bar.style.transform = 'scaleY(' + (0.2 + Math.random() * 0.8).toFixed(2) + ')';
         });
       }, 220);
     }
     function stopWave() {
       if (waveInterval) { clearInterval(waveInterval); waveInterval = null; }
-      soundwaves.forEach(function (bar) { bar.style.height = '12px'; });
+      soundwaves.forEach(function (bar, i) { bar.style.transform = 'scaleY(' + [0.3, 0.55, 0.8, 0.45][i % 4] + ')'; });
     }
 
     function setPlayingUI(playing) {
       isPlaying = playing;
       playBtn.setAttribute('aria-pressed', playing ? 'true' : 'false');
-      if (playing) {
-        playIcon.textContent = 'pause';
-        playBtn.classList.remove('bg-primary-container');
-        playBtn.classList.add('bg-secondary');
-        startWave();
-      } else {
-        playIcon.textContent = 'play_arrow';
-        playBtn.classList.remove('bg-secondary');
-        playBtn.classList.add('bg-primary-container');
-        stopWave();
-      }
+      playBtn.setAttribute('aria-label', playing ? 'Pausar lectura' : 'Reproducir lectura en voz alta');
+      playIcon.setAttribute('href', playing ? '#i-pause' : '#i-play');
+      if (playing) { startWave(); } else { stopWave(); }
     }
 
     // Fragmento máximo por utterance. Chrome/Android tienen un bug conocido:
     // si una sola lectura (utterance) dura más de ~15s, o si se usa
     // speechSynthesis.pause()+resume() para mantenerla viva, el motor puede
-    // reiniciar el audio desde el comienzo de ese fragmento — se percibía como
-    // que "pausar con dos toques" hacía retroceder la lectura unos segundos.
-    // Al trocear el texto en fragmentos cortos encadenados por onend evitamos
-    // pause()/resume() nativos por completo, así que ya no hay reinicios.
+    // reiniciar el audio desde el comienzo de ese fragmento. Al trocear el
+    // texto en fragmentos cortos encadenados por onend evitamos pause()/resume().
     var CHUNK_WORDS = 24;
 
     function speakFrom(index, chained) {
       if (!supportsTTS) return;
       window.speechSynthesis.cancel();
-      // Cancelar la síntesis en curso dispara onend/onerror del utterance anterior
-      // de forma asíncrona, después de que ya empezamos el nuevo. Sin esta "marca
-      // de generación" ese callback tardío pisa el estado del utterance nuevo
-      // (por ejemplo, al pulsar "+15s" dos veces seguidas la segunda pulsación
-      // parecía retroceder en vez de avanzar).
+      // Marca de generación: el onend/onerror tardío del utterance cancelado
+      // no debe pisar el estado del nuevo.
       speechGen += 1;
       const myGen = speechGen;
       baseIndex = index;
       const chunkEnd = Math.min(words.length, index + CHUNK_WORDS);
       const text = words.slice(index, chunkEnd).join(' ');
       if (!text) { setPlayingUI(false); wordIndex = 0; updateHighlighting(); return; }
-
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'es-ES';
       if (selectedVoice) { utterance.voice = selectedVoice; }
       utterance.rate = rate;
-
       utterance.onboundary = function (event) {
         if (myGen !== speechGen) return;
         if (event.name && event.name !== 'word') return;
@@ -454,7 +377,6 @@
         if (myGen !== speechGen) return;
         if (isPaused) return;
         if (chunkEnd < words.length) {
-          // Sigue con el siguiente fragmento sin cortes perceptibles ni pause()/resume().
           speakFrom(chunkEnd, true);
           return;
         }
@@ -469,7 +391,6 @@
         setPlayingUI(false);
         announce('Ocurrió un problema con la síntesis de voz.');
       };
-
       window.speechSynthesis.speak(utterance);
       setPlayingUI(true);
       if (!chained) { announce('Lectura iniciada.'); }
@@ -482,11 +403,8 @@
         return;
       }
       if (isPlaying && !isPaused) {
-        // No usamos speechSynthesis.pause(): en varios navegadores/Android,
-        // resume() no continúa con precisión y reinicia el fragmento actual,
-        // lo que se sentía como un retroceso al pausar con dos toques.
-        // En vez de eso cancelamos y guardamos wordIndex (ya actualizado por
-        // onboundary) para retomar exactamente ahí al reanudar.
+        // Cancelamos y guardamos wordIndex para retomar exactamente ahí:
+        // pause()/resume() nativos reinician el fragmento en varios navegadores.
         isPaused = true;
         window.speechSynthesis.cancel();
         setPlayingUI(false);
@@ -505,7 +423,6 @@
 
     const rewindBtn = document.getElementById('btn-rewind');
     const forwardBtn = document.getElementById('btn-forward');
-
     if (rewindBtn) {
       rewindBtn.addEventListener('click', function () {
         wordIndex = Math.max(0, wordIndex - 6);
@@ -514,7 +431,6 @@
         if (isPlaying || isPaused) { isPaused = false; speakFrom(wordIndex); }
       });
     }
-
     if (forwardBtn) {
       forwardBtn.addEventListener('click', function () {
         wordIndex = Math.min(Math.max(words.length - 1, 0), wordIndex + 6);
@@ -526,21 +442,22 @@
 
     speedButtons.forEach(function (btn) {
       btn.addEventListener('click', function () {
-        speedButtons.forEach(function (b) {
-          b.setAttribute('aria-checked', 'false');
-          b.classList.remove('bg-primary', 'text-on-primary', 'shadow-md');
-          b.classList.add('bg-surface-container-lowest', 'text-on-surface');
-        });
+        speedButtons.forEach(function (b) { b.setAttribute('aria-checked', 'false'); });
         btn.setAttribute('aria-checked', 'true');
-        btn.classList.add('bg-primary', 'text-on-primary', 'shadow-md');
-        btn.classList.remove('bg-surface-container-lowest', 'text-on-surface');
         const spd = btn.getAttribute('data-speed');
         rate = parseFloat(spd) || 1.0;
-        speedLabel.textContent = spd + 'x (' + (spd === '1.0' ? 'Normal' : spd < '1.0' ? 'Lento' : 'Rápido') + ')';
+        speedLabel.textContent = spd + 'x (' + (spd === '1.0' ? 'Normal' : parseFloat(spd) < 1 ? 'Lento' : 'Rápido') + ')';
         announce('Velocidad ajustada a ' + spd + ' equis');
         if (isPlaying && !isPaused) { speakFrom(wordIndex); }
       });
     });
+
+    if (pasteBtn && textInput) {
+      pasteBtn.addEventListener('click', function () {
+        textInput.focus();
+        textInput.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      });
+    }
 
     if (loadTextBtn && textInput) {
       loadTextBtn.addEventListener('click', function () {
@@ -572,16 +489,12 @@
     if (repeatBtn) {
       repeatBtn.addEventListener('click', function () {
         let segIdx = findSegmentIndex(wordIndex);
-        // Si justo estamos al inicio de un párrafo (todavía no avanzamos en él),
-        // "repetir el último párrafo" significa volver al anterior, no repetirse
-        // a sí mismo sin haber avanzado nada.
+        // Si estamos justo al inicio de un párrafo, "repetir" vuelve al anterior.
         if (wordIndex === segments[segIdx].start && segIdx > 0) { segIdx -= 1; }
         const target = segments[segIdx].start;
         wordIndex = target;
         updateHighlighting();
         announce('Repitiendo el último párrafo leído.');
-        // Debe funcionar tanto si está reproduciendo como si está en pausa;
-        // antes solo reaccionaba con isPlaying, así que en pausa no sonaba nada.
         if (isPlaying || isPaused) { isPaused = false; speakFrom(target); }
       });
     }
@@ -594,9 +507,9 @@
     if (downloadBtn) {
       downloadBtn.addEventListener('click', function () {
         announce('Generando archivo de audio MP3 accesible para descarga...');
-        const label = downloadBtn.querySelector('h4');
+        const label = document.getElementById('download-label');
         const originalText = label.textContent;
-        label.textContent = 'Descargando audio...';
+        label.textContent = 'Descargando audio…';
         setTimeout(function () {
           label.textContent = originalText;
           announce('Descarga de MP3 finalizada con éxito.');
@@ -609,17 +522,15 @@
     });
   })();
 </script>
-</main>
-<nav aria-label="Navegación principal" class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.06)]">
-<div class="grid grid-cols-6 items-center h-20 px-space-xs">
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="index.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">home</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Inicio</span></a>
-<a aria-current="page" class="flex flex-col items-center justify-center h-full transition-colors gap-0.5 text-primary font-bold" href="lector.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">record_voice_over</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Lector</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="senas.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">sign_language</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Señas</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="ajustes.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">settings_accessibility</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Ajustes</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="acerca.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">info</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Acerca</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="contacto.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">mail</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Contacto</span></a>
+<nav class="tabbar" aria-label="Navegación principal">
+<div class="tabbar__in">
+<a href="index.html"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg><span>Inicio</span></a>
+<a href="lector.html" aria-current="page"><svg class="ic" aria-hidden="true"><use href="#i-voice"/></svg><span>Lector</span></a>
+<a href="senas.html"><svg class="ic" aria-hidden="true"><use href="#i-sign"/></svg><span>Señas</span></a>
+<a href="ajustes.html"><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg><span>Ajustes</span></a>
+<a href="acerca.html"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg><span>Acerca</span></a>
+<a href="contacto.html"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span>Contacto</span></a>
 </div>
 </nav>
-<script src="assets/site.js"></script>
 </body>
 </html>

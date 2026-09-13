@@ -2,260 +2,296 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>Mosaic — Inicio</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<link href="assets/site.css" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="assets/tailwind-config.js"></script>
+<meta name="description" content="Mosaic, Portal de Accesibilidad Digital de El Salvador: lector de voz, videos en LESSA, alto contraste y navegación sencilla."/>
+<link rel="stylesheet" href="assets/site.css"/>
+<script src="assets/site.js"></script>
 </head>
-<body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
+<body>
 <svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
 <defs>
 <filter id="f-protanopia"><feColorMatrix type="matrix" values="0.567,0.433,0,0,0 0.558,0.442,0,0,0 0,0.242,0.758,0,0 0,0,0,1,0"/></filter>
 <filter id="f-deuteranopia"><feColorMatrix type="matrix" values="0.625,0.375,0,0,0 0.7,0.3,0,0,0 0,0.3,0.7,0,0 0,0,0,1,0"/></filter>
 <filter id="f-tritanopia"><feColorMatrix type="matrix" values="0.95,0.05,0,0,0 0,0.433,0.567,0,0 0,0.475,0.525,0,0 0,0,0,1,0"/></filter>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></symbol>
+<symbol id="i-voice" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 20c0-3.3 3.1-5 7-5s7 1.7 7 5"/><path d="M17 5c1.6 1.6 1.6 4.4 0 6"/><path d="M20 2.5c3 3 3 8 0 11"/></symbol>
+<symbol id="i-sign" viewBox="0 0 24 24"><path d="M7 12V6.5a1.5 1.5 0 013 0V11"/><path d="M10 11V4a1.5 1.5 0 013 0v7"/><path d="M13 11V5.5a1.5 1.5 0 013 0V12"/><path d="M16 12V8.5a1.5 1.5 0 013 0V15a7 7 0 01-7 7h-1a7 7 0 01-6-3.3L3.2 14.3A1.6 1.6 0 015.8 12.6L7 14"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 6h8"/><path d="M18 6h2"/><path d="M4 12h2"/><path d="M12 12h8"/><path d="M4 18h10"/><path d="M20 18h0"/><circle cx="15" cy="6" r="2.5"/><circle cx="9" cy="12" r="2.5"/><circle cx="17" cy="18" r="2.5"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 7.5h.01"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+<symbol id="i-contrast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 010 18z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-text" viewBox="0 0 24 24"><path d="M3 18L8 6l5 12"/><path d="M5 14h6"/><path d="M15 18v-6a2.5 2.5 0 015 0v6"/><path d="M15 15h5"/></symbol>
+<symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 10v4h3l4 4V6L7 10z"/><path d="M15 9a4 4 0 010 6"/><path d="M18 6a8 8 0 010 12"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></symbol>
+<symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></symbol>
+<symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></symbol>
+<symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-ear" viewBox="0 0 24 24"><path d="M6 10a6 6 0 0112 0c0 3-2 4-3 6s-1 5-4 5a3 3 0 01-3-3"/><path d="M9.5 10a2.5 2.5 0 015 0c0 1.5-1.5 2-1.5 3.5"/></symbol>
+<symbol id="i-brain" viewBox="0 0 24 24"><path d="M11 4a3 3 0 00-5 2.5 3 3 0 00-2 5 3 3 0 002 5 3 3 0 005 2.5V4z"/><path d="M13 4a3 3 0 015 2.5 3 3 0 012 5 3 3 0 01-2 5 3 3 0 01-5 2.5V4z"/></symbol>
+<symbol id="i-touch" viewBox="0 0 24 24"><path d="M9 12V5a2 2 0 014 0v6"/><path d="M13 11a2 2 0 014 0v3"/><path d="M17 14a2 2 0 013 1v2a6 6 0 01-6 6h-2a6 6 0 01-5-2.7L4 15.5a1.6 1.6 0 012.5-2L9 16"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z" fill="currentColor"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14" stroke-width="4"/><path d="M16 5v14" stroke-width="4"/></symbol>
+<symbol id="i-rewind" viewBox="0 0 24 24"><path d="M11 18a6 6 0 100-12H6"/><path d="M8.5 3.5L6 6l2.5 2.5"/></symbol>
+<symbol id="i-forward" viewBox="0 0 24 24"><path d="M13 18a6 6 0 110-12h5"/><path d="M15.5 3.5L18 6l-2.5 2.5"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></symbol>
+<symbol id="i-repeat" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0114-5.3L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 01-14 5.3L4 16"/><path d="M4 20v-4h4"/></symbol>
+<symbol id="i-paste" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 11h6"/><path d="M9 15h4"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h5v17H6a2 2 0 00-2 2z"/><path d="M20 5a2 2 0 00-2-2h-5v17h5a2 2 0 012 2z"/></symbol>
+<symbol id="i-pinch" viewBox="0 0 24 24"><path d="M4 4l6 6"/><path d="M4 10V4h6"/><path d="M20 20l-6-6"/><path d="M20 14v6h-6"/></symbol>
+<symbol id="i-cc" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 10.5a2 2 0 100 3"/><path d="M16 10.5a2 2 0 100 3"/></symbol>
+<symbol id="i-cc-off" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 4l16 16"/></symbol>
+<symbol id="i-speed" viewBox="0 0 24 24"><path d="M4 16a8 8 0 0116 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.5"/></symbol>
+<symbol id="i-fullscreen" viewBox="0 0 24 24"><path d="M4 9V4h5"/><path d="M20 9V4h-5"/><path d="M4 15v5h5"/><path d="M20 15v5h-5"/></symbol>
+<symbol id="i-subtitles" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 14h6"/><path d="M15 14h2"/><path d="M7 10h2"/><path d="M11 10h6"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3L10 14"/><path d="M21 3l-7 18-4-7-7-4z"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+<symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 8.5V13a3 3 0 003 3h6a3 3 0 013 3"/></symbol>
+<symbol id="i-motion-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 4l16 16"/></symbol>
+<symbol id="i-spacing" viewBox="0 0 24 24"><path d="M4 6h9"/><path d="M4 12h9"/><path d="M4 18h9"/><path d="M19 5v14"/><path d="M16.5 7.5L19 5l2.5 2.5"/><path d="M16.5 16.5L19 19l2.5-2.5"/></symbol>
+<symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 000 18c1.5 0 2-1 2-2s-.5-2 1-2h2a4 4 0 004-4 9 9 0 00-9-10z"/><circle cx="7.5" cy="10" r="1"/><circle cx="10.5" cy="6.5" r="1"/><circle cx="15" cy="6.5" r="1"/></symbol>
+<symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M19 19v1a2 2 0 01-2 2h-3"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 015 0c0 1.5-2.5 2-2.5 3.5"/><path d="M12 17h.01"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-9.5A3.5 3.5 0 0112 8a3.5 3.5 0 017 2.5c0 5-7 9.5-7 9.5z"/></symbol>
+<symbol id="i-balance" viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-3 7a3 3 0 006 0z"/><path d="M19 7l-3 7a3 3 0 006 0z"/><path d="M8 21h8"/></symbol>
+<symbol id="i-groups" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3 3-5 6-5s6 2 6 5"/><path d="M14 15c3 0 6 2 6 5"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v4"/><path d="M12 18h.01"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 4h12l-2 4 2 4H5"/></symbol>
+<symbol id="i-device" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-gesture" viewBox="0 0 24 24"><path d="M8 4v9"/><path d="M14 6v7"/><path d="M6 13c0 4 3 7 6 7s6-3 6-7"/></symbol>
+<symbol id="i-wave" viewBox="0 0 24 24"><path d="M4 10v4"/><path d="M8 6v12"/><path d="M12 3v18"/><path d="M16 7v10"/><path d="M20 10v4"/></symbol>
+<symbol id="i-apps" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-figure" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.2"/><path d="M6 9.5c4-1 8-1 12 0"/><path d="M12 9.5V15"/><path d="M12 15l-4 6"/><path d="M12 15l4 6"/></symbol>
 </defs>
 </svg>
-<a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-space-md focus:py-space-sm focus:bg-inverse-surface focus:text-inverse-on-surface focus:rounded-lg focus:outline-none" href="#main-content">Saltar al contenido principal</a>
+<a class="skip" href="#main-content">Saltar al contenido principal</a>
 <div aria-live="polite" class="sr-only" id="a11y-announcer" role="status"></div>
-<header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe">
-<div class="h-20 px-margin flex items-center justify-between gap-space-sm">
-<div class="flex items-center gap-space-sm min-w-0">
-<img alt="Logo de Mosaic" class="h-8 w-auto object-contain shrink-0" src="assets/logo.png"/>
-<div class="flex flex-col min-w-0">
-<span class="font-label-sm text-label-sm text-primary tracking-wide uppercase">Mosaic</span>
-<h1 class="font-headline-sm text-headline-sm text-on-surface truncate leading-tight">Inicio</h1>
-</div>
-</div>
-<div class="flex items-center gap-space-xs shrink-0">
-<button aria-label="Cambiar a modo oscuro" aria-pressed="false" class="theme-toggle w-11 h-11 flex items-center justify-center rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" data-action="toggle-theme" type="button"><span aria-hidden="true" class="material-symbols-outlined theme-icon theme-icon-sun text-[22px]">light_mode</span><span aria-hidden="true" class="material-symbols-outlined theme-icon theme-icon-moon text-[22px]">dark_mode</span></button>
-<div aria-label="Perfil de usuario" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs shrink-0"><span aria-hidden="true" class="material-symbols-outlined text-on-primary text-[18px]">person</span></div>
-</div>
+<header class="topbar">
+<div class="shell topbar__in">
+<a class="brand" href="index.html" aria-label="Mosaic, volver al inicio">
+<svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><g stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"><rect x="3" y="3" width="19" height="19" rx="4" fill="var(--yellow)"/><rect x="26" y="3" width="19" height="19" rx="4" fill="var(--pink)"/><rect x="3" y="26" width="19" height="19" rx="4" fill="var(--mint)"/><rect x="26" y="26" width="19" height="19" rx="4" fill="var(--sky)"/></g></svg>
+<span class="brand__text"><span class="brand__name">Mosaic</span><span class="brand__page">Inicio</span></span>
+</a>
+<nav class="topnav" aria-label="Secciones del portal">
+<a href="index.html" aria-current="page"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-home"/></svg><span>Inicio</span></a>
+<a href="lector.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-voice"/></svg><span>Lector</span></a>
+<a href="senas.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-sign"/></svg><span>Señas</span></a>
+<a href="ajustes.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-settings"/></svg><span>Ajustes</span></a>
+<a href="acerca.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-info"/></svg><span>Acerca</span></a>
+<a href="contacto.html"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-mail"/></svg><span>Contacto</span></a>
+</nav>
+<button class="contrast-switch" type="button" data-action="toggle-contrast" aria-pressed="false" aria-label="Alto contraste">
+<svg class="ic" aria-hidden="true"><use href="#i-contrast"/></svg><span class="contrast-switch__label">Alto contraste</span><span class="tag contrast-switch__state" aria-hidden="true">No</span>
+</button>
 </div>
 </header>
-<main class="flex flex-col relative w-full pt-20 pb-24 bg-surface min-h-screen" id="main-content">
-<div class="flex flex-col w-full px-margin py-space-md gap-space-lg">
-<div class="flex flex-col gap-1">
-<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight" id="welcome-heading">
-      Mosaic
-    </h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Portal de Accesibilidad Digital — <em>Cada pieza cuenta</em>.</p>
+<main class="shell stack" id="main-content">
+<div class="guide-bar piece piece--yellow piece--tight" id="guide-bar" role="region" aria-label="Modo guiado paso a paso">
+<div class="guide-bar__in">
+<div class="guide-bar__step"><span data-guide-title>Sección</span><span class="tag" data-guide-count>Paso 1 de 1</span></div>
+<div class="guide-bar__nav">
+<button class="btn btn--flat" type="button" data-guide-prev><svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrow-left"/></svg><span>Anterior</span></button>
+<button class="btn btn--ink" type="button" data-guide-next><span>Siguiente</span><svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+<button class="btn btn--flat" type="button" data-guide-exit><svg class="ic ic--sm" aria-hidden="true"><use href="#i-close"/></svg><span>Salir</span></button>
 </div>
-<section aria-label="Ajustes rápidos de legibilidad y audio" class="bg-surface-container-high rounded-xl p-space-md shadow-sm lg:max-w-2xl">
-<div class="flex items-center justify-between mb-space-sm">
-<div class="flex items-center gap-2">
-<span aria-hidden="true" class="material-symbols-outlined text-primary text-[20px]">tune</span>
-<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Ajustes Rápidos</h3>
 </div>
-<span class="font-label-sm text-label-sm text-on-surface-variant">Sesión activa</span>
 </div>
-<div class="flex flex-col gap-space-xs sm:flex-row sm:flex-wrap">
-<button aria-pressed="false" class="flex items-center justify-between gap-space-sm px-space-md py-3 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm active:scale-95 transition-transform sm:flex-1 sm:min-w-[180px]" id="btn-high-contrast" type="button">
-<span class="flex items-center gap-2">
-<span aria-hidden="true" class="material-symbols-outlined text-primary">contrast</span>
-<span>Alto Contraste</span>
-</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant" id="contrast-status">No</span>
+<section class="hero" data-step aria-labelledby="welcome-heading">
+<div class="hero__title">
+<h1 id="welcome-heading">Mosaic</h1>
+<p class="hero__slogan">Cada pieza cuenta.</p>
+<p class="lead measure">Portal de Accesibilidad Digital de El Salvador. Voz, lengua de señas, alto contraste y navegación sencilla en un solo lugar: tú eliges cómo usarlo.</p>
+<svg class="hero__art" viewBox="0 0 370 280" role="img" aria-label="Mosaico de doce teselas de colores; cuatro llevan pictogramas de ojo, oído, mano y cerebro, y una la figura universal de accesibilidad"><g class="tile"><rect x="6" y="6" width="80" height="80" rx="12" fill="var(--ink)"/><rect x="0" y="0" width="80" height="80" rx="12" fill="var(--yellow)" stroke="var(--ink)" stroke-width="4"/><use href="#i-eye" x="18" y="18" width="44" height="44" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g><g class="tile"><rect x="100" y="6" width="80" height="80" rx="12" fill="var(--ink)"/><rect x="94" y="0" width="80" height="80" rx="12" fill="var(--pink)" stroke="var(--ink)" stroke-width="4"/><use href="#i-ear" x="112" y="18" width="44" height="44" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g><g class="tile"><rect x="194" y="6" width="80" height="80" rx="12" fill="var(--ink)"/><rect x="188" y="0" width="80" height="80" rx="12" fill="var(--mint)" stroke="var(--ink)" stroke-width="4"/><use href="#i-sign" x="206" y="18" width="44" height="44" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g><g class="tile"><rect x="288" y="6" width="80" height="80" rx="12" fill="var(--ink)"/><rect x="282" y="0" width="80" height="80" rx="12" fill="var(--sky)" stroke="var(--ink)" stroke-width="4"/><use href="#i-brain" x="300" y="18" width="44" height="44" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g><g class="tile"><rect x="6" y="100" width="80" height="80" rx="12" fill="var(--ink)"/><rect x="0" y="94" width="80" height="80" rx="12" fill="var(--sky)" stroke="var(--ink)" stroke-width="4"/></g><g class="tile"><rect x="100" y="100" width="80" height="80" rx="12" fill="var(--ink)"/><rect x="94" y="94" width="80" height="80" rx="12" fill="var(--yellow)" stroke="var(--ink)" stroke-width="4"/><use href="#i-figure" x="112" y="112" width="44" height="44" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g><g class="tile"><rect x="194" y="100" width="80" height="80" rx="12" fill="var(--ink)"/><rect x="188" y="94" width="80" height="80" rx="12" fill="var(--pink)" stroke="var(--ink)" stroke-width="4"/><use href="#i-text" x="206" y="112" width="44" height="44" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g><g class="tile"><rect x="288" y="100" width="80" height="80" rx="12" fill="var(--ink)"/><rect x="282" y="94" width="80" height="80" rx="12" fill="var(--mint)" stroke="var(--ink)" stroke-width="4"/><use href="#i-volume" x="300" y="112" width="44" height="44" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g><g class="tile"><rect x="6" y="194" width="80" height="80" rx="12" fill="var(--ink)"/><rect x="0" y="188" width="80" height="80" rx="12" fill="var(--pink)" stroke="var(--ink)" stroke-width="4"/><use href="#i-cc" x="18" y="206" width="44" height="44" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g><g class="tile"><rect x="100" y="194" width="80" height="80" rx="12" fill="var(--ink)"/><rect x="94" y="188" width="80" height="80" rx="12" fill="var(--mint)" stroke="var(--ink)" stroke-width="4"/></g><g class="tile"><rect x="194" y="194" width="80" height="80" rx="12" fill="var(--ink)"/><rect x="188" y="188" width="80" height="80" rx="12" fill="var(--yellow)" stroke="var(--ink)" stroke-width="4"/><use href="#i-route" x="206" y="206" width="44" height="44" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g><g class="tile"><rect x="288" y="194" width="80" height="80" rx="12" fill="var(--ink)"/><rect x="282" y="188" width="80" height="80" rx="12" fill="var(--sky)" stroke="var(--ink)" stroke-width="4"/></g></svg>
+</div>
+<div class="piece piece--lg console" role="group" aria-labelledby="quick-heading">
+<div class="console__head">
+<h2 id="quick-heading">Ajustes rápidos</h2>
+<span class="tag tag--mint"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-check"/></svg>Se guardan aquí</span>
+</div>
+<div class="console__keys">
+<button class="key" id="btn-high-contrast" type="button" aria-pressed="false">
+<span class="key__lead"><span class="ibox ibox--sky" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-contrast"/></svg></span><span>Alto contraste</span></span>
+<span class="key__state" id="contrast-status">No</span>
 </button>
-<div class="flex items-center justify-between gap-space-sm px-space-md py-2.5 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm sm:flex-1 sm:min-w-[180px]">
-<span class="font-label-md text-label-md text-on-surface flex items-center gap-1.5">
-<span aria-hidden="true" class="material-symbols-outlined text-primary text-[20px]">text_fields</span>
-<span>Texto</span>
-</span>
-<div aria-label="Selector de tamaño de fuente" class="flex items-center gap-1" role="group">
-<button aria-label="Disminuir texto" class="w-8 h-8 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center hover:bg-primary hover:text-on-primary" data-font-quick="sm" type="button">A-</button>
-<button aria-label="Texto estándar" class="w-8 h-8 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center" data-font-quick="md" type="button">A</button>
-<button aria-label="Aumentar texto" class="w-8 h-8 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center hover:bg-primary hover:text-on-primary" data-font-quick="lg" type="button">A+</button>
+<div class="key key--static">
+<span class="key__lead"><span class="ibox ibox--yellow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-text"/></svg></span><span id="font-quick-label">Tamaño de texto</span></span>
+<div class="seg" role="group" aria-labelledby="font-quick-label">
+<button type="button" data-font-quick="sm" aria-label="Texto pequeño">A-</button>
+<button type="button" data-font-quick="md" aria-label="Texto normal" aria-current="true">A</button>
+<button type="button" data-font-quick="lg" aria-label="Texto grande">A+</button>
 </div>
 </div>
-<button aria-pressed="false" class="flex items-center justify-center gap-2 px-space-md py-3 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-sm active:scale-95 transition-transform sm:flex-1 sm:min-w-[180px]" id="btn-voice-reader" type="button">
-<span aria-hidden="true" class="material-symbols-outlined">volume_up</span>
-<span>Activar Lector</span>
+<button class="key" id="btn-voice-reader" type="button" aria-pressed="false">
+<span class="key__lead"><span class="ibox ibox--pink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-volume"/></svg></span><span>Leer esta página en voz alta</span></span>
+<span class="key__state" id="voice-status">Off</span>
+</button>
+<button class="key" id="btn-guided-quick" type="button" aria-pressed="false">
+<span class="key__lead"><span class="ibox ibox--mint" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg></span><span>Modo guiado paso a paso</span></span>
+<span class="key__state" id="guided-status">Off</span>
 </button>
 </div>
-</section>
-<section aria-labelledby="main-services-heading" class="flex flex-col gap-space-sm" id="servicios">
-<div class="flex items-baseline justify-between">
-<h3 class="font-headline-sm text-headline-sm text-on-surface" id="main-services-heading">
-          Servicios
-        </h3>
-<span class="font-label-sm text-label-sm text-on-surface-variant">Elige el modo que necesitas</span>
-</div>
-<div class="grid grid-cols-1 gap-space-sm">
-<article class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm active:scale-[0.99] transition-transform">
-<div class="flex items-start justify-between gap-space-sm">
-<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-on-primary-fixed shrink-0">
-<span aria-hidden="true" class="material-symbols-outlined text-[28px]">record_voice_over</span>
-</div>
-<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant">Atajos de Audio</span>
-</div>
-<div class="flex flex-col gap-1">
-<h4 class="font-headline-sm text-headline-sm text-on-surface">Lector de Pantalla</h4>
-<p class="font-body-md text-body-md text-on-surface-variant">
-              Escucha el contenido de la web con síntesis de voz natural, avisos acústicos de contexto y control de lectura pausada.
-            </p>
-</div>
-<div class="pt-space-xs flex items-center justify-between">
-<a aria-label="Abrir modo Lector de Pantalla" class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary" href="lector.html">
-<span>Iniciar lectura por voz</span>
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]">arrow_forward</span>
-</a>
-<span aria-hidden="true" class="material-symbols-outlined text-outline-variant text-[24px]">hearing</span>
-</div>
-</article>
-<article class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm active:scale-[0.99] transition-transform">
-<div class="flex items-start justify-between gap-space-sm">
-<div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shrink-0">
-<span aria-hidden="true" class="material-symbols-outlined text-[28px]">sign_language</span>
-</div>
-<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container">LESSA</span>
-</div>
-<div class="flex flex-col gap-1">
-<h4 class="font-headline-sm text-headline-sm text-on-surface">Lengua de Señas</h4>
-<p class="font-body-md text-body-md text-on-surface-variant">
-              Videos interpretados en Lengua de Señas Salvadoreña (LESSA), acompañados de subtítulos descriptivos enriquecidos.
-            </p>
-</div>
-<div class="pt-space-xs flex items-center justify-between">
-<a aria-label="Acceder a módulos con Lengua de Señas" class="inline-flex items-center gap-2 font-label-lg text-label-lg text-secondary" href="senas.html">
-<span>Ver traducciones en video</span>
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]">videocam</span>
-</a>
-<span aria-hidden="true" class="material-symbols-outlined text-outline-variant text-[24px]">interpreter_mode</span>
-</div>
-</article>
-<article class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm active:scale-[0.99] transition-transform">
-<div class="flex items-start justify-between gap-space-sm">
-<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface shrink-0">
-<span aria-hidden="true" class="material-symbols-outlined text-[28px]">touch_app</span>
-</div>
-<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant">Cognitivo Amigable</span>
-</div>
-<div class="flex flex-col gap-1">
-<h4 class="font-headline-sm text-headline-sm text-on-surface">Navegación Sencilla</h4>
-<p class="font-body-md text-body-md text-on-surface-variant">
-              Interfaz secuencial paso a paso con botones extragrandes, lenguaje llano, pictogramas e instrucciones sin distracciones.
-            </p>
-</div>
-<div class="pt-space-xs flex items-center justify-between">
-<a aria-label="Activar navegación simplificada paso a paso" class="inline-flex items-center gap-2 font-label-lg text-label-lg text-on-surface" href="ajustes.html#nav-settings-title">
-<span>Entrar en modo guiado</span>
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]">arrow_forward</span>
-</a>
-<span aria-hidden="true" class="material-symbols-outlined text-outline-variant text-[24px]">route</span>
-</div>
-</article>
-<article class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm active:scale-[0.99] transition-transform">
-<div class="flex items-start justify-between gap-space-sm">
-<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed shrink-0">
-<span aria-hidden="true" class="material-symbols-outlined text-[28px]">visibility</span>
-</div>
-<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-tertiary-fixed-dim text-on-tertiary-fixed-variant">Visual Pro</span>
-</div>
-<div class="flex flex-col gap-1">
-<h4 class="font-headline-sm text-headline-sm text-on-surface">Alto Contraste y Daltonismo</h4>
-<p class="font-body-md text-body-md text-on-surface-variant">
-              Paletas cromáticas validadas para protanopia, deuteranopia, tritanopia y modo monocromático absoluto con texto reforzado.
-            </p>
-</div>
-<div class="pt-space-xs flex items-center justify-between">
-<a aria-label="Configurar filtros de color y daltonismo" class="inline-flex items-center gap-2 font-label-lg text-label-lg text-tertiary" href="ajustes.html#vision-settings-title">
-<span>Personalizar paleta</span>
-<span aria-hidden="true" class="material-symbols-outlined text-[20px]">palette</span>
-</a>
-<span aria-hidden="true" class="material-symbols-outlined text-outline-variant text-[24px]">invert_colors</span>
-</div>
-</article>
+<p class="muted">¿Necesitas más opciones? Filtros de daltonismo, espaciado y animaciones están en <a href="ajustes.html">Ajustes</a>.</p>
 </div>
 </section>
-<section aria-labelledby="resources-heading" class="flex flex-col gap-space-sm">
-<div class="flex items-baseline justify-between">
-<h3 class="font-headline-sm text-headline-sm text-on-surface" id="resources-heading">
-          Últimos Recursos y Guías Accesibles
-        </h3>
+
+<section id="servicios" data-step aria-labelledby="main-services-heading">
+<div class="section-head">
+<h2 id="main-services-heading">Servicios</h2>
+<p>Elige el modo que necesitas. Puedes combinarlos.</p>
 </div>
-<div class="flex flex-col gap-space-xs">
-<a aria-label="Guía: Cómo configurar tu lector de pantalla en el móvil" class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center justify-between gap-space-sm active:bg-surface-container-low transition-colors" href="lector.html">
-<div class="flex items-center gap-space-md min-w-0">
-<img class="w-14 h-14 rounded-lg object-cover shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcwb2A40qbGdNBCWX3ZE162OR5YG6O7bgbgZCuCkkKB13U19TW-ZN37a5sf_MQjfAEUiIiqwc-dH0dZLJAvqj2F2k73pGawErYr9uhwrkNxR6sCY1monoTgTx2BzQefh2hQ58TpyqejE_RYgdIKD8csN6QRLKnzM5yQhtwRv_8xni0yoRoGj4Hzq3O9gkw-FM0ynNQwWY_x4UnrnQbajh29Q-E8jTLG5ZbpIexAVysHxWyyK827dSB" alt="Manos sosteniendo un smartphone con accesibilidad de voz activada"/>
-<div class="flex flex-col min-w-0">
-<span class="font-label-sm text-label-sm text-primary uppercase">Guía Práctica • 4 min</span>
-<h4 class="font-label-lg text-label-lg text-on-surface truncate">Configurar lector de pantalla en móvil</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Gestos de TalkBack y VoiceOver explicados.</p>
-</div>
-</div>
-<span aria-hidden="true" class="material-symbols-outlined text-on-surface-variant shrink-0">chevron_right</span>
+<div class="services">
+<a class="svc piece piece--pink" href="lector.html">
+<div class="svc__top"><span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-voice"/></svg></span><span class="tag">Audio</span></div>
+<h3>Lector de pantalla</h3>
+<p>Escucha el contenido de la web con síntesis de voz natural, avisos acústicos de contexto y control de lectura pausada.</p>
+<span class="svc__cta">Iniciar lectura por voz <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
 </a>
-<a aria-label="Recurso: Directorio de videos oficiales en Lengua de Señas" class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center justify-between gap-space-sm active:bg-surface-container-low transition-colors" href="senas.html">
-<div class="flex items-center gap-space-md min-w-0">
-<img class="w-14 h-14 rounded-lg object-cover shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU1nreLEKdIPQvALD6kWPqTjBvicCBBGpZXoSFTyOQzD4M3c8Ywg02Rny2ihcthIr_UOC5jYOkAQf8HRW09iEa7vFy03ZMS3k1SLG5pqOgzR0kq4gz_NERw0ofCrDACI7bY-DMVYSZv5zElui0wtwK68UyfvgvU2Ulhh1dTK0piBiJ4Q4vcA1whYaSEJeN7AtmqBPu6wjeQeI5BK3odQCEx9R0_yEODELCxs68FQy3fNQXf_5UHQYA" alt="Intérprete de lengua de señas sonriendo frente a fondo azul"/>
-<div class="flex flex-col min-w-0">
-<span class="font-label-sm text-label-sm text-secondary uppercase">Videoteca • Actualizada</span>
-<h4 class="font-label-lg text-label-lg text-on-surface truncate">Directorio de videos en Lengua de Señas</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Trámites y servicios públicos en LESSA.</p>
-</div>
-</div>
-<span aria-hidden="true" class="material-symbols-outlined text-on-surface-variant shrink-0">chevron_right</span>
+<a class="svc piece piece--mint" href="senas.html">
+<div class="svc__top"><span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-sign"/></svg></span><span class="tag">LESSA</span></div>
+<h3>Lengua de señas</h3>
+<p>Videos interpretados en Lengua de Señas Salvadoreña (LESSA), acompañados de subtítulos descriptivos enriquecidos.</p>
+<span class="svc__cta">Ver traducciones en video <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+</a>
+<a class="svc piece piece--yellow" href="ajustes.html#nav-settings-title">
+<div class="svc__top"><span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg></span><span class="tag">Cognitivo</span></div>
+<h3>Navegación sencilla</h3>
+<p>Interfaz secuencial paso a paso con botones extragrandes, lenguaje llano, pictogramas e instrucciones sin distracciones.</p>
+<span class="svc__cta">Entrar en modo guiado <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+</a>
+<a class="svc piece piece--sky" href="ajustes.html#vision-settings-title">
+<div class="svc__top"><span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg></span><span class="tag">Visión</span></div>
+<h3>Alto contraste y daltonismo</h3>
+<p>Paletas cromáticas validadas para protanopia, deuteranopia, tritanopia y modo monocromático absoluto con texto reforzado.</p>
+<span class="svc__cta">Personalizar paleta <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
 </a>
 </div>
 </section>
-<aside aria-label="Canal de asistencia prioritaria" class="bg-primary-container text-on-primary rounded-xl p-space-md flex flex-col gap-space-sm shadow-md">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span aria-hidden="true" class="material-symbols-outlined text-on-primary-container text-[24px]">support_agent</span>
-<span class="font-label-md text-label-md tracking-wide uppercase">Atención Humana Adaptada</span>
+
+<section data-step aria-labelledby="resources-heading">
+<div class="section-head">
+<h2 id="resources-heading">Últimos recursos y guías accesibles</h2>
 </div>
-<span class="w-3 h-3 rounded-full bg-secondary-container"></span>
-</div>
-<p class="font-body-md text-body-md text-inverse-on-surface">
-        ¿Requieres asistencia personalizada? Conéctate de inmediato mediante videollamada con intérprete o llamada asistida.
-      </p>
-<div class="flex flex-col sm:flex-row gap-space-xs pt-1">
-<a aria-label="Iniciar videollamada con intérprete de señas" class="w-full flex items-center justify-center gap-2 py-3 px-space-md rounded-lg bg-surface-container-lowest text-primary font-label-lg text-label-lg active:scale-98 transition-transform" href="ajustes.html#help-channels-title">
-<span aria-hidden="true" class="material-symbols-outlined">video_camera_front</span>
-<span>Videollamada en Señas</span>
+<div class="grid grid--3">
+<a class="res piece" href="lector.html#guia-lectores">
+<span class="ibox ibox--pink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg></span>
+<span class="res__body">
+<span class="res__title">Configurar lector de pantalla en móvil</span>
+<span class="muted">Gestos de TalkBack y VoiceOver explicados.</span>
+<span class="res__meta">Guía práctica · 4 min</span>
+</span>
+<svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg>
 </a>
-<a aria-label="Llamar a línea telefónica accesible" class="w-full flex items-center justify-center gap-2 py-3 px-space-md rounded-lg bg-on-primary-fixed text-primary-fixed font-label-lg text-label-lg active:scale-98 transition-transform" href="ajustes.html#help-channels-title">
-<span aria-hidden="true" class="material-symbols-outlined">call</span>
-<span>Llamada Gratuita</span>
+<a class="res piece" href="senas.html#thematic-heading">
+<span class="ibox ibox--mint" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-video"/></svg></span>
+<span class="res__body">
+<span class="res__title">Directorio de videos en LESSA</span>
+<span class="muted">Trámites y servicios públicos en LESSA.</span>
+<span class="res__meta">Videoteca · actualizada</span>
+</span>
+<svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+</a>
+<a class="res piece" href="acerca.html#ethics-heading">
+<span class="ibox ibox--sky" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-balance"/></svg></span>
+<span class="res__body">
+<span class="res__title">Justificación ética del proyecto</span>
+<span class="muted">Cómo aplicamos la justicia y la solidaridad, y su impacto.</span>
+<span class="res__meta">Acerca · Ética</span>
+</span>
+<svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg>
 </a>
 </div>
-</aside>
+</section>
+
+<section class="piece piece--lg piece--yellow help-band" data-step aria-labelledby="help-heading">
+<div>
+<h2 id="help-heading">Atención humana adaptada</h2>
+<p class="measure" style="margin-top:.6rem">¿Requieres asistencia personalizada? Conéctate de inmediato mediante videollamada con intérprete de LESSA o llamada asistida. Sin costo.</p>
 </div>
+<div class="help-band__actions">
+<a class="btn btn--mint btn--lg" href="ajustes.html#help-channels-title"><svg class="ic" aria-hidden="true"><use href="#i-video"/></svg><span>Videollamada en señas</span></a>
+<a class="btn btn--lg" href="tel:900000111"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span>Llamada gratuita</span></a>
+</div>
+</section>
+</main>
 <script>
-  (function() {
-    const voiceBtn = document.getElementById('btn-voice-reader');
-    if (voiceBtn) {
-      voiceBtn.addEventListener('click', function() {
-        const active = voiceBtn.getAttribute('aria-pressed') === 'true';
-        voiceBtn.setAttribute('aria-pressed', String(!active));
-        if (!active) {
-          voiceBtn.classList.remove('bg-primary');
-          voiceBtn.classList.add('bg-secondary');
-          voiceBtn.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">pause</span><span>Pausar Lector</span>';
-        } else {
-          voiceBtn.classList.remove('bg-secondary');
-          voiceBtn.classList.add('bg-primary');
-          voiceBtn.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">volume_up</span><span>Activar Lector</span>';
-        }
+  // Tecla "Leer esta página en voz alta": lee los títulos y párrafos de la página con la voz del sistema.
+  (function () {
+    var btn = document.getElementById('btn-voice-reader');
+    var status = document.getElementById('voice-status');
+    var announcer = document.getElementById('a11y-announcer');
+    var guidedBtn = document.getElementById('btn-guided-quick');
+    var guidedStatus = document.getElementById('guided-status');
+    if (!btn) return;
+    var supports = 'speechSynthesis' in window;
+    var speaking = false;
+
+    function setUI(on) {
+      speaking = on;
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      status.textContent = on ? 'On' : 'Off';
+    }
+    function pageText() {
+      var nodes = document.querySelectorAll('main h1, main h2, main h3, main p.lead, main .svc p, main .help-band p');
+      return Array.prototype.map.call(nodes, function (n) { return n.textContent.trim(); }).filter(Boolean).join('. ');
+    }
+    btn.addEventListener('click', function () {
+      if (!supports) {
+        if (announcer) announcer.textContent = 'Tu navegador no soporta síntesis de voz. Abre la sección Lector para más opciones.';
+        return;
+      }
+      if (speaking) {
+        window.speechSynthesis.cancel();
+        setUI(false);
+        if (announcer) announcer.textContent = 'Lectura detenida.';
+        return;
+      }
+      var u = new SpeechSynthesisUtterance(pageText());
+      u.lang = 'es-ES';
+      var voices = window.speechSynthesis.getVoices();
+      var v = voices.find(function (x) { return /es/i.test(x.lang); });
+      if (v) u.voice = v;
+      u.onend = function () { setUI(false); };
+      u.onerror = function () { setUI(false); };
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
+      setUI(true);
+    });
+    window.addEventListener('beforeunload', function () { if (supports) window.speechSynthesis.cancel(); });
+
+    // Tecla rápida de modo guiado: refleja y cambia el mismo ajuste que Ajustes.
+    function syncGuided() {
+      var on = document.documentElement.getAttribute('data-guided-mode') === 'true';
+      guidedBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      guidedStatus.textContent = on ? 'On' : 'Off';
+    }
+    if (guidedBtn) {
+      guidedBtn.addEventListener('click', function () {
+        var on = document.documentElement.getAttribute('data-guided-mode') === 'true';
+        window.PortalA11y.setBool('guidedMode', !on, 'Modo guiado paso a paso');
+        syncGuided();
       });
+      new MutationObserver(syncGuided).observe(document.documentElement, { attributes: true, attributeFilter: ['data-guided-mode'] });
+      syncGuided();
     }
   })();
 </script>
-</main>
-<nav aria-label="Navegación principal" class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.06)]">
-<div class="grid grid-cols-6 items-center h-20 px-space-xs">
-<a aria-current="page" class="flex flex-col items-center justify-center h-full transition-colors gap-0.5 text-primary font-bold" href="index.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">home</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Inicio</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="lector.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">record_voice_over</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Lector</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="senas.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">sign_language</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Señas</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="ajustes.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">settings_accessibility</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Ajustes</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="acerca.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">info</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Acerca</span></a>
-<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="contacto.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">mail</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Contacto</span></a>
+<nav class="tabbar" aria-label="Navegación principal">
+<div class="tabbar__in">
+<a href="index.html" aria-current="page"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg><span>Inicio</span></a>
+<a href="lector.html"><svg class="ic" aria-hidden="true"><use href="#i-voice"/></svg><span>Lector</span></a>
+<a href="senas.html"><svg class="ic" aria-hidden="true"><use href="#i-sign"/></svg><span>Señas</span></a>
+<a href="ajustes.html"><svg class="ic" aria-hidden="true"><use href="#i-settings"/></svg><span>Ajustes</span></a>
+<a href="acerca.html"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg><span>Acerca</span></a>
+<a href="contacto.html"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span>Contacto</span></a>
 </div>
 </nav>
-<script src="assets/site.js"></script>
 </body>
 </html>
