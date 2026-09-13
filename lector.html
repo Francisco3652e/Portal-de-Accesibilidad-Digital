@@ -236,6 +236,11 @@
     let waveInterval = null;
     let selectedVoice = null;
     let speechGen = 0;
+    // 'tts'   → Web Speech API del navegador.
+    // 'audio' → MP3 generado por /api/tts (respaldo cuando no hay voces
+    //           instaladas, p. ej. Chromium/Brave en Linux, o si la síntesis falla).
+    let engine = supportsTTS ? 'tts' : 'audio';
+    let startWatchdog = null;
 
     const playBtn = document.getElementById('btn-play-pause');
     const playIcon = document.getElementById('play-pause-icon');
@@ -354,8 +359,140 @@
     // texto en fragmentos cortos encadenados por onend evitamos pause()/resume().
     var CHUNK_WORDS = 24;
 
+    // ---------- Respaldo por audio (/api/tts) ----------
+    let audioEl = null;
+    let audioText = '';
+    let audioCum = [];   // caracteres acumulados antes de cada palabra
+    let audioTotal = 1;
+    let audioRaf = null;
+    let audioSeekTo = -1;
+    let audioUrl = null;
+
+    function ttsUrl(text) {
+      return 'api/tts?q=' + encodeURIComponent(text);
+    }
+
+    function wordTime(idx) {
+      if (!audioEl || !isFinite(audioEl.duration)) return 0;
+      return audioEl.duration * (audioCum[Math.min(idx, audioCum.length - 1)] || 0) / audioTotal;
+    }
+
+    function wordAtTime(t) {
+      if (!audioEl || !isFinite(audioEl.duration) || !audioEl.duration) return 0;
+      const chars = t / audioEl.duration * audioTotal;
+      let i = 0;
+      while (i + 1 < audioCum.length && audioCum[i + 1] <= chars) { i += 1; }
+      return i;
+    }
+
+    function stopAudioRaf() {
+      if (audioRaf) { cancelAnimationFrame(audioRaf); audioRaf = null; }
+    }
+
+    function tickAudio() {
+      if (!audioEl || audioEl.paused) { audioRaf = null; return; }
+      const idx = wordAtTime(audioEl.currentTime);
+      if (idx !== wordIndex) { wordIndex = idx; updateHighlighting(); }
+      audioRaf = requestAnimationFrame(tickAudio);
+    }
+
+    function buildAudio(text) {
+      if (audioEl) { audioEl.pause(); audioEl.removeAttribute('src'); audioEl.load(); }
+      audioText = text;
+      audioCum = [];
+      let acc = 0;
+      words.forEach(function (w) { audioCum.push(acc); acc += w.length + 1; });
+      audioTotal = Math.max(acc, 1);
+      const el = new Audio();
+      audioEl = el;
+      el.preload = 'auto';
+      // Los manejadores ignoran a un elemento reemplazado por un texto nuevo.
+      el.addEventListener('loadedmetadata', function () {
+        if (el !== audioEl) return;
+        if (audioSeekTo >= 0) {
+          el.currentTime = wordTime(audioSeekTo);
+          audioSeekTo = -1;
+          el.playbackRate = rate;
+          if (!isPaused) { el.play().catch(function () {}); }
+        }
+      });
+      el.addEventListener('play', function () {
+        if (el !== audioEl) return;
+        setPlayingUI(true);
+        stopAudioRaf();
+        audioRaf = requestAnimationFrame(tickAudio);
+      });
+      el.addEventListener('pause', function () { if (el === audioEl) { stopAudioRaf(); } });
+      el.addEventListener('ended', function () {
+        if (el !== audioEl) return;
+        stopAudioRaf();
+        setPlayingUI(false);
+        isPaused = false;
+        wordIndex = 0;
+        updateHighlighting();
+        announce('Lectura finalizada.');
+      });
+      function audioFailed() {
+        if (el !== audioEl) return;
+        stopAudioRaf();
+        setPlayingUI(false);
+        isPaused = false;
+        announce('No se pudo generar la voz. Revisa tu conexión a internet e inténtalo de nuevo.');
+      }
+      el.addEventListener('error', audioFailed);
+      // Descargamos el MP3 completo y lo servimos desde un blob: así el audio
+      // es siempre "seekable" (retroceder/avanzar) aunque el servidor no
+      // responda a peticiones por rangos.
+      fetch(ttsUrl(text)).then(function (res) {
+        if (!res.ok) { throw new Error('HTTP ' + res.status); }
+        return res.blob();
+      }).then(function (blob) {
+        if (el !== audioEl) return;
+        if (audioUrl) { URL.revokeObjectURL(audioUrl); }
+        audioUrl = URL.createObjectURL(blob);
+        el.src = audioUrl;
+      }).catch(audioFailed);
+    }
+
+    function audioSpeakFrom(index, chained) {
+      const text = words.join(' ');
+      if (!text) { setPlayingUI(false); wordIndex = 0; updateHighlighting(); return; }
+      if (!audioEl || audioText !== text) { buildAudio(text); }
+      audioEl.playbackRate = rate;
+      if (isFinite(audioEl.duration) && audioEl.duration > 0) {
+        audioEl.currentTime = wordTime(index);
+        audioEl.play().catch(function () {});
+      } else {
+        audioSeekTo = index;
+        setPlayingUI(true);
+        announce('Generando la voz…');
+        return;
+      }
+      if (!chained) { announce('Lectura iniciada.'); }
+    }
+
+    // Cambia al respaldo por audio cuando la Web Speech API no produce sonido.
+    function switchToAudio(index) {
+      if (engine === 'audio') return;
+      engine = 'audio';
+      speechGen += 1;
+      if (startWatchdog) { clearTimeout(startWatchdog); startWatchdog = null; }
+      try { window.speechSynthesis.cancel(); } catch (e) {}
+      audioSpeakFrom(index);
+    }
+
+    // Fragmento máximo por utterance. Chrome/Android tienen un bug conocido:
+    // si una sola lectura (utterance) dura más de ~15s, o si se usa
+    // speechSynthesis.pause()+resume() para mantenerla viva, el motor puede
+    // reiniciar el audio desde el comienzo de ese fragmento. Al trocear el
+    // texto en fragmentos cortos encadenados por onend evitamos pause()/resume().
+    var CHUNK_WORDS = 24;
+    // Si la voz del navegador no arranca en este tiempo (sin voces instaladas,
+    // Chromium sin speech-dispatcher, etc.) pasamos al respaldo por audio.
+    var START_TIMEOUT_MS = 2500;
+
     function speakFrom(index, chained) {
-      if (!supportsTTS) return;
+      if (engine === 'audio') { audioSpeakFrom(index, chained); return; }
       window.speechSynthesis.cancel();
       // Marca de generación: el onend/onerror tardío del utterance cancelado
       // no debe pisar el estado del nuevo.
@@ -369,6 +506,16 @@
       utterance.lang = 'es-ES';
       if (selectedVoice) { utterance.voice = selectedVoice; }
       utterance.rate = rate;
+      if (startWatchdog) { clearTimeout(startWatchdog); }
+      startWatchdog = setTimeout(function () {
+        startWatchdog = null;
+        if (myGen !== speechGen) return;
+        switchToAudio(index);
+      }, START_TIMEOUT_MS);
+      utterance.onstart = function () {
+        if (myGen !== speechGen) return;
+        if (startWatchdog) { clearTimeout(startWatchdog); startWatchdog = null; }
+      };
       utterance.onboundary = function (event) {
         if (myGen !== speechGen) return;
         if (event.name && event.name !== 'word') return;
@@ -379,6 +526,7 @@
       };
       utterance.onend = function () {
         if (myGen !== speechGen) return;
+        if (startWatchdog) { clearTimeout(startWatchdog); startWatchdog = null; }
         if (isPaused) return;
         if (chunkEnd < words.length) {
           speakFrom(chunkEnd, true);
@@ -391,9 +539,10 @@
       };
       utterance.onerror = function (event) {
         if (myGen !== speechGen) return;
-        if (event && event.error === 'interrupted') return;
-        setPlayingUI(false);
-        announce('Ocurrió un problema con la síntesis de voz.');
+        if (event && (event.error === 'interrupted' || event.error === 'canceled')) return;
+        // 'not-allowed', 'synthesis-failed', 'synthesis-unavailable', etc.:
+        // el navegador no puede hablar; usamos el respaldo por audio.
+        switchToAudio(index);
       };
       window.speechSynthesis.speak(utterance);
       setPlayingUI(true);
@@ -401,15 +550,28 @@
     }
 
     function togglePlayback() {
-      if (!supportsTTS) {
-        setPlayingUI(!isPlaying);
-        announce(isPlaying ? 'Tu navegador no soporta síntesis de voz. Mostrando solo el resaltado de texto.' : 'Lectura en pausa.');
+      if (engine === 'audio') {
+        if (isPlaying && !isPaused && audioEl) {
+          isPaused = true;
+          audioEl.pause();
+          setPlayingUI(false);
+          announce('Lectura en pausa.');
+        } else if (isPaused && audioEl) {
+          isPaused = false;
+          audioEl.play().catch(function () {});
+          announce('Lectura reanudada.');
+        } else {
+          isPaused = false;
+          speakFrom(wordIndex);
+        }
         return;
       }
       if (isPlaying && !isPaused) {
         // Cancelamos y guardamos wordIndex para retomar exactamente ahí:
         // pause()/resume() nativos reinician el fragmento en varios navegadores.
         isPaused = true;
+        speechGen += 1;
+        if (startWatchdog) { clearTimeout(startWatchdog); startWatchdog = null; }
         window.speechSynthesis.cancel();
         setPlayingUI(false);
         announce('Lectura en pausa.');
@@ -452,6 +614,7 @@
         rate = parseFloat(spd) || 1.0;
         speedLabel.textContent = spd + 'x (' + (spd === '1.0' ? 'Normal' : parseFloat(spd) < 1 ? 'Lento' : 'Rápido') + ')';
         announce('Velocidad ajustada a ' + spd + ' equis');
+        if (engine === 'audio') { if (audioEl) { audioEl.playbackRate = rate; } return; }
         if (isPlaying && !isPaused) { speakFrom(wordIndex); }
       });
     });
@@ -510,6 +673,7 @@
 
     window.addEventListener('beforeunload', function () {
       if (supportsTTS) { window.speechSynthesis.cancel(); }
+      if (audioEl) { audioEl.pause(); }
     });
   })();
 </script>

@@ -33,11 +33,17 @@ Estilo neo-brutalista: bordes negros gruesos, sombras duras sin desenfoque, cuat
 
 Abrir `index.html` en el navegador. **No requiere internet**: la fuente (`assets/fonts/`), los iconos (SVG en línea) y las ilustraciones están incluidos en el proyecto.
 
+El lector usa la voz del propio navegador (Web Speech API). Si el navegador no tiene voces instaladas
+(p. ej. Brave/Chromium en Linux), el sitio publicado en Vercel genera el audio con `api/tts.py`;
+esa parte sí necesita internet y no funciona al abrir el archivo localmente.
+
 ## Estructura
 
 - `assets/site.css` — hoja de estilos única (tokens, componentes, alto contraste, filtros de daltonismo).
 - `assets/site.js` — preferencias de accesibilidad persistentes (`localStorage`) y modo guiado paso a paso.
 - `assets/fonts/Lexend-latin.woff2` — fuente autohospedada (licencia OFL).
+- `api/tts.py` — función serverless (Vercel, Python + gTTS) que convierte texto en MP3; respaldo del
+  lector cuando el navegador no puede sintetizar voz. Dependencias en `requirements.txt`.
 - `assets/media/` — medios demostrativos generados con `tools/make_media.py` (Pillow + ffmpeg + gTTS):
   `demo-lessa.mp4` y `demo-lessa.vtt` (video animado con narración y subtítulos descriptivos),
   `demo-lectura.mp3` (audio de muestra del lector) y la transcripción en TXT. No son grabaciones reales
