@@ -332,6 +332,27 @@
   function initApp() {
     if (!("serviceWorker" in navigator) || !/^https?:$/.test(location.protocol)) { return; }
     navigator.serviceWorker.register("sw.js").catch(function () { /* opcional */ });
+    // Botón "Instalar Mosaic": solo aparece si el navegador ofrece instalar
+    // (Chrome/Edge en Android y escritorio). Instalada, aparece en "Compartir".
+    var installEvent = null;
+    window.addEventListener("beforeinstallprompt", function (e) {
+      e.preventDefault();
+      installEvent = e;
+      document.querySelectorAll('[data-action="install-app"]').forEach(function (btn) {
+        btn.hidden = false;
+        btn.addEventListener("click", function () {
+          if (!installEvent) { return; }
+          installEvent.prompt();
+          installEvent.userChoice.then(function (r) {
+            announce(r.outcome === "accepted" ? "Mosaic instalada. Ya aparece en el menú Compartir." : "Instalación cancelada.");
+            installEvent = null; btn.hidden = true;
+          });
+        });
+      });
+    });
+    window.addEventListener("appinstalled", function () {
+      document.querySelectorAll('[data-action="install-app"]').forEach(function (btn) { btn.hidden = true; });
+    });
   }
 
   function init() {

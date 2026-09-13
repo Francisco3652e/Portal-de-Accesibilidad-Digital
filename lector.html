@@ -280,6 +280,44 @@
 </div>
 </section>
 
+<section id="enviar-enlace" data-step aria-labelledby="send-heading">
+<div class="section-head">
+<h2 id="send-heading">Enviar un enlace a Mosaic</h2>
+<p data-easy="Manda la página y te la leemos.">Desde cualquier app, sin copiar ni escribir: la página llega al lector y se lee sola.</p>
+</div>
+<div class="grid grid--3">
+<div class="piece piece--lg piece--mint" style="display:flex;flex-direction:column;gap:.9rem">
+<div class="row" style="gap:.75rem"><span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-device"/></svg></span><h3>Android</h3></div>
+<ol class="guide-list" style="list-style:decimal;padding-left:1.25rem">
+<li><span><strong>Instala Mosaic</strong> una vez (botón de abajo o menú del navegador → «Instalar aplicación»).</span></li>
+<li><span>En WhatsApp, Chrome o donde esté el enlace: <strong>Compartir → Mosaic</strong>. Con TalkBack: mantén pulsado el enlace y elige «Compartir».</span></li>
+<li><span>Se abre el lector, descarga la página y la lee.</span></li>
+</ol>
+<button class="btn btn--yellow" type="button" data-action="install-app" hidden><svg class="ic ic--sm" aria-hidden="true"><use href="#i-download"/></svg><span>Instalar Mosaic</span></button>
+<p class="muted" id="install-hint" data-easy="Instálala desde el menú del navegador.">Si no ves el botón, usa el menú del navegador (⋮) → «Instalar aplicación» o «Añadir a pantalla de inicio».</p>
+</div>
+<div class="piece piece--lg piece--sky" style="display:flex;flex-direction:column;gap:.9rem">
+<div class="row" style="gap:.75rem"><span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg></span><h3>iPhone</h3></div>
+<p>Crea un atajo una sola vez en la app <strong>Atajos</strong>:</p>
+<ol class="guide-list" style="list-style:decimal;padding-left:1.25rem">
+<li><span>Nuevo atajo → activa <strong>«Mostrar en hoja de compartir»</strong> y acepta <strong>URL</strong>.</span></li>
+<li><span>Acción <strong>«Abrir URL»</strong> con este texto: <code class="code-inline">https://portal-de-accesibilidad-digital.vercel.app/leer?url=</code> seguido de la variable <strong>Entrada del atajo</strong>.</span></li>
+<li><span>Llámalo «Leer en Mosaic». Luego, en Safari: <strong>Compartir → Leer en Mosaic</strong>. Con VoiceOver funciona igual.</span></li>
+</ol>
+</div>
+<div class="piece piece--lg piece--yellow" style="display:flex;flex-direction:column;gap:.9rem">
+<div class="row" style="gap:.75rem"><span class="ibox ibox--ink" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-keyboard"/></svg></span><h3>Computadora</h3></div>
+<p>Arrastra este botón a la barra de marcadores (o guárdalo como marcador). Al pulsarlo en cualquier página, esa página se abre y se lee en Mosaic:</p>
+<a class="btn btn--ink" id="bookmarklet" href="javascript:location.href='https://portal-de-accesibilidad-digital.vercel.app/leer?url='+encodeURIComponent(location.href)" title="Arrástrame a la barra de marcadores"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-volume"/></svg><span>Leer en Mosaic</span></a>
+<p>O escribe delante de cualquier dirección: <code class="code-inline">https://portal-de-accesibilidad-digital.vercel.app/leer?url=</code></p>
+<div class="cluster">
+<button class="btn btn--flat" type="button" id="btn-copy-prefix"><svg class="ic ic--sm" aria-hidden="true"><use href="#i-paste"/></svg><span>Copiar el prefijo</span></button>
+</div>
+</div>
+</div>
+<p class="muted" style="margin-top:1rem" data-easy="También puedes copiar el enlace y pegarlo.">También sirve copiar el enlace y usar «Pegar y leer»: si es una dirección web, el lector abre la página.</p>
+</section>
+
 <section id="guia-lectores" data-step aria-labelledby="guide-heading">
 <div class="section-head">
 <h2 id="guide-heading">Guía de lectores del sistema</h2>
@@ -1291,6 +1329,23 @@
           downloadBtn.disabled = false;
           if (downloadLabel) { downloadLabel.textContent = 'Descargar audio MP3'; }
         });
+      });
+    }
+
+    const copyPrefixBtn = document.getElementById('btn-copy-prefix');
+    if (copyPrefixBtn) {
+      copyPrefixBtn.addEventListener('click', function () {
+        const prefix = 'https://portal-de-accesibilidad-digital.vercel.app/leer?url=';
+        const done = function () { announce('Prefijo copiado. Pégalo delante de la dirección que quieras leer.'); };
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(prefix).then(done, function () { window.prompt('Copia este prefijo:', prefix); }); }
+        else { window.prompt('Copia este prefijo:', prefix); }
+      });
+    }
+    const bookmarklet = document.getElementById('bookmarklet');
+    if (bookmarklet) {
+      bookmarklet.addEventListener('click', function (e) {
+        e.preventDefault();
+        announce('Este botón se arrastra a la barra de marcadores; desde aquí no hace nada.');
       });
     }
 

@@ -652,3 +652,5 @@ kbd {
 .keys li { display: flex; flex-wrap: wrap; gap: 0.3rem 0.75rem; align-items: center; }
 .keys li > span:last-child { flex: 1 1 10rem; }
 .ocr-status { min-height: 1.5em; font-weight: 700; }
+
+.code-inline { display: inline-block; padding: 0.1em 0.45em; border: 2px solid var(--ink); border-radius: 6px; background: var(--card); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.85em; font-weight: 700; word-break: break-all; }

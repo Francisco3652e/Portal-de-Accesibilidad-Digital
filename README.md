@@ -36,8 +36,11 @@ Inspirado en *Speak Screen* / *Live Text* (Apple) y *Select to Speak* / *Bixby V
 - **Leer un enlace** — `api/leer.py` descarga la página y extrae el texto legible.
 - **Cámara en vivo / Foto o imagen** — OCR en español en el navegador (Tesseract.js, se descarga al usarlo);
   la cámara puede leer sola cada pocos segundos. `Alt+Mayús+C`.
-- **Compartir con Mosaic** — `manifest.json` (+ `sw.js`) permite instalar el sitio; en Android aparece en el
-  menú Compartir y lo compartido se abre en el lector (`lector.html?text=…&url=…`).
+- **Enviar un enlace a Mosaic** — cualquier dirección se lee con el prefijo
+  `https://portal-de-accesibilidad-digital.vercel.app/leer?url=` (ruta corta a `lector.html`). Con eso:
+  Android → instalar Mosaic (`manifest.json` + `sw.js`, botón «Instalar Mosaic») y usar **Compartir → Mosaic**;
+  iPhone → un atajo de la app Atajos en la hoja de compartir; computadora → el marcador «Leer en Mosaic»
+  (bookmarklet). La sección «Enviar un enlace a Mosaic» del lector lo explica paso a paso.
 - **Control sin mirar** — `Espacio`, `←`/`→`, `Esc`, `+`/`-`; en celular un toque con dos dedos (pausa), deslizar a los lados y
   botones de audífonos (Media Session).
 
