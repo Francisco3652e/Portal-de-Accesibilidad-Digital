@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Portal Accesible — Acerca del proyecto</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="assets/site.css" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/tailwind-config.js"></script>
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
+<svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+<defs>
+<filter id="f-protanopia"><feColorMatrix type="matrix" values="0.567,0.433,0,0,0 0.558,0.442,0,0,0 0,0.242,0.758,0,0 0,0,0,1,0"/></filter>
+<filter id="f-deuteranopia"><feColorMatrix type="matrix" values="0.625,0.375,0,0,0 0.7,0.3,0,0,0 0,0.3,0.7,0,0 0,0,0,1,0"/></filter>
+<filter id="f-tritanopia"><feColorMatrix type="matrix" values="0.95,0.05,0,0,0 0,0.433,0.567,0,0 0,0.475,0.525,0,0 0,0,0,1,0"/></filter>
+</defs>
+</svg>
+<a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-space-md focus:py-space-sm focus:bg-inverse-surface focus:text-inverse-on-surface focus:rounded-lg focus:outline-none" href="#main-content">Saltar al contenido principal</a>
+<div aria-live="polite" class="sr-only" id="a11y-announcer" role="status"></div>
+<header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe">
+<div class="h-20 px-margin flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<img alt="Logo Accesibilidad Digital" class="h-8 w-auto object-contain shrink-0" src="assets/logo.png"/>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-primary tracking-wide uppercase">Portal Accesible</span>
+<h1 class="font-headline-sm text-headline-sm text-on-surface truncate leading-tight">Acerca del proyecto</h1>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<button aria-label="Cambiar a modo oscuro" aria-pressed="false" class="theme-toggle w-11 h-11 flex items-center justify-center rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" data-action="toggle-theme" type="button"><span aria-hidden="true" class="material-symbols-outlined theme-icon theme-icon-sun text-[22px]">light_mode</span><span aria-hidden="true" class="material-symbols-outlined theme-icon theme-icon-moon text-[22px]">dark_mode</span></button>
+<div aria-label="Perfil de usuario" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs shrink-0"><span aria-hidden="true" class="material-symbols-outlined text-on-primary text-[18px]">person</span></div>
+</div>
+</div>
+</header>
+<main class="flex flex-col relative w-full pt-20 pb-24 bg-surface min-h-screen" id="main-content">
+<div class="flex flex-col w-full px-margin py-space-md gap-space-lg">
+<section aria-labelledby="about-heading" class="flex flex-col gap-space-xs">
+<div class="inline-flex items-center gap-space-xs w-fit bg-primary-fixed text-on-primary-fixed px-space-sm py-0.5 rounded-full">
+<span aria-hidden="true" class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">flag</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Programa "Tecnología para Todos" • El Salvador</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight" id="about-heading">
+      Acerca del proyecto
+    </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+      El Portal de Accesibilidad Digital es una propuesta desarrollada para el programa gubernamental <strong class="text-on-surface">"Tecnología para Todos"</strong>. Su objetivo es que las personas con discapacidad visual, auditiva, motriz y cognitiva puedan acceder a la información y a los servicios públicos digitales en igualdad de condiciones que el resto de la población.
+    </p>
+</section>
+
+<section aria-labelledby="problem-heading" class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center gap-2">
+<span aria-hidden="true" class="material-symbols-outlined text-primary text-[24px]">report_problem</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface" id="problem-heading">El problema que atendemos</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+      En El Salvador, de acuerdo con la Encuesta Nacional de Personas con Discapacidad (CONAIPD), más del 6 % de la población vive con alguna discapacidad. La mayoría de los sitios web de trámites, salud, educación y empleo no cuentan con lectores de pantalla compatibles, contraste adecuado, contenido en Lengua de Señas Salvadoreña (LESSA) ni una navegación comprensible. Esto excluye a miles de ciudadanos de la vida digital y de sus derechos.
+    </p>
+<ul class="flex flex-col gap-space-xs font-body-md text-body-md text-on-surface-variant list-disc pl-6">
+<li>Personas ciegas o con baja visión que no pueden leer formularios ni avisos oficiales.</li>
+<li>Personas sordas que reciben información solo en texto escrito, sin LESSA.</li>
+<li>Personas con discapacidad cognitiva o adultos mayores que se pierden en menús complejos.</li>
+<li>Personas con movilidad reducida que no pueden usar botones pequeños o gestos precisos.</li>
+</ul>
+</section>
+
+<section aria-labelledby="ethics-heading" class="flex flex-col gap-space-sm">
+<div class="flex items-baseline justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface" id="ethics-heading">Justificación ética</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Justicia y solidaridad</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm">
+
+<article class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-on-primary-fixed shrink-0">
+<span aria-hidden="true" class="material-symbols-outlined text-[28px]">balance</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">¿Cómo aplica la justicia?</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        La justicia consiste en dar a cada persona lo que le corresponde. El acceso a la información pública y a los servicios del Estado es un <strong class="text-on-surface">derecho</strong>, no un privilegio. Este portal aplica la <strong class="text-on-surface">justicia distributiva</strong> al eliminar barreras que hoy dejan fuera a las personas con discapacidad, y cumple con la Ley Especial de Inclusión de las Personas con Discapacidad de El Salvador y el estándar internacional WCAG 2.2.
+      </p>
+</article>
+
+<article class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shrink-0">
+<span aria-hidden="true" class="material-symbols-outlined text-[28px]">volunteer_activism</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">¿Cómo aplica la solidaridad?</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        La solidaridad es asumir como propias las necesidades de los demás. Como empresa desarrolladora, diseñamos <strong class="text-on-surface">pensando primero en quien más lo necesita</strong>: el portal es gratuito, incluye atención humana con intérpretes de LESSA, y su código abierto podrá ser reutilizado por otras instituciones para que ningún ciudadano quede atrás por su condición.
+      </p>
+</article>
+
+<article class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed shrink-0">
+<span aria-hidden="true" class="material-symbols-outlined text-[28px]">groups</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">¿Qué impacto tendría?</h4>
+<ul class="flex flex-col gap-1 font-body-md text-body-md text-on-surface-variant list-disc pl-5">
+<li><strong class="text-on-surface">Autonomía:</strong> las personas realizan trámites sin depender de terceros.</li>
+<li><strong class="text-on-surface">Inclusión:</strong> acceso a educación, salud y empleo digital.</li>
+<li><strong class="text-on-surface">Confianza:</strong> un Estado que comunica en LESSA y lectura fácil.</li>
+<li><strong class="text-on-surface">Modelo replicable</strong> para otros sitios gubernamentales.</li>
+</ul>
+</article>
+</div>
+</section>
+
+<section aria-labelledby="team-heading" class="bg-surface-container-high rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center gap-2">
+<span aria-hidden="true" class="material-symbols-outlined text-primary text-[20px]">engineering</span>
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-wider" id="team-heading">Equipo desarrollador</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+      Propuesta presentada por el <strong class="text-on-surface">Equipo 6</strong> — Ingeniería en Sistemas y Redes Informáticas, Universidad Gerardo Barrios — para la licitación del programa "Tecnología para Todos", asignatura Ética Profesional.
+    </p>
+<div class="flex flex-col sm:flex-row gap-space-xs pt-1">
+<a class="w-full flex items-center justify-center gap-2 py-3 px-space-md rounded-lg bg-primary text-on-primary font-label-lg text-label-lg active:scale-98 transition-transform" href="index.html#servicios">
+<span aria-hidden="true" class="material-symbols-outlined">apps</span>
+<span>Ver servicios</span>
+</a>
+<a class="w-full flex items-center justify-center gap-2 py-3 px-space-md rounded-lg bg-surface-container-lowest text-primary font-label-lg text-label-lg active:scale-98 transition-transform" href="contacto.html">
+<span aria-hidden="true" class="material-symbols-outlined">mail</span>
+<span>Contáctanos</span>
+</a>
+</div>
+</section>
+</div>
+</main>
+<nav aria-label="Navegación principal" class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.06)]">
+<div class="grid grid-cols-6 items-center h-20 px-space-xs">
+<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="index.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">home</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Inicio</span></a>
+<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="lector.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">record_voice_over</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Lector</span></a>
+<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="senas.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">sign_language</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Señas</span></a>
+<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="ajustes.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">settings_accessibility</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Ajustes</span></a>
+<a aria-current="page" class="flex flex-col items-center justify-center h-full transition-colors gap-0.5 text-primary font-bold" href="acerca.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">info</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Acerca</span></a>
+<a class="flex flex-col items-center justify-center h-full text-on-surface-variant hover:text-on-surface transition-colors gap-0.5" href="contacto.html"><span aria-hidden="true" class="material-symbols-outlined text-[26px]">mail</span><span class="font-label-sm text-label-sm tracking-tight text-center truncate w-full px-1">Contacto</span></a>
+</div>
+</nav>
+<script src="assets/site.js"></script>
+</body>
+</html>
