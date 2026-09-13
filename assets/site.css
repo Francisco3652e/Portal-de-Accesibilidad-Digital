@@ -276,7 +276,8 @@ section > h2 + p, section > h2 + .muted { margin-top: 0.5rem; }
   position: sticky; top: 0; z-index: 100;
   background: var(--paper); border-bottom: var(--line) solid var(--ink);
 }
-.topbar__in { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.5rem; padding-block: 0.5rem; }
+.topbar__in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1rem; min-height: 4.5rem; padding-block: 0.5rem; }
+.brand { flex: none; }
 .brand { display: inline-flex; align-items: center; gap: 0.75rem; text-decoration: none; min-width: 0; }
 .brand__mark { width: 2.75rem; height: 2.75rem; flex: none; filter: drop-shadow(3px 3px 0 var(--ink)); }
 .brand__text { display: flex; flex-direction: column; line-height: 1.05; }
@@ -513,6 +514,23 @@ html[data-reveal] .rv { opacity: 0; transform: translate(-14px, -14px); }
 html[data-reveal] .rv-in .rv { animation: tile-in 600ms var(--ease-out) both; animation-delay: min(calc(var(--i, 0) * 60ms), 540ms); }
 html[data-reduce-motion="true"] .rv { opacity: 1 !important; transform: none !important; }
 @media (prefers-reduced-motion: reduce) { .rv { opacity: 1 !important; transform: none !important; } }
+
+/* ----------------------------- Modo fácil ------------------------------ */
+html[data-easy-mode="true"]:not([data-font-scale="xxl"]) { font-size: 137.5%; }
+html[data-easy-mode="true"] body { line-height: 1.8; letter-spacing: 0.015em; word-spacing: 0.08em; }
+html[data-easy-mode="true"] h1 { font-size: clamp(2.5rem, 6vw, 4rem); }
+html[data-easy-mode="true"] h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+html[data-easy-mode="true"] .lead { font-size: 1.25rem; }
+html[data-easy-mode="true"] .btn, html[data-easy-mode="true"] .key { min-height: 3.75rem; }
+html[data-easy-mode="true"] .btn--sq { width: 3.75rem; height: 3.75rem; }
+html[data-easy-mode="true"] :is(.tag:not(.contrast-switch__state):not([data-guide-count]), .res__meta, .vcard__meta, .section-head p, .svc__top .tag, .wave, .console > .muted) { display: none !important; }
+html[data-easy-mode="true"] .svc h3, html[data-easy-mode="true"] .vcard h3 { font-size: 1.6rem; }
+html[data-easy-mode="true"] .measure { max-width: 50ch; }
+/* Con letra grande, la navegación superior pasa a una segunda fila completa */
+@media (min-width: 900px) {
+  html[data-easy-mode="true"] .topnav, html[data-font-scale="xxl"] .topnav, html[data-font-scale="lg"] .topnav { order: 3; flex-basis: 100%; justify-content: center; padding-bottom: 0.25rem; }
+  html[data-easy-mode="true"] .contrast-switch, html[data-font-scale="xxl"] .contrast-switch, html[data-font-scale="lg"] .contrast-switch { margin-left: auto; }
+}
 
 /* --------------------------- Modo guiado ------------------------------- */
 .guide-bar { display: none; position: sticky; top: 4.5rem; z-index: 90; margin-bottom: 1.5rem; }

@@ -23,7 +23,7 @@ Personas con discapacidad **visual**, **auditiva**, **cognitiva** y **motriz**, 
 | `contacto.html` | **Contacto**: canales de atención y formulario accesible |
 | `lector.html` | Lector de pantalla con síntesis de voz |
 | `senas.html` | Videos en Lengua de Señas Salvadoreña (LESSA) |
-| `ajustes.html` | Alto contraste, filtros de daltonismo, tamaño de letra, navegación simplificada |
+| `ajustes.html` | Alto contraste, filtros de daltonismo, tamaño de letra, modo fácil, modo guiado |
 
 ## Diseño
 

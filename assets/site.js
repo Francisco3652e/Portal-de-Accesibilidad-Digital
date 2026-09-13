@@ -18,7 +18,8 @@
     reduceMotion: false,
     highlightClickable: false,
     wideSpacing: false,
-    guidedMode: false
+    guidedMode: false,
+    easyMode: false
   };
 
   function loadState() {
@@ -45,6 +46,23 @@
     html.setAttribute("data-highlight-clickable", state.highlightClickable ? "true" : "false");
     html.setAttribute("data-wide-spacing", state.wideSpacing ? "true" : "false");
     html.setAttribute("data-guided-mode", state.guidedMode ? "true" : "false");
+    html.setAttribute("data-easy-mode", state.easyMode ? "true" : "false");
+    applyEasyText();
+  }
+
+  // Modo fácil: los elementos con data-easy muestran su frase corta; al
+  // desactivarlo se restaura el texto completo.
+  function applyEasyText() {
+    if (!document.body) { return; }
+    document.querySelectorAll("[data-easy]").forEach(function (el) {
+      if (state.easyMode) {
+        if (!el.hasAttribute("data-full")) { el.setAttribute("data-full", el.innerHTML); }
+        el.textContent = el.getAttribute("data-easy");
+      } else if (el.hasAttribute("data-full")) {
+        el.innerHTML = el.getAttribute("data-full");
+        el.removeAttribute("data-full");
+      }
+    });
   }
 
   // Aplicar de inmediato (antes de DOMContentLoaded) para evitar parpadeos.
@@ -119,7 +137,7 @@
     });
     var filterSelect = document.getElementById("color-filter-select");
     if (filterSelect) { filterSelect.value = state.colorFilter; }
-    var map = { "toggle-spacing": "wideSpacing", "toggle-guided-mode": "guidedMode", "toggle-highlight-clickable": "highlightClickable", "toggle-reduce-motion": "reduceMotion" };
+    var map = { "toggle-spacing": "wideSpacing", "toggle-guided-mode": "guidedMode", "toggle-highlight-clickable": "highlightClickable", "toggle-reduce-motion": "reduceMotion", "toggle-easy-mode": "easyMode" };
     Object.keys(map).forEach(function (id) {
       var el = document.getElementById(id);
       if (el) { el.checked = !!state[map[id]]; }
@@ -206,6 +224,7 @@
   }
 
   function init() {
+    applyEasyText();
     initReveal();
     document.querySelectorAll('[data-action="toggle-contrast"]').forEach(function (btn) {
       btn.addEventListener("click", toggleContrast);
@@ -230,7 +249,8 @@
       ["toggle-spacing", "wideSpacing", "Espaciado e interlineado amplio"],
       ["toggle-guided-mode", "guidedMode", "Modo guiado paso a paso"],
       ["toggle-highlight-clickable", "highlightClickable", "Destacado de elementos clicables"],
-      ["toggle-reduce-motion", "reduceMotion", "Reducción de animaciones"]
+      ["toggle-reduce-motion", "reduceMotion", "Reducción de animaciones"],
+      ["toggle-easy-mode", "easyMode", "Modo fácil"]
     ];
     bools.forEach(function (b) {
       var el = document.getElementById(b[0]);
