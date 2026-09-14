@@ -660,3 +660,67 @@ kbd {
 /* Voz al pasar el cursor: contorno del elemento que se está diciendo */
 .hs-current { outline: 4px solid var(--pink) !important; outline-offset: 3px; }
 html[data-contrast="dark"] .hs-current, html[data-contrast="yellow"] .hs-current { outline-color: var(--yellow) !important; }
+
+/* ------------------------------ Telón de entrada ----------------------- */
+.curtain {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem;
+  width: 100%; margin: 0; padding: 2rem 1.5rem calc(2rem + 12px);
+  border: 0; border-bottom: 12px solid var(--ink);
+  background: var(--paper); color: var(--ink); font: inherit; cursor: pointer;
+  transition: transform 950ms cubic-bezier(0.7, 0, 0.25, 1) 350ms, opacity 400ms ease;
+  will-change: transform;
+}
+.curtain[hidden] { display: none; }
+.curtain:focus-visible { outline: 6px solid var(--yellow); outline-offset: -12px; }
+.curtain::after { /* fleco inferior del telón */
+  content: ""; position: absolute; left: 0; right: 0; bottom: -12px; height: 12px;
+  background: repeating-linear-gradient(90deg, var(--yellow) 0 24px, var(--pink) 24px 48px, var(--mint) 48px 72px, var(--sky) 72px 96px);
+  border-top: 3px solid var(--ink);
+}
+.curtain__mark { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(0.6rem, 2vw, 1rem); width: clamp(9rem, 32vw, 15rem); }
+.curtain__tile {
+  aspect-ratio: 1; border: 4px solid var(--ink); border-radius: 18px; box-shadow: 6px 6px 0 var(--ink);
+  transform: translateY(-140vh) rotate(-8deg); opacity: 0;
+  animation: curtainTile 700ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.curtain__tile:nth-child(1) { background: var(--yellow); animation-delay: 100ms; }
+.curtain__tile:nth-child(2) { background: var(--pink); animation-delay: 250ms; }
+.curtain__tile:nth-child(3) { background: var(--mint); animation-delay: 400ms; }
+.curtain__tile:nth-child(4) { background: var(--sky); animation-delay: 550ms; }
+@keyframes curtainTile { to { transform: translateY(0) rotate(0); opacity: 1; } }
+.curtain__name {
+  font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1;
+  opacity: 0; transform: translateY(20px); animation: curtainUp 600ms ease-out 800ms forwards;
+}
+.curtain__tag {
+  display: inline-block; padding: 0.4em 1em; border: var(--line) solid var(--ink); border-radius: var(--radius-sm);
+  background: var(--yellow); font-weight: 800; font-size: clamp(1rem, 3vw, 1.4rem); box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(20px); animation: curtainUp 600ms ease-out 1000ms forwards;
+}
+.curtain__hint {
+  margin-top: 1rem; font-weight: 700; color: var(--ink-2);
+  opacity: 0; animation: curtainHint 1.6s ease-in-out 1400ms infinite;
+}
+@keyframes curtainUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes curtainHint { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+/* Subida del telón */
+.curtain.is-lifting { transform: translateY(-108%); }
+.curtain.is-lifting .curtain__tile { animation: curtainTileOut 400ms cubic-bezier(0.5, 0, 0.75, 0) forwards; }
+.curtain.is-lifting .curtain__tile:nth-child(1) { animation-delay: 0ms; }
+.curtain.is-lifting .curtain__tile:nth-child(2) { animation-delay: 60ms; }
+.curtain.is-lifting .curtain__tile:nth-child(3) { animation-delay: 120ms; }
+.curtain.is-lifting .curtain__tile:nth-child(4) { animation-delay: 180ms; }
+@keyframes curtainTileOut { to { transform: scale(0.2) rotate(25deg); opacity: 0; } }
+.curtain.is-lifting .curtain__name, .curtain.is-lifting .curtain__tag, .curtain.is-lifting .curtain__hint { animation: none; opacity: 0; transition: opacity 250ms ease; }
+html.has-curtain, body.has-curtain { overflow: hidden; }
+/* Sin animaciones: fundido simple */
+html[data-reduce-motion="true"] .curtain, html[data-reduce-motion="true"] .curtain.is-lifting { transition: opacity 300ms ease; transform: none; }
+html[data-reduce-motion="true"] .curtain.is-lifting { opacity: 0; }
+html[data-reduce-motion="true"] .curtain__tile, html[data-reduce-motion="true"] .curtain__name, html[data-reduce-motion="true"] .curtain__tag, html[data-reduce-motion="true"] .curtain__hint { animation: none; opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .curtain, .curtain.is-lifting { transition: opacity 300ms ease; transform: none; }
+  .curtain.is-lifting { opacity: 0; }
+  .curtain__tile, .curtain__name, .curtain__tag, .curtain__hint { animation: none; opacity: 1; transform: none; }
+}
+#welcome-heading:focus { outline: none; }
