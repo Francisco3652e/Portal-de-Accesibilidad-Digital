@@ -668,7 +668,7 @@ html[data-contrast="dark"] .hs-current, html[data-contrast="yellow"] .hs-current
   width: 100%; margin: 0; padding: 2rem 1.5rem calc(2rem + 12px);
   border: 0; border-bottom: 12px solid var(--ink);
   background: var(--paper); color: var(--ink); font: inherit; cursor: pointer;
-  transition: transform 950ms cubic-bezier(0.7, 0, 0.25, 1) 350ms, opacity 400ms ease;
+  transition: transform 950ms cubic-bezier(0.7, 0, 0.25, 1) 520ms, opacity 400ms ease;
   will-change: transform;
 }
 .curtain[hidden] { display: none; }
@@ -704,15 +704,21 @@ html[data-contrast="dark"] .hs-current, html[data-contrast="yellow"] .hs-current
 }
 @keyframes curtainUp { to { opacity: 1; transform: translateY(0); } }
 @keyframes curtainHint { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
-/* Subida del telón */
+/* Al pulsar: las piezas y las letras hacen "pop" (se hinchan y estallan) y luego sube el telón */
 .curtain.is-lifting { transform: translateY(-108%); }
-.curtain.is-lifting .curtain__tile { animation: curtainTileOut 400ms cubic-bezier(0.5, 0, 0.75, 0) forwards; }
+.curtain.is-lifting .curtain__tile { animation: curtainPop 420ms cubic-bezier(0.2, 0.9, 0.3, 1.4) forwards; }
 .curtain.is-lifting .curtain__tile:nth-child(1) { animation-delay: 0ms; }
-.curtain.is-lifting .curtain__tile:nth-child(2) { animation-delay: 60ms; }
-.curtain.is-lifting .curtain__tile:nth-child(3) { animation-delay: 120ms; }
-.curtain.is-lifting .curtain__tile:nth-child(4) { animation-delay: 180ms; }
-@keyframes curtainTileOut { to { transform: scale(0.2) rotate(25deg); opacity: 0; } }
-.curtain.is-lifting .curtain__name, .curtain.is-lifting .curtain__tag, .curtain.is-lifting .curtain__hint { animation: none; opacity: 0; transition: opacity 250ms ease; }
+.curtain.is-lifting .curtain__tile:nth-child(2) { animation-delay: 70ms; }
+.curtain.is-lifting .curtain__tile:nth-child(3) { animation-delay: 140ms; }
+.curtain.is-lifting .curtain__tile:nth-child(4) { animation-delay: 210ms; }
+.curtain.is-lifting .curtain__name { animation: curtainPop 460ms cubic-bezier(0.2, 0.9, 0.3, 1.4) 120ms forwards; }
+.curtain.is-lifting .curtain__tag { animation: curtainPop 420ms cubic-bezier(0.2, 0.9, 0.3, 1.4) 200ms forwards; }
+.curtain.is-lifting .curtain__hint { animation: none; opacity: 0; transition: opacity 200ms ease; }
+@keyframes curtainPop {
+  0%   { transform: scale(1); opacity: 1; filter: none; }
+  45%  { transform: scale(1.3) rotate(-3deg); opacity: 1; filter: brightness(1.15); }
+  100% { transform: scale(0); opacity: 0; }
+}
 html.has-curtain, body.has-curtain { overflow: hidden; }
 /* Sin animaciones: fundido simple */
 html[data-reduce-motion="true"] .curtain, html[data-reduce-motion="true"] .curtain.is-lifting { transition: opacity 300ms ease; transform: none; }

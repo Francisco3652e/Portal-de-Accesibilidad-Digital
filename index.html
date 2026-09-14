@@ -112,7 +112,7 @@
         if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus({ preventScroll: true }); }
       }
       curtain.addEventListener('transitionend', function (e) { if (e.target === curtain) { finish(); } });
-      setTimeout(finish, 1800); // por si el navegador no emite transitionend
+      setTimeout(finish, 2000); // por si el navegador no emite transitionend
     }
     curtain.addEventListener('click', lift);
     document.addEventListener('keydown', function (e) {
